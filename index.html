@@ -92,6 +92,11 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .badge-partial{background:var(--blue-dim);color:var(--blue);}.badge-taken{background:var(--red-dim);color:var(--red);}
 .prop-own-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--gold);}
 .section-hdr{margin-bottom:14px;}.section-hdr h2{font-family:'DM Serif Display',serif;font-size:20px;margin-bottom:8px;}.section-hdr p{font-size:12px;color:var(--text3);margin-top:2px;}
+.port-hdr-flex{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.port-offers-icon-btn{position:relative;width:40px;height:40px;border-radius:50%;background:var(--surface2);border:1px solid var(--border2);display:flex;align-items:center;justify-content:center;color:var(--text2);flex-shrink:0;cursor:pointer;margin-top:2px;}
+.port-offers-icon-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
+.port-offers-icon-btn svg{width:19px;height:19px;}
+.port-offers-icon-btn .bnav-dot{top:4px;right:4px;}
 #modal-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.7);display:none;align-items:flex-end;backdrop-filter:blur(3px);}
 #modal-overlay.open{display:flex;}
 #modal{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-height:90vh;max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(20px + var(--safe-b));animation:slideUp 0.25s ease;}
@@ -667,10 +672,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
   <div id="main-content">
     <div class="screen" id="screen-portfolio">
       <div class="screen-inner">
-        <div class="section-hdr"><h2 id="lbl-port-title">My Portfolio</h2><p id="lbl-port-sub">Your properties and income</p></div>
-        <div class="chip-scroll">
-          <div class="chip port-tab active" onclick="setPortfolioTab('properties',this)"><span id="port-tab-props">Portfolio</span></div>
-          <div class="chip port-tab" onclick="setPortfolioTab('offers',this)"><span id="port-tab-offers">Offers</span></div>
+        <div class="section-hdr port-hdr-flex">
+          <div><h2 id="lbl-port-title">My Portfolio</h2><p id="lbl-port-sub">Your properties and income</p></div>
+          <div class="port-offers-icon-btn" id="port-offers-btn" onclick="toggleOffersPanel()">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13"/><path d="M3 7l9 6 9-6"/></svg>
+            <div class="bnav-dot" id="offers-dot-top"></div>
+          </div>
         </div>
         <div id="portfolio-props-view">
           <div class="port-summary" id="port-summary"></div>
@@ -1442,8 +1449,6 @@ function applyLang() {
   setText('bnav-store', T('store'));
   setText('bnav-skills', T('skills'));
   setText('bnav-lb', T('leaderboard'));
-  setText('port-tab-props', T('portfolio'));
-  setText('port-tab-offers', T('offers'));
   // Topbar
   setText('lbl-cash', T('cash'));
   setText('lbl-income', T('income'));
@@ -2303,7 +2308,7 @@ function setupRealtime() {
   }).subscribe();}
 }
 function broadcastAction(txt) { if(supa)supa.channel('live').send({type:'broadcast',event:'a',payload:{t:txt}}); }
-function updateDot(){document.getElementById('offers-dot').classList.toggle('show',(S.offers?.length||0)>0);}
+function updateDot(){const show=(S.offers?.length||0)>0;document.getElementById('offers-dot').classList.toggle('show',show);const t=document.getElementById('offers-dot-top');if(t)t.classList.toggle('show',show);}
 
 // ===== HELPERS =====
 function fmt(n){if(n>=1e9)return'€'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return'€'+(n/1e6).toFixed(1)+'M';if(n>=1000)return'€'+Math.round(n/1000)+'K';return'€'+Math.round(n).toLocaleString();}
@@ -2468,14 +2473,15 @@ function setScreen(name, el) {
   if(name==='buyproperty'){ renderPersonalProperties(); initBuyPropertyScreen(); renderBuyPropertyEvents(); }
   if(name==='overview')renderOverview();
 }
-function setPortfolioTab(tab,el){
+function setPortfolioTab(tab){
   S.portfolioTab=tab;
-  document.querySelectorAll('#screen-portfolio .port-tab').forEach(c=>c.classList.remove('active'));
-  if(el)el.classList.add('active');
+  const btn=document.getElementById('port-offers-btn');
+  if(btn)btn.classList.toggle('active',tab==='offers');
   document.getElementById('portfolio-props-view').style.display=tab==='properties'?'':'none';
   document.getElementById('portfolio-offers-view').style.display=tab==='offers'?'':'none';
   if(tab==='offers')refreshOffers(); else renderPortfolio();
 }
+function toggleOffersPanel(){ setPortfolioTab(S.portfolioTab==='offers'?'properties':'offers'); }
 function toggleSection(tier){S.openSection=(S.openSection===tier)?null:tier;renderBuyPropertyEvents();}
 
 // ===== WORLD MAP =====
