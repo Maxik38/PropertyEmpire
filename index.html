@@ -2801,7 +2801,7 @@ function openEventBuyModal(themeId,key){
   const btnTxt=ca?T('buyBtn',eventBuyPct,fmt(cost)):T('noFunds',fmt(cost));
   document.getElementById('modal-title').textContent=eventPropName(prop);
   const modalIconHtml=prop.img?`<img src="${prop.img}" class="modal-img">`:`<span class="modal-emoji">${prop.emoji}</span>`;
-  document.getElementById('modal-body').innerHTML=`${modalIconHtml}<div class="modal-loc">📍 ${currentLang==='sk'?theme.nameSk:theme.name} <span class="prop-status-badge badge-available">🔮 ${T('eventTabLabel')}</span></div><div class="info-grid"><div class="info-cell"><div class="info-cell-label">${T('marketValue')}</div><div class="info-cell-val gold">${fmt(val)}</div></div><div class="info-cell"><div class="info-cell-label">${T('chromaReward')}</div><div class="info-cell-val g">${CHROMA_PER_PCT}/%</div></div><div class="info-cell"><div class="info-cell-label">${T('myShareLbl')}</div><div class="info-cell-val">${owned}%</div></div><div class="info-cell"><div class="info-cell-label">${T('available2')}</div><div class="info-cell-val">${maxPct}%</div></div></div><div class="own-bar-wrap"><div class="own-bar-label"><span>${T('ownership')}</span><span>${owned}% owned</span></div><div class="own-bar"><div class="own-bar-mine" style="width:${owned}%"></div></div></div><div class="divider"></div><div class="share-slider"><label>${T('myShareLbl')} <span id="sl-pct">${eventBuyPct}%</span><span id="sl-cost" style="color:var(--gold)">${fmt(cost)}</span><button type="button" class="btn-max-chip" onclick="setMaxEventBuy()">${T('buyMax')}</button></label><input type="range" id="event-pct-slider" min="1" max="${maxPct}" value="${eventBuyPct}" oninput="updateEventSlider(this.value)"></div><button class="btn btn-gold" id="buy-btn" onclick="confirmEventBuy()" ${!ca?'disabled':''}>${btnTxt}</button><button class="btn-text-hint" onclick="goToConvertCash()">${T('convertHint')}</button>`;
+  document.getElementById('modal-body').innerHTML=`${modalIconHtml}<div class="modal-loc">📍 ${currentLang==='sk'?theme.nameSk:theme.name} <span class="prop-status-badge badge-available">🔮 ${T('eventTabLabel')}</span></div><div class="info-grid"><div class="info-cell"><div class="info-cell-label">${T('marketValue')}</div><div class="info-cell-val gold">${fmt(val)}</div></div><div class="info-cell"><div class="info-cell-label">${T('chromaReward')}</div><div class="info-cell-val g">${CHROMA_PER_PCT}/%</div></div><div class="info-cell"><div class="info-cell-label">${T('myShareLbl')}</div><div class="info-cell-val">${owned}%</div></div><div class="info-cell"><div class="info-cell-label">${T('available2')}</div><div class="info-cell-val">${maxPct}%</div></div></div><div class="own-bar-wrap"><div class="own-bar-label"><span>${T('ownership')}</span><span>${owned}% owned</span></div><div class="own-bar"><div class="own-bar-mine" style="width:${owned}%"></div></div></div><div class="divider"></div><div class="share-slider"><label>${T('myShareLbl')} <span id="sl-pct">${eventBuyPct}%</span><span id="sl-cost" style="color:var(--gold)">${fmt(cost)}</span><button type="button" class="btn-max-chip" onclick="setMaxEventBuy()">${T('buyMax')}</button></label><input type="range" id="event-pct-slider" min="1" max="${maxPct}" value="${eventBuyPct}" oninput="updateEventSlider(this.value)"></div><button class="btn btn-gold" id="buy-btn" onclick="confirmEventBuy()" ${!ca?'disabled':''}>${btnTxt}</button><button class="btn-text-hint" id="convert-hint-btn" onclick="goToConvertCash()" style="display:${ca?'none':''}">${T('convertHint')}</button>`;
   document.getElementById('modal-overlay').classList.add('open');
 }
 function updateEventSlider(val){
@@ -2814,6 +2814,8 @@ function updateEventSlider(val){
   const ca=S.cash>=cost;
   btn.disabled=!ca;
   btn.textContent=ca?T('buyBtn',eventBuyPct,fmt(cost)):T('noFunds',fmt(cost));
+  const hint=document.getElementById('convert-hint-btn');
+  if(hint)hint.style.display=ca?'none':'';
 }
 function setMaxEventBuy(){
   if(!eventBuyTarget)return;
@@ -2874,7 +2876,7 @@ function openModal(id){
     const funds=currencyBalance(cur);const ca=funds>=cost;
     const costTxt=special?(cost+' '+icon):fmt(cost);
     const btnTxt=ca?(special?T('buyBtnSpecial',buyPct,cost,icon):T('buyBtn',buyPct,fmt(cost))):(special?T('noFundsSpecial',cost,icon):T('noFunds',fmt(cost)));
-    buyHtml=`<div class="divider"></div><div class="share-slider"><label>${T('myShareLbl')} <span id="sl-pct">${buyPct}%</span><span id="sl-cost" style="color:${cur==='diamond'?'#5aa8e0':cur==='alien'?'#7ee08a':'var(--gold)'}">${costTxt}</span><button type="button" class="btn-max-chip" onclick="setMaxBuy(${id})">${T('buyMax')}</button></label><input type="range" id="buy-pct-slider" min="1" max="${maxBuy}" value="${buyPct}" oninput="updateSlider(this.value,${id})"></div><button class="btn btn-gold" id="buy-btn" onclick="buyShare(${id})" ${!ca?'disabled':''}>${btnTxt}</button><button class="btn-text-hint" onclick="goToConvertCash()">${T('convertHint')}</button>`;
+    buyHtml=`<div class="divider"></div><div class="share-slider"><label>${T('myShareLbl')} <span id="sl-pct">${buyPct}%</span><span id="sl-cost" style="color:${cur==='diamond'?'#5aa8e0':cur==='alien'?'#7ee08a':'var(--gold)'}">${costTxt}</span><button type="button" class="btn-max-chip" onclick="setMaxBuy(${id})">${T('buyMax')}</button></label><input type="range" id="buy-pct-slider" min="1" max="${maxBuy}" value="${buyPct}" oninput="updateSlider(this.value,${id})"></div><button class="btn btn-gold" id="buy-btn" onclick="buyShare(${id})" ${!ca?'disabled':''}>${btnTxt}</button><button class="btn-text-hint" id="convert-hint-btn" onclick="goToConvertCash()" style="display:${(ca||special)?'none':''}">${T('convertHint')}</button>`;
   }
   const sellHtml=m>0?`<button class="btn btn-outline" onclick="openSellModal(${id})">${T('myShare',m)}</button>`:'';
   const scopeBadge=p.scope==='personal'?`<span class="prop-status-badge badge-available">🔒 ${T('personal')}</span>`:'';
@@ -2889,6 +2891,8 @@ function updateSlider(val,id){
   const funds=currencyBalance(cur);const ca=funds>=cost;
   btn.disabled=!ca;
   btn.textContent=ca?(special?T('buyBtnSpecial',buyPct,cost,icon):T('buyBtn',buyPct,fmt(cost))):(special?T('noFundsSpecial',cost,icon):T('noFunds',fmt(cost)));
+  const hint=document.getElementById('convert-hint-btn');
+  if(hint)hint.style.display=(ca||special)?'none':'';
 }
 function setMaxBuy(id){
   const p=PROPS.find(x=>x.id===id);if(!p)return;
