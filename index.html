@@ -134,7 +134,32 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .port-stat{background:var(--surface2);border-radius:var(--radius-sm);padding:10px;text-align:center;}
 .port-stat-val{font-family:'DM Serif Display',serif;font-size:15px;color:var(--gold);}
 .port-stat-label{font-size:9px;color:var(--text3);margin-top:2px;}
-.port-item{display:flex;align-items:center;gap:14px;padding:13px 18px;background:var(--surface2);border-radius:18px;margin-bottom:12px;border:1px solid var(--border2);box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer;}
+.port-frame{border-radius:18px;margin-bottom:12px;}
+.port-icon-frame{width:52px;height:52px;border-radius:14px;flex-shrink:0;}
+.tier-frame{padding:1px;}
+.tier-frame.t1,.tier-frame.t2,.tier-frame.t3,.tier-frame.t4,.tier-frame.t5{padding:1.5px;}
+.tier-frame.t0{background:#26262d;box-shadow:none;}
+.tier-frame.t1{background:linear-gradient(145deg,#4a4232,#2c2c34 62%);box-shadow:0 2px 10px #4a423218;}
+.tier-frame.t2{background:linear-gradient(145deg,#7a5f36,#2a2a32 60%);box-shadow:0 3px 14px #7a5f3622;}
+.tier-frame.t3{background:linear-gradient(145deg,#b08c42,#2e2a30 65%);box-shadow:0 4px 18px #b08c4230;}
+.tier-frame.t4{background:linear-gradient(140deg,#e8c766,#6b5330 45%,#e8c766);box-shadow:0 4px 20px #e8c76633;}
+.tier-frame.t5{background:conic-gradient(from 210deg,#ffe9a8,#d9b24c 22%,#7fd8c0 45%,#c9a8f0 64%,#d9b24c 82%,#ffe9a8);box-shadow:0 6px 30px #d9b24c44;}
+.port-card{display:flex;align-items:center;gap:14px;padding:14px;position:relative;overflow:hidden;cursor:pointer;height:100%;border-radius:17px;}
+.port-card.t1,.port-card.t2,.port-card.t3,.port-card.t4,.port-card.t5{border-radius:16.5px;}
+.port-card.t0{background:linear-gradient(160deg,#1c1c22,#17171b);}
+.port-card.t1{background:linear-gradient(160deg,#1f1d1c,#18181c 70%);}
+.port-card.t2{background:linear-gradient(160deg,#241e16,#18171b 70%);}
+.port-card.t3{background:linear-gradient(150deg,#2a2115,#191820 75%);}
+.port-card.t4{background:linear-gradient(150deg,#2c2315,#1a1620 72%);}
+.port-card.t5{background:linear-gradient(150deg,#332715,#1d1626 70%);}
+.port-sheen{position:absolute;inset:0;pointer-events:none;}
+.port-sheen.t1{background:radial-gradient(120% 90% at 6% 0%, #d9b24c0d, transparent 58%);}
+.port-sheen.t2{background:radial-gradient(120% 90% at 6% 0%, #d9b24c1a, transparent 60%);}
+.port-sheen.t3{background:radial-gradient(120% 90% at 6% 0%, #d9b24c26, transparent 62%);}
+.port-sheen.t4{background:radial-gradient(120% 95% at 6% 0%, #e8c76630, transparent 65%);}
+.port-sheen.t5{background:radial-gradient(120% 95% at 4% 0%, #ffe9a833, transparent 62%),radial-gradient(90% 80% at 100% 110%, #c9a8f026, transparent 60%);}
+.port-icon-inner{width:100%;height:100%;border-radius:11px;background:#1a1a20;display:flex;align-items:center;justify-content:center;}
+.port-icon-inner svg{width:26px;height:26px;}
 .port-item:active{transform:scale(0.98);}
 .port-icon-tile{width:48px;height:48px;border-radius:12px;flex-shrink:0;background:linear-gradient(150deg,#3a3a44,#22222a);border:1px solid #3a3a44;display:flex;align-items:center;justify-content:center;font-size:22px;}
 .pd-class-badge{display:inline-block;background:#20190f;border:1px solid #3a2f18;color:#d9b24c;border-radius:8px;padding:5px 10px;font-size:11px;font-weight:800;letter-spacing:.08em;}
@@ -3251,11 +3276,14 @@ function renderPortfolio(){
   if(S.portfolioSort==='asc')myP.sort((a,b)=>Math.round(marketValue(a)*getOwn(a.id)/100)-Math.round(marketValue(b)*getOwn(b.id)/100));
   else if(S.portfolioSort==='desc')myP.sort((a,b)=>Math.round(marketValue(b)*getOwn(b.id)/100)-Math.round(marketValue(a)*getOwn(a.id)/100));
   list.innerHTML='';
+  const BUILDING_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="#9a9aa2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9 20v-5h6v5"/><path d="M8.5 11.5h2M13.5 11.5h2"/></svg>';
   myP.forEach(p=>{
     const m=getOwn(p.id),rent=Math.round(p.rent*m/100*rentMult()*qualityMult(p.id)),val=Math.round(marketValue(p)*m/100);
-    const d=document.createElement('div');d.className='port-item';
-    const starsHtml=qualityStarsHtml(p.id,15);
-    d.innerHTML=`<div class="port-icon-tile">${p.emoji}</div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${m}%</div><div class="port-upgrades">${starsHtml}</div></div><div class="port-right"><div class="port-rent">${fmtRent(rent)} <span class="port-val">(${fmt(val)})</span></div><button class="sell-btn" onclick="event.stopPropagation();openSellModal(${p.id})">${T('sell')}</button></div>`;
+    const t=getQuality(p.id).stars; // 0-5, drives the enchant tier
+    const starsHtml=qualityStarsHtml(p.id,12);
+    const d=document.createElement('div');d.className=`port-frame tier-frame t${t}`;
+    const sheenHtml=t>0?`<div class="port-sheen t${t}"></div>`:'';
+    d.innerHTML=`<div class="port-card t${t}">${sheenHtml}<div class="port-icon-frame tier-frame t${t}"><div class="port-icon-inner">${BUILDING_SVG}</div></div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${m}%</div><div class="port-upgrades" style="gap:3px;margin-top:6px;">${starsHtml}</div></div><div class="port-right"><div class="port-rent">${fmtRent(rent)} <span class="port-val">(${fmt(val)})</span></div><button class="sell-btn" onclick="event.stopPropagation();openSellModal(${p.id})">${T('sell')}</button></div></div>`;
     d.onclick=()=>openModal(p.id);list.appendChild(d);
   });
 }
