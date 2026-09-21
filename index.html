@@ -142,8 +142,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .pd-ring{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .pd-ring-inner{width:78px;height:78px;border-radius:50%;background:#15151a;display:flex;flex-direction:column;align-items:center;justify-content:center;}
 .pd-ring-value{font-size:20px;font-weight:800;color:#d9b24c;line-height:1.1;}
-.pd-ring-max{font-size:12px;color:#7a7a84;}
-.pd-ring-label{font-size:9px;font-weight:800;color:#7a7a84;letter-spacing:.1em;margin-top:2px;}
+.pd-ring-max{font-size:12px;color:#9a9aa5;}
+.pd-ring-label{font-size:9px;font-weight:800;color:#9a9aa5;letter-spacing:.1em;margin-top:2px;}
 .pd-name-block{flex:1;min-width:0;}
 .pd-name{font-family:'DM Serif Display',serif;font-size:26px;font-weight:700;line-height:1.1;color:#fff;margin-bottom:6px;word-break:break-word;}
 .pd-upgrade-pill{display:inline-flex;align-items:center;gap:6px;background:#d9b24c;color:#1a1400;border-radius:20px;padding:8px 14px;font-size:13px;font-weight:800;cursor:pointer;margin-top:8px;}
@@ -153,15 +153,15 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .pd-stat-pill.cena{background:#1a1a20;}
 .pd-stat-pill.rent{background:#12201a;}
 .pd-stat-pill-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:4px;}
-.pd-stat-pill.cena .pd-stat-pill-lbl{color:#7a7a84;}
-.pd-stat-pill.rent .pd-stat-pill-lbl{color:#6f8f7c;}
+.pd-stat-pill.cena .pd-stat-pill-lbl{color:#9a9aa5;}
+.pd-stat-pill.rent .pd-stat-pill-lbl{color:#7fae8f;}
 .pd-stat-pill-val{font-size:19px;font-weight:800;}
 .pd-stat-pill.cena .pd-stat-pill-val{color:#fff;}
 .pd-stat-pill.rent .pd-stat-pill-val{color:#4ade80;}
 .pd-own-block{background:#1a1a20;border-radius:14px;padding:14px;margin-top:10px;}
 .pd-own-header{display:flex;justify-content:space-between;font-size:12px;}
 .pd-own-header-lbl{color:#9a9aa2;}
-.pd-own-header-avail{color:#7a7a84;}
+.pd-own-header-avail{color:#9a9aa5;}
 .pd-own-body{display:flex;gap:10px;align-items:center;margin-top:10px;}
 .pd-own-mine-pct{font-size:24px;font-weight:800;color:#d9b24c;flex-shrink:0;}
 .pd-own-bar-seg{display:flex;gap:3px;height:6px;}
@@ -2975,7 +2975,9 @@ function renderPropertyDetailBody(id){
     ? `<div class="pd-quality-maxed">✨ ${T('qualityMaxed')}</div>`
     : `<div class="pd-upgrade-pill" onclick="tryUpgradeQuality(${id})">${T('upgradeBtn')} <span class="pd-upgrade-cost">20 🪙</span></div>`;
   const ringDeg=Math.round(q.level/20*360);
-  document.getElementById('modal-body').innerHTML=`<div class="pd-header-row"><div class="pd-class-badge">★ ${T('classLabel')} ${q.stars}</div></div><div class="modal-loc">📍 ${p.loc}${p.scope==='personal'?` <span class="prop-status-badge badge-available">🔒 ${T('personal')}</span>`:''}</div><div class="pd-identity-row"><div class="pd-ring" style="background:conic-gradient(#d9b24c ${ringDeg}deg,#2a2a32 0deg);"><div class="pd-ring-inner"><div><span class="pd-ring-value">${q.level}</span><span class="pd-ring-max">/20</span></div><div class="pd-ring-label">${T('qualityLabel')}</div></div></div><div class="pd-name-block"><div class="pd-name">${propName(p)}</div><div class="pd-stars">${qualityStarsHtml(id,14)}</div>${qualityBtnHtml}</div></div><div class="pd-stat-pills"><div class="pd-stat-pill cena"><div class="pd-stat-pill-lbl">${T('marketValue')}</div><div class="pd-stat-pill-val">${fmt(price)}</div></div><div class="pd-stat-pill rent"><div class="pd-stat-pill-lbl">${T('rentHr')}</div><div class="pd-stat-pill-val">${fmt(effRent)}</div></div></div><div class="pd-own-block"><div class="pd-own-header"><span class="pd-own-header-lbl">${T('ownership')}</span><span class="pd-own-header-avail">${av}% ${T('available2')}</span></div><div class="pd-own-body"><div class="pd-own-mine-pct">${m}%</div><div style="flex:1;"><div class="pd-own-bar-seg">${segHtml}</div>${chipsHtml?`<div class="pd-own-chips">${chipsHtml}</div>`:''}${moreBtnHtml}</div></div>${fullListHtml}</div><div class="pd-trade-btn" onclick="openTradeSheet(${id})">${T('tradeBtn')}</div>`;
+  document.getElementById('modal-title').innerHTML=`<div class="pd-class-badge">★ ${T('classLabel')} ${q.stars}</div>`;
+  const personalBadge=p.scope==='personal'?`<span class="prop-status-badge badge-available" style="margin-left:8px;">🔒 ${T('personal')}</span>`:'';
+  document.getElementById('modal-body').innerHTML=`<div class="pd-identity-row" style="margin-top:2px;"><div class="pd-ring" style="background:conic-gradient(#d9b24c ${ringDeg}deg,#2a2a32 0deg);"><div class="pd-ring-inner"><div><span class="pd-ring-value">${q.level}</span><span class="pd-ring-max">/20</span></div><div class="pd-ring-label">${T('qualityLabel')}</div></div></div><div class="pd-name-block"><div class="pd-name">${propName(p)}${personalBadge}</div><div class="pd-stars">${qualityStarsHtml(id,14)}</div>${qualityBtnHtml}</div></div><div class="pd-stat-pills"><div class="pd-stat-pill cena"><div class="pd-stat-pill-lbl">${T('marketValue')}</div><div class="pd-stat-pill-val">${fmt(price)}</div></div><div class="pd-stat-pill rent"><div class="pd-stat-pill-lbl">${T('rentHr')}</div><div class="pd-stat-pill-val">${fmt(effRent)}</div></div></div><div class="pd-own-block"><div class="pd-own-header"><span class="pd-own-header-lbl">${T('ownership')}</span><span class="pd-own-header-avail">${av}% ${T('available2')}</span></div><div class="pd-own-body"><div class="pd-own-mine-pct">${m}%</div><div style="flex:1;"><div class="pd-own-bar-seg">${segHtml}</div>${chipsHtml?`<div class="pd-own-chips">${chipsHtml}</div>`:''}${moreBtnHtml}</div></div>${fullListHtml}</div><div class="pd-trade-btn" onclick="openTradeSheet(${id})">${T('tradeBtn')}</div>`;
 }
 function openModal(id){
   if(S.pendingLevel2Hint){
