@@ -1609,7 +1609,6 @@ const DIAMOND_SKILLS_DEF = [
 const SELL_FEE_BASE = 0.08; // baseline "closing cost" when selling a share; Market Savvy (emerald skill) reduces this toward 0%, never below
 // Emerald Skills — paid in 👽 Emeralds. Multiplayer-focused: cheaper upgrades, better sell prices.
 const EMERALD_SKILLS_DEF = [
-  {id:'upgrade_disc',name:()=>T('emUpgDiscName'),icon:'🔧',desc:()=>T('emUpgDiscDesc'),maxLevel:5,costPerLevel:[6,12,20,32,50],bonus:l=>l*0.08},
   {id:'sell_bonus',name:()=>T('emSellBonusName'),icon:'💹',desc:()=>T('emSellBonusDesc'),maxLevel:5,costPerLevel:[6,12,20,32,50],bonus:l=>l*0.016},
 ];
 
@@ -2116,7 +2115,7 @@ const DIAMONDS_TYCOON_IMG='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAAC
 // ===== STATE =====
 let S = {
   cash:50000, user:null, username:'Player', avatar:'🌟', levelClaimed:1,
-  own:{}, upgrades:{}, quality:{}, diamondSkills:{}, emeraldSkills:{}, offers:[], sentOffers:[], coins:0, diamonds:0, aliens:0, skills:{},
+  own:{}, quality:{}, diamondSkills:{}, emeraldSkills:{}, offers:[], sentOffers:[], coins:0, diamonds:0, aliens:0, skills:{},
   powerups:{}, lastDaily:null, dailyStreak:0,
   permaBoost2x:false, permaContractor48:false, portfolioSort:'none',
   chromaCoins:0, eventOwn:{}, chromaSkills:{}, pendingLevel2Hint:false, lastEventWeek:null, deletionScheduledAt:null,
@@ -2313,8 +2312,8 @@ async function loadState() {
   }
   updateAvatarUI();
   const {data:own} = await supa.from('ownerships').select('*');
-  S.dbOwn = own||[]; S.own={}; S.upgrades={};
-  (own||[]).forEach(o=>{ if(o.user_id===S.user.id){ S.own[Number(o.property_id)]=o.pct; S.upgrades[Number(o.property_id)]=o.upgrades||[false,false,false,false]; S.quality[Number(o.property_id)]=o.quality||{level:0,stars:0}; } });
+  S.dbOwn = own||[]; S.own={}; S.quality={};
+  (own||[]).forEach(o=>{ if(o.user_id===S.user.id){ S.own[Number(o.property_id)]=o.pct; S.quality[Number(o.property_id)]=o.quality||{level:0,stars:0}; } });
   const {data:off} = await supa.from('offers').select('*').eq('to_id',S.user.id).eq('status','pending');
   S.offers=off||[]; updateDot();
   const {data:sent} = await supa.from('offers').select('*').eq('from_id',S.user.id).eq('status','pending');
@@ -2343,8 +2342,8 @@ function setupRealtime() {
   if (!supa) return;
   supa.channel('own-rt').on('postgres_changes',{event:'*',schema:'public',table:'ownerships'},async()=>{
     const {data:own}=await supa.from('ownerships').select('*');
-    S.dbOwn=own||[]; S.own={}; S.upgrades={};
-    (own||[]).forEach(o=>{if(o.user_id===S.user?.id){S.own[Number(o.property_id)]=o.pct; S.upgrades[Number(o.property_id)]=o.upgrades||[false,false,false,false]; S.quality[Number(o.property_id)]=o.quality||{level:0,stars:0};}});
+    S.dbOwn=own||[]; S.own={}; S.quality={};
+    (own||[]).forEach(o=>{if(o.user_id===S.user?.id){S.own[Number(o.property_id)]=o.pct; S.quality[Number(o.property_id)]=o.quality||{level:0,stars:0};}});
     renderAll();
   }).subscribe();
   if(S.user){supa.channel('off-rt').on('postgres_changes',{event:'INSERT',schema:'public',table:'offers',filter:`to_id=eq.${S.user.id}`},async()=>{
@@ -2392,66 +2391,11 @@ async function tryUpgradeQuality(id){
   renderPropertyDetailBody(id);
   await saveProfile();
 }
-function getUpgrades(id){return S.upgrades[id]||S.upgrades[String(id)]||S.upgrades[Number(id)]||[false,false,false,false];}
-function upgradeMult(id){const u=getUpgrades(id);return 1+0.25*u.filter(Boolean).length;}
-function getUpgradeDefs(){return {
-  building:[{icon:'💰',label:T('upgIncome')},{icon:'🛡️',label:T('upgSecurity')},{icon:'🎨',label:T('upgRenovation')},{icon:'👔',label:T('upgTenants')}],
-  city:    [{icon:'💰',label:T('upgIncome')},{icon:'🛡️',label:T('upgSecurity')},{icon:'🎨',label:T('upgArt')},{icon:'👔',label:T('upgOfficials')}],
-  country: [{icon:'💰',label:T('upgIncome')},{icon:'🛡️',label:T('upgSecurity')},{icon:'🎨',label:T('upgCulture')},{icon:'👔',label:T('upgOfficials')}],
-};}
-function upgradeCategory(p){
-  if(['mapcountry','country','continent','planet','sea'].includes(p.tier))return 'country';
-  if(['mapcapital','mapcity','city'].includes(p.tier))return 'city';
-  return 'building';
-}
 function portfolioDisplayName(p){
   return propName(p).replace(/^(Celý štát|Hlavné mesto|Mesto): /,'');
 }
 function ownedPropertyCount(){ return PROPS.filter(p=>['mapcountry','mapcapital','mapcity'].includes(p.tier)&&getOwn(p.id)>0).length; }
 function maxPropertiesCap(){ const lvl=S.diamondSkills?.prop_cap||0; return 3+DIAMOND_SKILLS_DEF[0].bonus(lvl); }
-function upgradeCost(p){
-  const myRent=Math.round(p.rent*getOwn(p.id)/100*rentMult());
-  const base=Math.max(50,Math.round(myRent*0.01/10)*10);
-  const discLvl=S.emeraldSkills?.upgrade_disc||0;
-  const disc=discLvl?EMERALD_SKILLS_DEF[0].bonus(discLvl):0;
-  return Math.max(20,Math.round(base*(1-disc)/10)*10);
-}
-async function saveUpgrades(pid,upgs){
-  if(!supa||!S.user)return;
-  const {error}=await supa.from('ownerships').update({upgrades:upgs}).eq('user_id',S.user.id).eq('property_id',pid);
-  if(error){console.error('saveUpgrades failed:',error);toast('⚠️ Save failed — check your connection',4000);}
-}
-function tryBuyUpgrade(pid,slotIdx){
-  const p=PROPS.find(x=>x.id===pid); if(!p)return;
-  if(getOwn(pid)<=0)return;
-  const upgs=getUpgrades(pid);
-  const cat=upgradeCategory(p);
-  const def=getUpgradeDefs()[cat][slotIdx];
-  if(upgs[slotIdx]){ toast(T('upgAlreadyActive',def.label)); return; }
-  const cost=upgradeCost(p);
-  if(S.coins<cost){ toast(T('upgNoFunds',cost,S.coins)); return; }
-  openConfirm(
-    `${def.icon} ${def.label}`,
-    T('upgConfirmSub',cost,portfolioDisplayName(p)),
-    ()=>doBuyUpgrade(pid,slotIdx),
-    T('upgBuyBtn',cost)
-  );
-}
-async function doBuyUpgrade(pid,slotIdx){
-  const p=PROPS.find(x=>x.id===pid); if(!p)return;
-  const upgs=getUpgrades(pid).slice();
-  const cat=upgradeCategory(p);
-  const def=getUpgradeDefs()[cat][slotIdx];
-  if(upgs[slotIdx]){ toast(T('upgAlreadyActive',def.label)); return; }
-  const cost=upgradeCost(p);
-  if(S.coins<cost){ toast(T('upgNoFunds',cost,S.coins)); return; }
-  S.coins-=cost;
-  upgs[slotIdx]=true;
-  S.upgrades[pid]=upgs;
-  await saveUpgrades(pid,upgs);
-  toast(T('upgBought',def.label,cost));
-  updateTopbar();renderPortfolio();await saveProfile();
-}
 function getOtherOwn(id){const p=PROPS.find(x=>x.id==id);if(p&&p.scope==='personal')return 0;if(S.dbOwn)return S.dbOwn.filter(o=>o.property_id==id&&o.user_id!==S.user?.id).reduce((s,o)=>s+o.pct,0);return 0;}
 function getAvail(id){return Math.max(0,100-getOwn(id)-getOtherOwn(id));}
 function marketValue(p){return p.price;}
@@ -2459,7 +2403,7 @@ function getPrice(p){return Math.round(marketValue(p)*priceMult());}
 function rentMult(){let m=1;const rl=S.skills.rent_boost||0;if(rl)m+=SKILLS_DEF.find(s=>s.id==='rent_boost').bonus(rl);const pl=S.skills.portfolio||0;if(pl)m+=SKILLS_DEF.find(s=>s.id==='portfolio').bonus(pl);const cf=S.chromaSkills.chroma_fortune||0;if(cf)m+=CHROMA_SKILLS_DEF[0].bonus(cf);if(S.powerups['2xrent']&&new Date()<new Date(S.powerups['2xrent']))m*=2;if(S.permaBoost2x)m*=2;return m;}
 function priceMult(){return 1;}
 function coinBonus(){const cl=S.skills.coin_master||0;const base=cl?SKILLS_DEF.find(s=>s.id==='coin_master').bonus(cl):0;const chl=S.chromaSkills.chroma_luck||0;const chromaBonus=chl?CHROMA_SKILLS_DEF[2].bonus(chl):0;return base+chromaBonus;}
-function totalRentIncome(){return Math.round(PROPS.reduce((s,p)=>{const m=getOwn(p.id);return m?s+Math.round(p.rent*m/100*upgradeMult(p.id)*qualityMult(p.id)):s;},0)*rentMult());}
+function totalRentIncome(){return Math.round(PROPS.reduce((s,p)=>{const m=getOwn(p.id);return m?s+Math.round(p.rent*m/100*qualityMult(p.id)):s;},0)*rentMult());}
 
 // ===== OFFLINE EARNINGS (capped) =====
 function offlineCapHours(){
@@ -2943,10 +2887,13 @@ function renderPropertyDetailBody(id){
   if(p.scope!=='personal'&&S.dbOwn){S.dbOwn.filter(x=>x.property_id==id&&x.user_id!==S.user?.id).forEach((x,i)=>{const nm=S.dbProfiles?.find(pr=>pr.id===x.user_id)?.username||'Player';const clr=COLORS[(i+1)%COLORS.length];ownHtml+=`<div class="owner-row"><div class="owner-avatar" style="background:${clr}22;color:${clr}">👤</div><span>${nm}</span><span class="owner-pct">${x.pct}%</span><button class="offer-btn" onclick="openOfferModal('${x.user_id}',${id},${x.pct},'${nm}')">${T('makeOffer')}</button></div>`;});}
   const scopeBadge=p.scope==='personal'?`<span class="prop-status-badge badge-available">🔒 ${T('personal')}</span>`:'';
   const q=getQuality(id);
+  const qMult=qualityMult(id);
+  const effRent=m>0?Math.round(p.rent*m/100*rentMult()*qMult):p.rent;
+  const rentBonusHtml=qMult>1?` <span style="font-size:11px;color:#d9b24c;font-weight:700;">✨+${Math.round((qMult-1)*100)}%</span>`:'';
   const qualityBtnHtml = q.stars>=5
     ? `<div class="pd-quality-maxed">✨ ${T('qualityMaxed')}</div>`
     : `<div class="pd-upgrade-btn" onclick="tryUpgradeQuality(${id})">${T('upgradeBtn')} <span class="pd-upgrade-cost">20 🪙</span></div>`;
-  document.getElementById('modal-body').innerHTML=`<div class="pd-header-row"><div class="port-icon-tile" style="width:46px;height:46px;">${p.emoji}</div><div class="pd-stars">${qualityStarsHtml(id)}</div></div><div class="modal-loc">📍 ${p.loc} ${scopeBadge}</div><div class="info-grid"><div class="info-cell"><div class="info-cell-label">${T('marketValue')}</div><div class="info-cell-val gold">${fmt(price)}</div></div><div class="info-cell"><div class="info-cell-label">${T('rentHr')}</div><div class="info-cell-val g">${fmt(p.rent)}</div></div></div><div class="info-cell" style="margin-top:10px;"><div class="own-bar-label" style="margin-bottom:8px;"><span>${T('ownership')}</span><span><b style="color:#fff">${m}%</b> · ${av}% ${T('available2')}</span></div><div class="own-bar"><div class="own-bar-mine" style="width:${m}%"></div><div class="own-bar-others" style="width:${o}%"></div></div></div>${ownHtml?'<div class="owner-list">'+ownHtml+'</div>':''}<div class="pd-trade-btn" onclick="openTradeSheet(${id})">${T('tradeBtn')}</div><div class="pd-quality-card"><div class="pd-quality-header"><span class="pd-quality-label">✨ ${T('qualityLabel')}</span><span class="pd-quality-count"><b style="color:#fff">${q.level}</b>/20</span></div><div class="pd-ticks">${qualityTicksHtml(id)}</div><div class="pd-quality-footer"><span class="pd-quality-remaining">${T('nextStarIn',20-q.level)}</span>${qualityBtnHtml}</div></div>`;
+  document.getElementById('modal-body').innerHTML=`<div class="pd-header-row"><div class="port-icon-tile" style="width:46px;height:46px;">${p.emoji}</div><div class="pd-stars">${qualityStarsHtml(id)}</div></div><div class="modal-loc">📍 ${p.loc} ${scopeBadge}</div><div class="info-grid"><div class="info-cell"><div class="info-cell-label">${T('marketValue')}</div><div class="info-cell-val gold">${fmt(price)}</div></div><div class="info-cell"><div class="info-cell-label">${T('rentHr')}</div><div class="info-cell-val g">${fmt(effRent)}${rentBonusHtml}</div></div></div><div class="info-cell" style="margin-top:10px;"><div class="own-bar-label" style="margin-bottom:8px;"><span>${T('ownership')}</span><span><b style="color:#fff">${m}%</b> · ${av}% ${T('available2')}</span></div><div class="own-bar"><div class="own-bar-mine" style="width:${m}%"></div><div class="own-bar-others" style="width:${o}%"></div></div></div>${ownHtml?'<div class="owner-list">'+ownHtml+'</div>':''}<div class="pd-trade-btn" onclick="openTradeSheet(${id})">${T('tradeBtn')}</div><div class="pd-quality-card"><div class="pd-quality-header"><span class="pd-quality-label">✨ ${T('qualityLabel')}</span><span class="pd-quality-count"><b style="color:#fff">${q.level}</b>/20</span></div><div class="pd-ticks">${qualityTicksHtml(id)}</div><div class="pd-quality-footer"><span class="pd-quality-remaining">${T('nextStarIn',20-q.level)}</span>${qualityBtnHtml}</div></div>`;
 }
 function openModal(id){
   if(S.pendingLevel2Hint){
@@ -3056,7 +3003,7 @@ async function sellShare(id,pct){
   const sellPct=pct!=null?Math.min(pct,m):m;
   if(sellPct<=0)return;
   const sellLvl=S.emeraldSkills?.sell_bonus||0;
-  const feeReduction=sellLvl?EMERALD_SKILLS_DEF[1].bonus(sellLvl):0;
+  const feeReduction=sellLvl?EMERALD_SKILLS_DEF.find(s=>s.id==='sell_bonus').bonus(sellLvl):0;
   const effectiveFee=Math.max(0,SELL_FEE_BASE-feeReduction);
   const gain=Math.round(marketValue(p)*sellPct/100*(1-effectiveFee));
   S.cash+=gain;
@@ -3211,7 +3158,7 @@ function setPortfolioSort(mode,el){
 }
 function renderPortfolio(){
   const myP=PROPS.filter(p=>getOwn(p.id)>0);
-  const tRent=myP.reduce((s,p)=>s+Math.round(p.rent*getOwn(p.id)/100*rentMult()*upgradeMult(p.id)*qualityMult(p.id)),0);
+  const tRent=myP.reduce((s,p)=>s+Math.round(p.rent*getOwn(p.id)/100*rentMult()*qualityMult(p.id)),0);
   const tVal=myP.reduce((s,p)=>s+Math.round(marketValue(p)*getOwn(p.id)/100),0);
   document.getElementById('port-summary').innerHTML=`<div class="port-stat"><div class="port-stat-val">${fmt(tVal)}</div><div class="port-stat-label">${T('propValue')}</div></div><div class="port-stat"><div class="port-stat-val" style="color:var(--green)">${fmtRent(tRent)}</div><div class="port-stat-label">${T('propIncome')}</div></div><div class="port-stat"><div class="port-stat-val">${myP.length}</div><div class="port-stat-label">${T('propCount')}</div></div>`;
   const list=document.getElementById('portfolio-list');
@@ -3220,11 +3167,10 @@ function renderPortfolio(){
   else if(S.portfolioSort==='desc')myP.sort((a,b)=>Math.round(marketValue(b)*getOwn(b.id)/100)-Math.round(marketValue(a)*getOwn(a.id)/100));
   list.innerHTML='';
   myP.forEach(p=>{
-    const m=getOwn(p.id),rent=Math.round(p.rent*m/100*rentMult()*upgradeMult(p.id)*qualityMult(p.id)),val=Math.round(marketValue(p)*m/100);
+    const m=getOwn(p.id),rent=Math.round(p.rent*m/100*rentMult()*qualityMult(p.id)),val=Math.round(marketValue(p)*m/100);
     const d=document.createElement('div');d.className='port-item';
-    const cat=upgradeCategory(p),defs=getUpgradeDefs()[cat],owned=getUpgrades(p.id);
-    const upgradesHtml=defs.map((u,i)=>`<div class="port-upg-circle${owned[i]?' owned':''}" title="${u.label}" onclick="event.stopPropagation();tryBuyUpgrade(${p.id},${i})">${u.icon}</div>`).join('');
-    d.innerHTML=`<div class="port-icon-tile">${p.emoji}</div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${m}%</div><div class="port-upgrades">${upgradesHtml}</div></div><div class="port-right"><div class="port-rent">${fmtRent(rent)} <span class="port-val">(${fmt(val)})</span></div><button class="sell-btn" onclick="event.stopPropagation();openSellModal(${p.id})">${T('sell')}</button></div>`;
+    const starsHtml=qualityStarsHtml(p.id,15);
+    d.innerHTML=`<div class="port-icon-tile">${p.emoji}</div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${m}%</div><div class="port-upgrades">${starsHtml}</div></div><div class="port-right"><div class="port-rent">${fmtRent(rent)} <span class="port-val">(${fmt(val)})</span></div><button class="sell-btn" onclick="event.stopPropagation();openSellModal(${p.id})">${T('sell')}</button></div>`;
     d.onclick=()=>openModal(p.id);list.appendChild(d);
   });
 }
