@@ -733,12 +733,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 </div>
 
 <div id="player-modal" onclick="if(event.target===this)closePlayerModal()">
-  <div class="offer-modal-sheet" style="max-height:80vh;overflow-y:auto;">
-    <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
-      <div class="avatar-pick-circle" style="margin:0;width:48px;height:48px;" id="pm-avatar"></div>
-      <div class="offer-modal-title" id="pm-name" style="margin:0;">Player</div>
+  <div class="offer-modal-sheet" style="max-height:85vh;overflow-y:auto;">
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;background:#15151b;border:1px solid #21212a;border-radius:16px;padding:14px;">
+      <div class="avatar-pick-circle" style="margin:0;width:54px;height:54px;" id="pm-avatar"></div>
+      <div class="offer-modal-title" id="pm-name" style="margin:0;font-size:19px;">Player</div>
     </div>
-    <div id="pm-actions" style="display:flex;gap:8px;margin-bottom:14px;"></div>
+    <div id="pm-actions" style="display:flex;gap:8px;margin-bottom:18px;"></div>
     <div id="pm-props-list"></div>
   </div>
 </div>
@@ -3324,12 +3324,15 @@ function openPlayerModal(uid,name,avatar,isMe){
       rows.forEach(o=>{
         const p=PROPS.find(x=>x.id==o.property_id);
         if(!p)return;
-        const d=document.createElement('div');d.className='port-item';d.style.cursor='default';
         const val=Math.round(marketValue(p)*o.pct/100);
         const safeName=name.replace(/'/g,"\\'");
+        const stars=o.quality?.stars||0;
+        let starsHtml='';for(let i=0;i<5;i++)starsHtml+=`<span style="font-size:11px;color:${i<stars?'#d9b24c':'#43434d'}">★</span>`;
         const offerBtn=isMe?'':`<button class="sell-btn" style="background:var(--gold-dim);color:var(--gold);border-color:var(--gold)" onclick="event.stopPropagation();closePlayerModal();openOfferModal('${uid}',${p.id},${o.pct},'${safeName}')">${T('makeOffer')}</button>`;
-        d.innerHTML=`<div class="port-icon-tile">${p.emoji}</div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${o.pct}%</div></div><div class="port-right"><div class="port-val">${fmt(val)}</div>${offerBtn}</div>`;
-        listEl.appendChild(d);
+        const frame=document.createElement('div');frame.className=`port-frame tier-frame t${stars}`;frame.style.marginBottom='10px';
+        const sheenHtml=stars>0?`<div class="port-sheen t${stars}"></div>`:'';
+        frame.innerHTML=`<div class="port-card t${stars}">${sheenHtml}<div class="port-icon-frame tier-frame t${stars}"><div class="port-icon-inner">${BUILDING_SVG}</div></div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${o.pct}%</div><div class="port-upgrades" style="gap:3px;margin-top:6px;">${starsHtml}</div></div><div class="port-right"><div class="port-val" style="font-size:13px;font-weight:800;color:#e6e6ea;">${fmt(val)}</div>${offerBtn}</div></div>`;
+        listEl.appendChild(frame);
       });
     }
   }
@@ -3397,6 +3400,7 @@ function setPortfolioSort(mode,el){
   el.classList.add('active');
   renderPortfolio();
 }
+const BUILDING_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="#9a9aa2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9 20v-5h6v5"/><path d="M8.5 11.5h2M13.5 11.5h2"/></svg>';
 function renderPortfolio(){
   const myP=PROPS.filter(p=>getOwn(p.id)>0);
   const tRent=myP.reduce((s,p)=>s+Math.round(p.rent*getOwn(p.id)/100*rentMult()*qualityMult(p.id)),0);
@@ -3407,7 +3411,6 @@ function renderPortfolio(){
   if(S.portfolioSort==='asc')myP.sort((a,b)=>Math.round(marketValue(a)*getOwn(a.id)/100)-Math.round(marketValue(b)*getOwn(b.id)/100));
   else if(S.portfolioSort==='desc')myP.sort((a,b)=>Math.round(marketValue(b)*getOwn(b.id)/100)-Math.round(marketValue(a)*getOwn(a.id)/100));
   list.innerHTML='';
-  const BUILDING_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="#9a9aa2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9 20v-5h6v5"/><path d="M8.5 11.5h2M13.5 11.5h2"/></svg>';
   myP.forEach(p=>{
     const m=getOwn(p.id),rent=Math.round(p.rent*m/100*rentMult()*qualityMult(p.id)),val=Math.round(marketValue(p)*m/100);
     const t=getQuality(p.id).stars; // 0-5, drives the enchant tier
