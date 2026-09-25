@@ -1830,7 +1830,6 @@ const CHROMA_SKILLS_DEF = [
 // Diamond Skills — paid in 💎 Diamonds. Multiplayer-focused: portfolio size, privacy, negotiation leverage.
 const DIAMOND_SKILLS_DEF = [
   {id:'prop_cap',name:()=>T('diaCapName'),icon:'🏘️',desc:()=>T('diaCapDesc'),maxLevel:5,costPerLevel:[10,20,35,55,80],bonus:l=>l*2,flat:true},
-  {id:'privacy_shield',name:()=>T('diaPrivacyName'),icon:'🕶️',desc:()=>T('diaPrivacyDesc'),maxLevel:1,costPerLevel:[40],bonus:l=>l,flat:true},
   {id:'offer_floor',name:()=>T('diaOfferFloorName'),icon:'📈',desc:()=>T('diaOfferFloorDesc'),maxLevel:5,costPerLevel:[15,30,50,75,110],bonus:l=>l*0.05},
 ];
 const SELL_FEE_BASE = 0.08; // baseline "closing cost" when selling a share; Market Savvy (emerald skill) reduces this toward 0%, never below
@@ -2644,7 +2643,7 @@ function portfolioDisplayName(p){
   return propName(p).replace(/^(Celý štát|Hlavné mesto|Mesto): /,'');
 }
 function ownedPropertyCount(){ return PROPS.filter(p=>['mapcountry','mapcapital','mapcity'].includes(p.tier)&&getOwn(p.id)>0).length; }
-function maxPropertiesCap(){ const lvl=S.diamondSkills?.prop_cap||0; return 3+DIAMOND_SKILLS_DEF[0].bonus(lvl); }
+function maxPropertiesCap(){ const lvl=S.diamondSkills?.prop_cap||0; return 3+DIAMOND_SKILLS_DEF.find(s=>s.id==='prop_cap').bonus(lvl); }
 function getOtherOwn(id){const p=PROPS.find(x=>x.id==id);if(p&&p.scope==='personal')return 0;if(S.dbOwn)return S.dbOwn.filter(o=>o.property_id==id&&o.user_id!==S.user?.id).reduce((s,o)=>s+o.pct,0);return 0;}
 function getAvail(id){return Math.max(0,100-getOwn(id)-getOtherOwn(id));}
 function marketValue(p){return p.price;}
@@ -3364,7 +3363,7 @@ function openOfferModal(tid,id,maxPct,tname,editId,editPct,editPrice){
   slider.max=maxPct;slider.min=1;const startPct=editPct||Math.min(10,maxPct);slider.value=startPct;
   document.getElementById('om-pct').textContent=startPct+'%';
   const targetOfferLvl=S.dbProfiles?.find(pr=>pr.id===tid)?.diamond_skills?.offer_floor||0;
-  const offerBoost=targetOfferLvl?DIAMOND_SKILLS_DEF[2].bonus(targetOfferLvl):0;
+  const offerBoost=targetOfferLvl?DIAMOND_SKILLS_DEF.find(s=>s.id==='offer_floor').bonus(targetOfferLvl):0;
   offerBasePrice=Math.round(marketValue(p)*startPct/100*(1+offerBoost));
   document.getElementById('om-price-input').value=editPrice||offerBasePrice;
   document.getElementById('om-suggested').textContent=T('marketValue')+': '+fmt(offerBasePrice);
@@ -3376,7 +3375,7 @@ function updateOfferPct(val){
   document.getElementById('om-pct').textContent=val+'%';
   const p=PROPS.find(x=>x.id===offerTarget.id);
   const targetOfferLvl=S.dbProfiles?.find(pr=>pr.id===offerTarget.tid)?.diamond_skills?.offer_floor||0;
-  const offerBoost=targetOfferLvl?DIAMOND_SKILLS_DEF[2].bonus(targetOfferLvl):0;
+  const offerBoost=targetOfferLvl?DIAMOND_SKILLS_DEF.find(s=>s.id==='offer_floor').bonus(targetOfferLvl):0;
   offerBasePrice=Math.round(marketValue(p)*val/100*(1+offerBoost));
   document.getElementById('om-price-input').value=offerBasePrice;
   document.getElementById('om-suggested').textContent=T('marketValue')+': '+fmt(offerBasePrice);
@@ -3462,10 +3461,7 @@ function openPlayerModal(uid,name,avatar,isMe){
     actionsEl.innerHTML=`${friendBtnHtml}<button class="friend-compare-btn" style="flex:1;" onclick="event.stopPropagation();openChat('${uid}','${safeName0}','${avatar}')">${T('sendMsgBtn')}</button>`;
   }
   const listEl=document.getElementById('pm-props-list');
-  const targetPrivacyLvl=S.dbProfiles?.find(pr=>pr.id===uid)?.diamond_skills?.privacy_shield||0;
-  if(!isMe && targetPrivacyLvl>0){
-    listEl.innerHTML=`<div class="empty"><div class="empty-icon">🔒</div><div class="empty-text">${T('hiddenProps')}</div></div>`;
-  }else{
+  {
     const rows=(S.dbOwn||[]).filter(o=>o.user_id===uid);
     if(!rows.length){
       listEl.innerHTML=`<div class="empty"><div class="empty-icon">📁</div><div class="empty-text">${T('emptyPortfolio')}</div></div>`;
@@ -3725,11 +3721,8 @@ async function declineFriendRequest(reqId){
   renderFriendsView();
 }
 async function sendGift(uid){
-  if(S.giftedToday?.[uid]){ toast(T('giftLimitReached')); return; }
   const used=S.giftsUsedToday||0;
   if(used>=DAILY_GIFT_LIMIT){ toast(T('giftLimitReached')); return; }
-  S.giftedToday=S.giftedToday||{};
-  S.giftedToday[uid]=true;
   S.giftsUsedToday=used+1;
   if(supa){
     const {error:giftErr}=await supa.from('friend_gifts').insert({from_user:S.user.id,to_user:uid});
@@ -3831,15 +3824,13 @@ function renderFriendsView(){
     emptyNote.style.display='none';
     listEl.innerHTML='';
     friends.forEach(f=>{
-      const gifted=!!S.giftedToday?.[f.id];
       const limitReached=(S.giftsUsedToday||0)>=DAILY_GIFT_LIMIT;
-      const disabled=gifted||limitReached;
       const lvl=levelForWorth(f.worth);
       const safeName=f.name.replace(/'/g,"\\'");
       const d=document.createElement('div');d.className='friend-card';
       const menuOpen=friendMenuTarget===f.id;
       const menuHtml=menuOpen?`<div class="friend-menu"><div class="friend-menu-item" onclick="event.stopPropagation();pingFriend('${f.id}')">${T('pingBtn')}</div><div class="friend-menu-item danger" onclick="event.stopPropagation();unfriendPlayer('${f.id}')">${T('unfriendBtn')}</div></div>`:'';
-      d.innerHTML=`<div class="friend-card-top" onclick="openPlayerModal('${f.id}','${safeName}','${f.avatar}',false)"><div class="social-avatar-circle">${avatarImgHTML(f.avatar)}</div><div style="flex:1;min-width:0;"><div class="friend-name-row"><span class="social-row-name">${f.name}</span><span class="friend-lvl">LVL ${lvl}</span></div></div><div><div class="friend-worth">${fmt(f.worth)}</div></div></div><div class="friend-actions"><button class="friend-gift-btn${gifted?' gifted':''}${!gifted&&limitReached?' disabled':''}" ${disabled?'disabled':''} onclick="event.stopPropagation();sendGift('${f.id}')">${gifted?T('giftSentBtn'):T('sendGiftBtn')}</button><button class="friend-msg-btn" onclick="event.stopPropagation();openChat('${f.id}','${safeName}','${f.avatar}')">${T('sendMsgBtn')}</button><button class="friend-more-btn2" onclick="event.stopPropagation();toggleFriendMenu('${f.id}','${safeName}')">⋯</button></div>${menuHtml}`;
+      d.innerHTML=`<div class="friend-card-top" onclick="openPlayerModal('${f.id}','${safeName}','${f.avatar}',false)"><div class="social-avatar-circle">${avatarImgHTML(f.avatar)}</div><div style="flex:1;min-width:0;"><div class="friend-name-row"><span class="social-row-name">${f.name}</span><span class="friend-lvl">LVL ${lvl}</span></div></div><div><div class="friend-worth">${fmt(f.worth)}</div></div></div><div class="friend-actions"><button class="friend-gift-btn${limitReached?' disabled':''}" ${limitReached?'disabled':''} onclick="event.stopPropagation();sendGift('${f.id}')">${T('sendGiftBtn')}</button><button class="friend-msg-btn" onclick="event.stopPropagation();openChat('${f.id}','${safeName}','${f.avatar}')">${T('sendMsgBtn')}</button><button class="friend-more-btn2" onclick="event.stopPropagation();toggleFriendMenu('${f.id}','${safeName}')">⋯</button></div>${menuHtml}`;
       listEl.appendChild(d);
     });
   }
