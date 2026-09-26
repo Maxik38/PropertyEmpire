@@ -397,19 +397,20 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .skill-card.chroma-skill-card{border:1px solid rgba(192,132,252,.45);background:linear-gradient(135deg,rgba(192,132,252,.08),rgba(77,217,236,.06));}
 .skill-card.chroma-skill-card .skill-dot.filled{background:linear-gradient(90deg,#c084fc,#4dd9ec);}
 .skill-card.chroma-skill-card.maxed{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.06);}
-.skill-header{display:flex;align-items:flex-start;gap:8px;margin-bottom:2px;}
-.skill-icon{width:24px;height:24px;border-radius:8px;background:#242424;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.skill-header{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.skill-icon{width:24px;height:24px;border-radius:8px;background:#242424;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .skill-icon svg{width:12px;height:12px;display:block;}
 .skill-icon img{width:14px;height:14px;display:block;}
 .skill-card.maxed .skill-icon{background:rgba(74,222,128,.15);}
 .skill-info{flex:1;min-width:0;}
-.skill-name-row{display:flex;align-items:baseline;gap:6px;}
-.skill-name{font-size:14px;font-weight:600;}.skill-desc{font-size:12px;color:#8f8f8f;margin-top:2px;}
-.skill-level-bar{display:flex;gap:3px;margin:9px 0 2px;}
+.skill-name-row{display:flex;align-items:baseline;gap:6px;flex:1;min-width:0;}
+.skill-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.skill-desc{font-size:12px;color:#8f8f8f;margin:0 0 0 32px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.skill-level-bar{display:flex;gap:3px;margin:8px 0 2px;}
 .skill-dot{height:4px;border-radius:2px;background:#2b2b2b;flex:1;}.skill-dot.filled{background:#c084fc;}
 .skill-card.maxed .skill-dot.filled{background:#4ade80;}
-.skill-level-txt{font-size:11px;font-weight:600;color:#999;white-space:nowrap;}
-.skill-cost-wrap{flex-shrink:0;text-align:right;padding-top:1px;}
+.skill-level-txt{font-size:14px;font-weight:500;color:#999;white-space:nowrap;}
+.skill-cost-wrap{flex-shrink:0;text-align:right;}
 .skill-cost{font-size:13px;color:#f0b429;font-weight:700;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
 .skill-max{font-size:12px;color:#4ade80;font-weight:700;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
 #ad-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:500;display:none;align-items:center;justify-content:center;}
@@ -3895,7 +3896,7 @@ function renderSkills(){
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=skill.flat?`+${skill.bonus(nextLvl)} 🪙`:`+${Math.round(skill.bonus(nextLvl)*100)}%`;
     const iconHtml=SKILL_ICONS[skill.id]==='__COIN__'?`<img src="${COIN_IMG}" alt="coin">`:SKILL_ICONS[skill.id];
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${iconHtml}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🪙</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${iconHtml}</div><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🪙</span>`}</div></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeSkill(skill.id);}
     list.appendChild(d);
   });
@@ -3910,7 +3911,7 @@ function renderSkills(){
     let dots='';for(let i=0;i<skill.maxLevel;i++)dots+=`<div class="skill-dot${i<lvl?' filled':''}"></div>`;
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=skill.flat?`+${skill.bonus(nextLvl)}`:`+${Math.round(skill.bonus(nextLvl)*100)}%`;
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 💎</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 💎</span>`}</div></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeDiamondSkill(skill.id);}
     list.appendChild(d);
   });
@@ -3925,7 +3926,7 @@ function renderSkills(){
     let dots='';for(let i=0;i<skill.maxLevel;i++)dots+=`<div class="skill-dot${i<lvl?' filled':''}"></div>`;
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=`+${Math.round(skill.bonus(nextLvl)*100)}%`;
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 👽</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 👽</span>`}</div></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeEmeraldSkill(skill.id);}
     list.appendChild(d);
   });
@@ -3940,7 +3941,7 @@ function renderSkills(){
     let dots='';for(let i=0;i<skill.maxLevel;i++)dots+=`<div class="skill-dot${i<lvl?' filled':''}"></div>`;
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=skill.flat?`+${skill.bonus(nextLvl)} 🪙`:`+${Math.round(skill.bonus(nextLvl)*100)}%`;
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🔮</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🔮</span>`}</div></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeChromaSkill(skill.id);}
     list.appendChild(d);
   });
