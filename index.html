@@ -3986,11 +3986,11 @@ function storeIconSvg(id,stroke,size=22,width=2){
 }
 const STORE_C={gold:'#e5b43c',goldTint:'#26221a',blue:'#6cb6f0',blueTint:'#17222c',active:'#6fcf8a',activeTint:'#15261e',chromaText:'#c7a6f5',chromaTint:'#221c2c',muted:'#8b8b92'};
 const STORE_TABS=[
-  {key:'free',label:()=>T('free'),color:STORE_C.gold,bg:STORE_C.goldTint},
-  {key:'boosts',label:()=>T('powerups'),color:STORE_C.active,bg:STORE_C.activeTint},
-  {key:'coins',label:()=>T('buyCoins'),color:STORE_C.gold,bg:STORE_C.goldTint},
-  {key:'diamonds',label:()=>T('buyDiamonds'),color:STORE_C.blue,bg:STORE_C.blueTint},
-  {key:'forever',label:()=>T('buyAdvantagesForever'),color:STORE_C.chromaText,bg:STORE_C.chromaTint},
+  {key:'free',label:'Free',color:STORE_C.gold,bg:STORE_C.goldTint},
+  {key:'boosts',label:'Boosts',color:STORE_C.active,bg:STORE_C.activeTint},
+  {key:'coins',label:'Coins',color:STORE_C.gold,bg:STORE_C.goldTint},
+  {key:'diamonds',label:'Diamonds',color:STORE_C.blue,bg:STORE_C.blueTint},
+  {key:'forever',label:'Forever',color:STORE_C.chromaText,bg:STORE_C.chromaTint},
 ];
 let storeActiveTab='free';
 function jumpToStoreGroup(key){
@@ -4008,7 +4008,7 @@ function jumpToStoreGroup(key){
 function renderStore(){
   const now=new Date();
   const tabsEl=document.getElementById('store-tabs');
-  tabsEl.innerHTML=STORE_TABS.map(t=>`<button type="button" class="store2-tab" data-key="${t.key}" style="color:${t.color};background:${t.key===storeActiveTab?t.bg:'transparent'}">${t.label()}</button>`).join('');
+  tabsEl.innerHTML=STORE_TABS.map(t=>`<button type="button" class="store2-tab" data-key="${t.key}" style="color:${t.color};background:${t.key===storeActiveTab?t.bg:'transparent'}">${t.label}</button>`).join('');
   tabsEl.querySelectorAll('.store2-tab').forEach(b=>{b.onclick=()=>jumpToStoreGroup(b.dataset.key);});
 
   const list=document.getElementById('store-list');list.innerHTML='';
@@ -4022,7 +4022,7 @@ function renderStore(){
     {name:T('dailyReward'),reward:dailyAmt,note:T('daily'),icon:'gift',available:canDaily,fn:claimDaily},
   ];
   const freeSec=document.createElement('div');freeSec.id='store-grp-free';
-  freeSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.gold}">${T('free').toUpperCase()}</span></div><div class="store2-grid2" id="store-free-grid"></div>`;
+  freeSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.gold}">FREE</span></div><div class="store2-grid2" id="store-free-grid"></div>`;
   list.appendChild(freeSec);
   const freeGrid=freeSec.querySelector('#store-free-grid');
   freeItems.forEach(it=>{
@@ -4035,7 +4035,7 @@ function renderStore(){
 
   // ---- BOOSTS ----
   const boostSec=document.createElement('div');boostSec.id='store-grp-boosts';
-  boostSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.active}">${T('powerups').toUpperCase()}</span></div>`;
+  boostSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.active}">BOOSTS</span></div>`;
   list.appendChild(boostSec);
   const boostMeta=[
     {id:'2xrent',name:T('rentBoost2x'),desc:T('rentBoost2xDesc'),price:500,duration:'7 days',icon:'zap',totalSegments:7},
@@ -4061,7 +4061,7 @@ function renderStore(){
 
   // ---- COINS ----
   const coinSec=document.createElement('div');coinSec.id='store-grp-coins';
-  coinSec.innerHTML=`<div class="store2-section-hdr">${curIconSvg('coin',16,'#e5b43c','#b8861f',2)}<span style="color:${STORE_C.gold}">${T('buyCoins').toUpperCase()}</span></div><div class="store2-grid2" id="store-coins-grid"></div>`;
+  coinSec.innerHTML=`<div class="store2-section-hdr">${curIconSvg('coin',16,'#e5b43c','#b8861f',2)}<span style="color:${STORE_C.gold}">GOLD COINS</span></div><div class="store2-grid2" id="store-coins-grid"></div>`;
   list.appendChild(coinSec);
   const coinGrid=coinSec.querySelector('#store-coins-grid');
   [{amount:100,label:'Starter',price:'€0.99'},{amount:500,label:'Popular',price:'€3.99'},{amount:1200,label:'Investor',price:'€7.99',best:true,amountLabel:'1 200'},{amount:3000,label:'Tycoon',price:'€14.99',amountLabel:'3 000'}].forEach(p=>{
@@ -4070,7 +4070,7 @@ function renderStore(){
 
   // ---- DIAMONDS ----
   const diaSec=document.createElement('div');diaSec.id='store-grp-diamonds';
-  diaSec.innerHTML=`<div class="store2-section-hdr">${curIconSvg('diamond',16,'none','#6cb6f0',2)}<span style="color:${STORE_C.blue}">${T('buyDiamonds').toUpperCase()}</span></div><div class="store2-grid2" id="store-diamonds-grid"></div>`;
+  diaSec.innerHTML=`<div class="store2-section-hdr">${curIconSvg('diamond',16,'none','#6cb6f0',2)}<span style="color:${STORE_C.blue}">DIAMONDS</span></div><div class="store2-grid2" id="store-diamonds-grid"></div>`;
   list.appendChild(diaSec);
   const diaGrid=diaSec.querySelector('#store-diamonds-grid');
   [{amount:10,label:'Starter',price:'€5.99'},{amount:50,label:'Popular',price:'€23.99'},{amount:120,label:'Investor',price:'€49.99',best:true},{amount:300,label:'Tycoon',price:'€89.99'}].forEach(p=>{
@@ -4079,7 +4079,7 @@ function renderStore(){
 
   // ---- CONVERT ----
   const convSec=document.createElement('div');
-  convSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.muted}">${T('convert').toUpperCase()}</span></div>`;
+  convSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.muted}">CONVERT</span></div>`;
   list.appendChild(convSec);
   const converts=[
     {fromLabel:'100',cur:'coin',toLabel:'€50 000',desc:T('convertDesc'),accent:'coin',color:STORE_C.gold,tint:STORE_C.goldTint,fn:convertCoins},
@@ -4105,7 +4105,7 @@ function renderStore(){
   forever.forEach((o,i)=>{
     const outer=document.createElement('div');
     outer.className='store2-forever-outer'+(i===0?' first':'');
-    outer.innerHTML=`<div class="store2-forever-inner"><div class="store2-forever-tag">${storeIconSvg('inf','url(#storeChromaGrad)',16)}<span>${T('buyAdvantagesForever').toUpperCase()}</span></div><div class="store2-forever-name">${o.name}</div><div class="store2-forever-desc">${o.desc}</div><div class="store2-forever-bottom"><div class="store2-forever-status">${o.owned?'✅':T('permaBoostTag')}</div><button type="button" class="store2-forever-btn" style="background:${o.owned?'#242428':'linear-gradient(90deg,#f08cc8,#a98bf2,#6fd6e8)'};color:${o.owned?STORE_C.chromaText:'#140f1c'};cursor:${o.owned?'default':'pointer'}">${o.owned?'✓':o.price}</button></div></div>`;
+    outer.innerHTML=`<div class="store2-forever-inner"><div class="store2-forever-tag">${storeIconSvg('inf','url(#storeChromaGrad)',16)}<span>FOREVER</span></div><div class="store2-forever-name">${o.name}</div><div class="store2-forever-desc">${o.desc}</div><div class="store2-forever-bottom"><div class="store2-forever-status">${o.owned?'✅':T('permaBoostTag')}</div><button type="button" class="store2-forever-btn" style="background:${o.owned?'#242428':'linear-gradient(90deg,#f08cc8,#a98bf2,#6fd6e8)'};color:${o.owned?STORE_C.chromaText:'#140f1c'};cursor:${o.owned?'default':'pointer'}">${o.owned?'✓':o.price}</button></div></div>`;
     if(!o.owned)outer.querySelector('.store2-forever-btn').onclick=o.fn;
     foreverSec.appendChild(outer);
   });
