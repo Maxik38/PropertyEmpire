@@ -549,9 +549,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 #bp-map-fab:active{transform:scale(0.94);}
 #map-back-btn{position:absolute;left:16px;bottom:calc(var(--nav-h) + var(--safe-b) + 16px);z-index:500;background:var(--surface2);color:var(--gold2);border:1px solid var(--gold);border-radius:22px;padding:11px 16px;font-size:13px;font-weight:700;font-family:'DM Sans',sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.45);cursor:pointer;display:flex;align-items:center;gap:6px;}
 #map-back-btn:active{transform:scale(0.96);}
-#map-legend{position:absolute;top:10px;left:10px;z-index:500;background:oklch(15% 0.01 260 / .88);backdrop-filter:blur(6px);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:8px 10px;font-size:11px;color:var(--text2);display:flex;flex-direction:column;gap:5px;pointer-events:none;}
-#map-legend .lg-row{display:flex;align-items:center;gap:6px;}
-#map-legend .lg-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;box-shadow:0 0 4px rgba(0,0,0,.5);}
 #map-search-bar{position:absolute;top:10px;right:10px;left:auto;z-index:500;width:min(220px,42vw);}
 #map-search-bar input{width:100%;background:oklch(15% 0.01 260 / .92);border:1px solid var(--border2);color:var(--text);border-radius:var(--radius-sm);padding:8px 10px;font-size:12px;font-family:'DM Sans',sans-serif;}
 #map-search-bar input:focus{outline:none;border-color:var(--gold);}
@@ -1073,11 +1070,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
       <div id="world-map-wrap">
         <div id="world-map"></div>
         <div id="map-search-bar"><input type="text" id="map-search-input" placeholder="🔍 Hľadať štát..." oninput="mapSearchCountry(this.value)" autocomplete="off"></div>
-        <div id="map-legend">
-          <div class="lg-row"><span class="lg-dot" style="background:var(--green)"></span><span id="lbl-lg-country">Štát (celé územie)</span></div>
-          <div class="lg-row"><span class="lg-dot" style="background:var(--gold)"></span><span id="lbl-lg-capital">Hlavné mesto</span></div>
-          <div class="lg-row"><span class="lg-dot" style="background:var(--blue)"></span><span id="lbl-lg-city">Ďalšie mesto (Eur./Áz./Amerika, zatiaľ bez Afriky)</span></div>
-        </div>
         <div id="map-back-btn" onclick="setScreen(lastNonMapScreen, null)">← Späť</div>
       </div>
     </div>
@@ -1753,9 +1745,6 @@ function applyLang() {
   setText('om-bump-custom', T('customBumpBtn'));
   setText('lbl-bp-events', T('bpWeeklyEvents'));
   // Map
-  setText('lbl-lg-country', T('legendCountry'));
-  setText('lbl-lg-capital', T('legendCapital'));
-  setText('lbl-lg-city', T('legendCity'));
   setText('map-back-btn', T('backBtn'));
   const msi=document.getElementById('map-search-input'); if(msi)msi.placeholder=T('mapSearchPlaceholder');
   setText('bnav-portfolio', T('portfolio'));
@@ -2848,7 +2837,7 @@ function initWorldMap(){
     if(wmMap){ setTimeout(()=>wmMap.invalidateSize(),50); return; }
     wmMap = L.map('world-map', {
       worldCopyJump:true,
-      zoomControl:true,
+      zoomControl:false,
       minZoom:2,
       maxZoom:10,
       attributionControl:true
@@ -3259,7 +3248,14 @@ function setTradeMode(mode){
 }
 function setTradeMax(){
   const av=getAvail(tradeTarget),m=getOwn(tradeTarget);
-  tradePct = tradeMode==='buy'?av:m;
+  if(tradeMode==='buy'){
+    const p=PROPS.find(x=>x.id===tradeTarget);
+    const unitVal=p?getPrice(p):0;
+    const affordablePct=unitVal>0?Math.floor((S.cash||0)*100/unitVal):av;
+    tradePct=Math.max(0,Math.min(av,affordablePct));
+  } else {
+    tradePct=m;
+  }
   renderTradeSheet();
 }
 function renderTradeSheet(){
