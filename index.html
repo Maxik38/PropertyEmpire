@@ -397,19 +397,21 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .skill-card.chroma-skill-card{border:1px solid rgba(192,132,252,.45);background:linear-gradient(135deg,rgba(192,132,252,.08),rgba(77,217,236,.06));}
 .skill-card.chroma-skill-card .skill-dot.filled{background:linear-gradient(90deg,#c084fc,#4dd9ec);}
 .skill-card.chroma-skill-card.maxed{border-color:rgba(74,222,128,.5);background:rgba(74,222,128,.06);}
-.skill-header{display:flex;align-items:center;gap:10px;margin-bottom:2px;}
-.skill-icon{width:32px;height:32px;border-radius:10px;background:#242424;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.skill-icon svg{width:16px;height:16px;display:block;}
-.skill-icon img{width:18px;height:18px;display:block;}
+.skill-header{display:flex;align-items:flex-start;gap:8px;margin-bottom:2px;}
+.skill-icon{width:24px;height:24px;border-radius:8px;background:#242424;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.skill-icon svg{width:12px;height:12px;display:block;}
+.skill-icon img{width:14px;height:14px;display:block;}
 .skill-card.maxed .skill-icon{background:rgba(74,222,128,.15);}
-.skill-info{flex:1;}
+.skill-info{flex:1;min-width:0;}
+.skill-name-row{display:flex;align-items:baseline;gap:6px;}
 .skill-name{font-size:14px;font-weight:600;}.skill-desc{font-size:12px;color:#8f8f8f;margin-top:2px;}
-.skill-level-bar{display:flex;gap:3px;margin:9px 0 7px;}
+.skill-level-bar{display:flex;gap:3px;margin:9px 0 2px;}
 .skill-dot{height:4px;border-radius:2px;background:#2b2b2b;flex:1;}.skill-dot.filled{background:#c084fc;}
 .skill-card.maxed .skill-dot.filled{background:#4ade80;}
-.skill-footer{display:flex;align-items:center;justify-content:space-between;}
-.skill-level-txt{font-size:12px;font-weight:600;color:#999;}.skill-cost{font-size:13px;color:#f0b429;font-weight:700;display:inline-flex;align-items:center;gap:5px;}
-.skill-max{font-size:12px;color:#4ade80;font-weight:700;display:inline-flex;align-items:center;gap:5px;}
+.skill-level-txt{font-size:11px;font-weight:600;color:#999;white-space:nowrap;}
+.skill-cost-wrap{flex-shrink:0;text-align:right;padding-top:1px;}
+.skill-cost{font-size:13px;color:#f0b429;font-weight:700;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
+.skill-max{font-size:12px;color:#4ade80;font-weight:700;display:inline-flex;align-items:center;gap:4px;white-space:nowrap;}
 #ad-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:500;display:none;align-items:center;justify-content:center;}
 #ad-overlay.open{display:flex;}
 .ad-box{background:var(--surface);border-radius:20px;padding:32px 24px;text-align:center;width:90%;max-width:360px;}
@@ -1559,6 +1561,42 @@ const CITIES = [
 ["PE","Huancayo",-12.0653,-75.2049,0.36],["PE","Tacna",-18.0146,-70.2536,0.29],["PE","Ica",-14.0678,-75.7286,0.22],["PE","Juliaca",-15.5,-70.1333,0.28],["PE","Sullana",-4.9036,-80.6828,0.2],
 ["UY","Melo",-32.3667,-54.1833,0.05],["UY","Mercedes",-33.25,-58.0333,0.04],["UY","Artigas",-30.4,-56.4667,0.04],
 ["VE","Ciudad Bolívar",8.1222,-63.5497,0.37],["VE","Cumaná",10.45,-64.1667,0.36],["VE","Mérida",8.5936,-71.145,0.35],["VE","Turmero",10.2258,-67.4761,0.19],
+  // ---- NORTH_AMERICA3 (extra cities for America parity with Europe) ----
+["AG","All Saints",17.0833,-61.7833,0.01],["AG","Liberta",17.05,-61.8,0.005],
+["BB","Speightstown",13.25,-59.6425,0.004],["BB","Oistins",13.0667,-59.5333,0.004],
+["BS","West End",26.6833,-78.9833,0.01],["BS","Marsh Harbour",26.5412,-77.0636,0.006],
+["BZ","Punta Gorda",16.1,-88.8,0.006],["BZ","Benque Viejo",17.0833,-89.1333,0.006],
+["CA","Sherbrooke",45.4042,-71.8929,0.17],["CA","Abbotsford",49.0504,-122.3045,0.15],["CA","Saguenay",48.428,-71.068,0.14],["CA","Levis",46.8039,-71.178,0.15],["CA","Trois-Rivieres",46.3432,-72.5432,0.14],
+["CR","Puntarenas",9.9762,-84.8386,0.11],["CR","Heredia",9.9989,-84.1169,0.12],["CR","Liberia",10.6346,-85.437,0.06],["CR","Cartago",9.8644,-83.9194,0.15],
+["CU","Holguin",20.8872,-76.2631,0.35],["CU","Bayamo",20.3814,-76.6433,0.24],["CU","Manzanillo",20.3406,-77.1058,0.13],["CU","Pinar del Rio",22.4175,-83.6981,0.19],
+["DM","Portsmouth",15.5833,-61.4667,0.02],
+["DO","San Pedro de Macoris",18.4539,-69.3067,0.19],["DO","La Vega",19.2222,-70.5292,0.19],["DO","San Cristobal",18.4167,-70.1,0.18],["DO","Puerto Plata",19.7934,-70.6884,0.13],
+["GD","Gouyave",12.1667,-61.7333,0.01],
+["GT","Escuintla",14.305,-90.785,0.1],["GT","Quetzaltenango",14.8347,-91.5186,0.18],["GT","Chimaltenango",14.6611,-90.8206,0.09],["GT","Mazatenango",14.5344,-91.5031,0.05],
+["HN","Choloma",15.6142,-87.9539,0.23],["HN","Comayagua",14.4522,-87.6375,0.15],["HN","Puerto Cortes",15.8,-87.9333,0.06],["HN","El Progreso",15.4,-87.8,0.12],
+["HT","Jacmel",18.2342,-72.5347,0.04],["HT","Gonaives",19.45,-72.6833,0.32],["HT","Les Cayes",18.2,-73.75,0.09],["HT","Petion-Ville",18.5125,-72.2853,0.3],
+["JM","Portmore",17.95,-76.88,0.2],["JM","May Pen",17.9667,-77.2333,0.06],["JM","Mandeville",18.0333,-77.5,0.05],["JM","Ocho Rios",18.4075,-77.103,0.02],
+["KN","Sandy Point Town",17.3667,-62.8333,0.02],
+["LC","Vieux Fort",13.7167,-60.95,0.02],
+["MX","Reynosa",26.0806,-98.2853,0.71],["MX","Tampico",22.25,-97.8611,0.3],
+["NI","Esteli",13.0906,-86.3536,0.13],["NI","Leon",12.4344,-86.8783,0.21],["NI","Masaya",11.9744,-86.0944,0.1],["NI","Matagalpa",12.9275,-85.9186,0.11],
+["PA","David",8.4333,-82.4333,0.15],["PA","Santiago",8.1,-80.9833,0.05],["PA","Colon",9.3592,-79.9014,0.08],["PA","La Chorrera",8.88,-79.78,0.09],
+["SV","Soyapango",13.7167,-89.15,0.13],["SV","Santa Ana",13.9942,-89.5597,0.15],["SV","San Miguel",13.4833,-88.1833,0.16],["SV","Mejicanos",13.7333,-89.2167,0.14],
+["TT","Chaguanas",10.5167,-61.4114,0.08],["TT","Arima",10.6372,-61.2822,0.03],
+["VC","Layou",13.1667,-61.2667,0.005],
+  // ---- SOUTH_AMERICA3 (extra cities for America parity with Europe) ----
+["AR","San Luis",-33.295,-66.3356,0.21],["AR","Rio Cuarto",-33.1233,-64.3491,0.16],
+["BO","Quillacollo",-17.3961,-66.2769,0.14],["BO","Yacuiba",-22.0167,-63.6833,0.09],["BO","Villazon",-22.0864,-65.5947,0.04],["BO","Warnes",-17.5142,-63.1706,0.07],["BO","Colcapirhua",-17.4,-66.2333,0.05],["BO","Villa Tunari",-16.9667,-65.4167,0.02],
+["BR","Duque de Caxias",-22.7856,-43.3117,0.92],
+["CL","Copiapo",-27.3667,-70.3333,0.18],["CL","Coquimbo",-29.9533,-71.3436,0.23],["CL","Talcahuano",-36.7167,-73.1167,0.16],["CL","Los Angeles",-37.4697,-72.3536,0.2],["CL","Curico",-34.9828,-71.2394,0.15],["CL","Valdivia",-39.8142,-73.2459,0.17],
+["CO","Soacha",4.5794,-74.2172,0.66],["CO","Palmira",3.5394,-76.3036,0.31],["CO","Neiva",2.9273,-75.2819,0.36],["CO","Armenia",4.5389,-75.6811,0.3],["CO","Popayan",2.4448,-76.6147,0.28],["CO","Valledupar",10.4631,-73.2532,0.48],
+["EC","Esmeraldas",0.9592,-79.6533,0.19],["EC","Ibarra",0.3517,-78.1223,0.14],["EC","Milagro",-2.135,-79.595,0.17],["EC","Quevedo",-1.0225,-79.4614,0.17],["EC","Santa Elena",-2.2266,-80.8581,0.04],
+["GY","Anna Regina",7.2667,-58.5167,0.02],["GY","Rosignol",6.2667,-57.5333,0.01],
+["PE","Cajamarca",-7.1611,-78.5142,0.23],["PE","Pucallpa",-8.3833,-74.5333,0.2],["PE","Huanuco",-9.9306,-76.2422,0.14],["PE","Ayacucho",-13.1588,-74.2239,0.17],["PE","Puno",-15.8402,-70.0219,0.15],["PE","Tarapoto",-6.4833,-76.3667,0.15],
+["PY","Itaugua",-25.3833,-57.35,0.08],["PY","Limpio",-25.1667,-57.4833,0.15],["PY","Villarrica",-25.75,-56.4333,0.06],["PY","Caacupe",-25.3833,-57.15,0.05],
+["SR","Nieuw Nickerie",5.9333,-56.9667,0.01],["SR","Moengo",5.6167,-54.4,0.01],
+["UY","San Jose de Mayo",-34.3372,-56.7106,0.04],["UY","Florida",-34.0997,-56.2153,0.03],["UY","Durazno",-33.3833,-56.5167,0.03],["UY","Colonia del Sacramento",-34.4626,-57.84,0.03],
+["VE","Puerto La Cruz",10.2167,-64.6167,0.21],["VE","Barinas",8.6333,-70.2167,0.35],["VE","Acarigua",9.55,-69.2,0.21],["VE","Guarenas",10.4667,-66.6167,0.21],
 ];
 function countryFlagEmoji(iso2){
   if(!iso2||iso2.length!==2) return '🏳️';
@@ -3857,7 +3895,7 @@ function renderSkills(){
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=skill.flat?`+${skill.bonus(nextLvl)} 🪙`:`+${Math.round(skill.bonus(nextLvl)*100)}%`;
     const iconHtml=SKILL_ICONS[skill.id]==='__COIN__'?`<img src="${COIN_IMG}" alt="coin">`:SKILL_ICONS[skill.id];
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${iconHtml}</div><div class="skill-info"><div class="skill-name">${skill.name()}</div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div></div><div class="skill-level-bar">${dots}</div><div class="skill-footer"><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span>${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🪙</span>`}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${iconHtml}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🪙</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeSkill(skill.id);}
     list.appendChild(d);
   });
@@ -3872,7 +3910,7 @@ function renderSkills(){
     let dots='';for(let i=0;i<skill.maxLevel;i++)dots+=`<div class="skill-dot${i<lvl?' filled':''}"></div>`;
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=skill.flat?`+${skill.bonus(nextLvl)}`:`+${Math.round(skill.bonus(nextLvl)*100)}%`;
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name">${skill.name()}</div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div></div><div class="skill-level-bar">${dots}</div><div class="skill-footer"><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span>${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 💎</span>`}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 💎</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeDiamondSkill(skill.id);}
     list.appendChild(d);
   });
@@ -3887,7 +3925,7 @@ function renderSkills(){
     let dots='';for(let i=0;i<skill.maxLevel;i++)dots+=`<div class="skill-dot${i<lvl?' filled':''}"></div>`;
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=`+${Math.round(skill.bonus(nextLvl)*100)}%`;
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name">${skill.name()}</div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div></div><div class="skill-level-bar">${dots}</div><div class="skill-footer"><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span>${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 👽</span>`}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 👽</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeEmeraldSkill(skill.id);}
     list.appendChild(d);
   });
@@ -3902,7 +3940,7 @@ function renderSkills(){
     let dots='';for(let i=0;i<skill.maxLevel;i++)dots+=`<div class="skill-dot${i<lvl?' filled':''}"></div>`;
     const nextLvl=maxed?skill.maxLevel:lvl+1;
     const bonusTxt=skill.flat?`+${skill.bonus(nextLvl)} 🪙`:`+${Math.round(skill.bonus(nextLvl)*100)}%`;
-    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name">${skill.name()}</div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div></div><div class="skill-level-bar">${dots}</div><div class="skill-footer"><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span>${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🔮</span>`}</div>`;
+    d.innerHTML=`<div class="skill-header"><div class="skill-icon">${skill.icon}</div><div class="skill-info"><div class="skill-name-row"><span class="skill-name">${skill.name()}</span><span class="skill-level-txt">Lv ${lvl}/${skill.maxLevel}</span></div><div class="skill-desc">${skill.desc()} (${bonusTxt})</div></div><div class="skill-cost-wrap">${maxed?`<span class="skill-max">${T('skillMax')}</span>`:`<span class="skill-cost">${cost} 🔮</span>`}</div></div><div class="skill-level-bar">${dots}</div>`;
     if(!maxed){d.style.cursor='pointer';d.onclick=()=>upgradeChromaSkill(skill.id);}
     list.appendChild(d);
   });
