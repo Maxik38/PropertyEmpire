@@ -470,6 +470,57 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .store2-forever-status{font-size:11px;color:#8b8b92;}
 .store2-forever-btn{padding:10px 18px;border-radius:12px;border:none;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;}
 .store2-restore{text-align:center;margin-top:18px;font-size:12px;color:var(--text3);text-decoration:underline;cursor:pointer;}
+.social2-header{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:4px;margin-bottom:2px;}
+.social2-title{font-family:'DM Serif Display',serif;font-size:30px;font-weight:700;line-height:1;margin-top:9px;}
+.social2-underline{width:56px;height:3px;border-radius:2px;margin-top:13px;background:linear-gradient(90deg,#e5b43c,#6cb6f0,#4fd49a,#a98bf2);}
+.social2-back-btn,.social2-inbox-btn{position:absolute;top:2px;width:40px;height:40px;border-radius:12px;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;background:#1a1a1d;}
+.social2-back-btn{left:0;}
+.social2-inbox-btn{right:0;}
+.social2-inbox-btn.open{background:#26221a;}
+.social2-inbox-badge{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;border-radius:9px;background:#e0573e;color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #0e0e10;}
+.social2-tabs{display:flex;gap:4px;margin:20px 0 2px;background:#151517;border-radius:14px;padding:5px;}
+.social2-tab{flex:1;text-align:center;padding:9px 0;border-radius:10px;border:none;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;background:transparent;color:#8b8b92;display:flex;align-items:center;justify-content:center;gap:6px;}
+.social2-tab.active{background:#26221a;color:#e5b43c;}
+.social2-tab-badge{min-width:16px;height:16px;border-radius:8px;background:#e0573e;color:#fff;font-size:9.5px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;}
+.social2-chips{display:flex;justify-content:center;gap:6px;margin-top:20px;}
+.social2-chip{padding:6px 14px;border-radius:20px;border:none;cursor:pointer;font-family:inherit;font-size:11.5px;font-weight:600;background:#1a1a1d;color:#8b8b92;}
+.social2-chip.active{background:#e5b43c;color:#0e0e10;}
+.social2-podium{display:grid;grid-template-columns:1fr 1.12fr 1fr;gap:8px;align-items:end;margin-top:22px;}
+.social2-podium-card{background:#1a1a1d;border:1px solid transparent;border-radius:18px;padding:14px 8px 12px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.social2-podium-card.first{background:#e5b43c12;border-color:#e5b43c4d;padding:18px 8px 14px;}
+.social2-avatar-wrap{position:relative;}
+.social2-avatar{border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;box-sizing:border-box;background:#242428;}
+.social2-avatar img{width:100%;height:100%;object-fit:cover;}
+.social2-medal{position:absolute;left:50%;bottom:-8px;transform:translateX(-50%);width:20px;height:20px;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#0e0e10;}
+.social2-podium-name{display:flex;align-items:baseline;gap:4px;margin-top:14px;font-size:13px;font-weight:600;white-space:nowrap;}
+.social2-podium-worth{font-size:14px;font-weight:600;margin-top:2px;}
+.social2-podium-reward{display:flex;flex-direction:column;gap:3px;margin-top:10px;width:100%;font-size:10.5px;color:#8b8b92;}
+.social2-podium-reward-row{display:flex;align-items:center;justify-content:center;gap:4px;}
+.social2-podium-props{font-size:10.5px;color:#8b8b92;margin-top:8px;}
+.social2-rewards-note{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:12px;font-size:11px;color:#8b8b92;}
+.social2-group{margin-top:14px;background:#1a1a1d;border-radius:18px;padding:4px 14px;}
+.social2-group.tint{background:#e5b43c12;border:1px solid #e5b43c4d;}
+.social2-row{display:flex;align-items:center;gap:12px;padding:12px 0;}
+.social2-row.sep{border-top:1px solid #26262b;}
+.social2-rank{width:20px;font-size:13px;font-weight:600;color:#8b8b92;text-align:center;flex-shrink:0;}
+.social2-row-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.social2-row-sub{font-size:11px;color:#8b8b92;}
+.social2-row-worth{font-size:14px;font-weight:600;color:#e6e6ea;flex-shrink:0;white-space:nowrap;}
+.social2-section-hdr{display:flex;align-items:center;justify-content:space-between;margin-top:26px;padding:0 2px;}
+.social2-section-lbl{font-size:11.5px;font-weight:600;letter-spacing:.14em;white-space:nowrap;}
+.social2-search-row{display:flex;gap:8px;margin-top:20px;}
+.social2-search-box{flex:1;display:flex;align-items:center;gap:10px;background:#1a1a1d;border-radius:14px;padding:12px 14px;}
+.social2-search-box input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:#fff;font-size:13.5px;font-family:inherit;}
+.social2-invite-btn{width:46px;border-radius:14px;background:#26221a;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.social2-pill-btn{flex:0 0 auto;padding:8px 14px;border-radius:11px;border:none;font-family:inherit;font-size:12.5px;font-weight:600;cursor:pointer;}
+.social2-square-btn{width:36px;height:36px;border-radius:11px;border:none;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+.social2-square-btn.sm{width:34px;height:34px;}
+.social2-square-btn.disabled{opacity:.4;cursor:default;}
+.social2-empty{padding:18px 0;text-align:center;font-size:13px;color:#8b8b92;}
+.social2-gift-row{display:flex;align-items:center;gap:7px;margin-top:10px;padding:0 2px;font-size:11.5px;color:#8b8b92;}
+.social2-icon-tile{width:40px;height:40px;border-radius:12px;background:#26221a;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.social2-offline-dot{position:absolute;right:-1px;bottom:-1px;width:11px;height:11px;border-radius:50%;border:2.5px solid #1a1a1d;background:#4a4a55;}
+.social2-offline-dot.on{background:#6fcf8a;}
 #ad-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:500;display:none;align-items:center;justify-content:center;}
 #ad-overlay.open{display:flex;}
 .ad-box{background:var(--surface);border-radius:20px;padding:32px 24px;text-align:center;width:90%;max-width:360px;}
@@ -807,14 +858,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
   </div>
 </div>
 
-<!-- MAKE OFFER -->
-<div id="inbox-overlay" onclick="if(event.target===this)closeInbox()">
-  <div class="trade-sheet" style="max-height:75vh;overflow-y:auto;">
-    <div class="trade-sheet-hdr"><div class="trade-sheet-title" id="inbox-title">Inbox</div><div class="trade-sheet-close" onclick="closeInbox()">✕</div></div>
-    <div id="inbox-list" style="margin-top:12px;"></div>
-  </div>
-</div>
-
 <div id="chat-overlay" onclick="if(event.target===this)closeChat()">
   <div class="trade-sheet" style="display:flex;flex-direction:column;max-height:85vh;">
     <div class="trade-sheet-hdr"><div style="display:flex;align-items:center;gap:10px;"><div class="social-avatar-circle" id="chat-avatar" style="width:32px;height:32px;"></div><div class="trade-sheet-title" id="chat-title">Chat</div></div><div class="trade-sheet-close" onclick="closeChat()">✕</div></div>
@@ -1010,46 +1053,48 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 
     <div class="screen" id="screen-leaderboard">
       <div class="screen-inner">
-        <div class="section-hdr port-hdr-flex"><h2 id="lbl-lb-title">Social</h2><div class="port-offers-icon-btn" id="inbox-btn" onclick="openInbox()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13"/><path d="M3 7l9 6 9-6"/></svg><div class="bnav-dot" id="inbox-dot"></div></div></div>
-        <div class="social-tabs">
-          <div class="social-tab active" id="stab-boards" onclick="setSocialTab('boards')"><span id="stab-boards-txt">Leaderboards</span></div>
-          <div class="social-tab" id="stab-friends" onclick="setSocialTab('friends')"><span id="stab-friends-txt">Friends</span><span class="social-tab-badge" id="friend-req-badge" style="display:none">0</span></div>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="socialChromaGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f08cc8"/><stop offset="0.5" stop-color="#a98bf2"/><stop offset="1" stop-color="#6fd6e8"/></linearGradient></defs></svg>
+        <div class="social2-header">
+          <button type="button" class="social2-back-btn" id="social2-back-btn" style="display:none" onclick="closeInbox()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9c9cf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#socialChromaGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <div class="social2-title" id="social2-title">Social</div>
+          <div class="social2-underline"></div>
+          <button type="button" class="social2-inbox-btn" id="social2-inbox-btn" onclick="openInbox()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9c9cf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
+            <span class="social2-inbox-badge" id="social2-inbox-badge" style="display:none">0</span>
+          </button>
+        </div>
+        <div id="social2-tabs-wrap" class="social2-tabs">
+          <button type="button" class="social2-tab active" id="stab-boards" onclick="setSocialTab('boards')"><span id="stab-boards-txt">Leaderboard</span></button>
+          <button type="button" class="social2-tab" id="stab-friends" onclick="setSocialTab('friends')"><span id="stab-friends-txt">Friends</span><span class="social2-tab-badge" id="friend-req-badge" style="display:none">0</span></button>
         </div>
         <div id="social-boards-view">
-          <div class="lb-filter-chips">
-            <div class="lb-chip active" id="chip-global" onclick="setBoardFilter('global',this)"><span id="chip-global-txt">Global</span></div>
-            <div class="lb-chip" id="chip-friends" onclick="setBoardFilter('friends',this)"><span id="chip-friends-txt">Friends</span></div>
+          <div class="social2-chips">
+            <button type="button" class="social2-chip active" id="chip-global" onclick="setBoardFilter('global',this)"><span id="chip-global-txt">Global</span></button>
+            <button type="button" class="social2-chip" id="chip-friends" onclick="setBoardFilter('friends',this)"><span id="chip-friends-txt">Friends</span></button>
           </div>
+          <div id="lb-podium"></div>
+          <div id="lb-rewards-note"></div>
           <div id="lb-list"></div>
-          <div style="margin-top:18px">
-            <div style="font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px" id="lbl-activity">Activity</div>
-            <div id="activity-feed"></div>
-          </div>
         </div>
         <div id="social-friends-view" style="display:none">
-          <div class="social-search-wrap">
-            <span style="color:#7d7d86;font-size:14px;">⌕</span>
-            <input id="friend-search-input" oninput="onFriendSearch(this.value)" placeholder="Hľadať hráča podľa mena">
-            <span class="social-search-clear" id="friend-search-clear" style="display:none" onclick="clearFriendSearch()">✕</span>
+          <div class="social2-search-row">
+            <div class="social2-search-box">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b8b92" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.35-4.35"/><circle cx="11" cy="11" r="8"/></svg>
+              <input id="friend-search-input" oninput="onFriendSearch(this.value)" placeholder="Hľadať hráča podľa mena">
+              <span id="friend-search-clear" style="display:none;cursor:pointer;color:#8b8b92" onclick="clearFriendSearch()">✕</span>
+            </div>
+            <button type="button" class="social2-invite-btn" id="social2-invite-btn" onclick="inviteFriends()" title="Copy invite link"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5b43c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></button>
           </div>
           <div id="friend-search-results"></div>
           <div id="friend-requests-wrap"></div>
-          <div class="social-section-hdr2">
-            <span class="social-section-lbl" id="lbl-friends-count" style="padding:0;">FRIENDS · 0</span>
-            <span style="font-size:11px;color:#8a8a92;" id="lbl-friends-online">0 online</span>
+          <div class="social2-section-hdr">
+            <span class="social2-section-lbl" id="lbl-friends-count" style="color:#e5b43c">FRIENDS · 0</span>
           </div>
+          <div class="social2-gift-row"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e5b43c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v4H3z"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span id="lbl-gifts-left">3 of 3 gifts left today</span></div>
           <div id="friends-list"></div>
-          <div id="friends-empty-note" style="display:none" class="social-empty-box"></div>
-          <div class="daily-gift-box">
-            <div class="daily-gift-icon">🎁</div>
-            <div style="flex:1;">
-              <div class="daily-gift-title" id="lbl-daily-gift">Daily gift</div>
-              <div class="daily-gift-sub" id="lbl-gifts-left">3 of 3 gifts left today</div>
-            </div>
-            <div class="daily-gift-cost">250 🪙</div>
-          </div>
-          <div style="height:18px"></div>
         </div>
+        <div id="social-inbox-view" style="display:none"></div>
       </div>
     </div>
   </div>
@@ -1824,7 +1869,7 @@ function applyLang() {
   // Offers/lb titles
   setText('lbl-received', T('received'));
   setText('lbl-sent', T('sent'));
-  setText('lbl-lb-title', T('leaderboard'));
+  setText('social2-title', T('leaderboard'));
   setText('lbl-activity', T('activity'));
 }
 
@@ -3613,50 +3658,62 @@ function renderOffers(){
 }
 
 // ===== LEADERBOARD =====
-function medalSvg(fill,stroke,text,num){
-  return `<svg width="30" height="30" viewBox="0 0 30 30" style="flex-shrink:0"><circle cx="15" cy="15" r="13" fill="${fill}"/><circle cx="15" cy="15" r="9" fill="none" stroke="${stroke}" stroke-width="1.6"/><text x="15" y="19.5" font-size="11" font-weight="700" text-anchor="middle" fill="${text}">${num}</text></svg>`;
+const SOCIAL_ICON_PATHS={
+  clock:'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z M12 6v6l4 2',
+  check:'M20 6L9 17l-5-5',
+  x:'M18 6L6 18 M6 6l12 12',
+  userplus:'M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2 M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z M19 8v6 M22 11h-6',
+  msg:'M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z',
+  link:'M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71 M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71',
+};
+function socialIconSvg(id,stroke,size=18,fill='none',width=2){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="${fill}" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"><path d="${SOCIAL_ICON_PATHS[id]||''}"/></svg>`;
 }
-const MEDAL_STYLES=[
-  {cls:'gold',fill:'#f0b429',stroke:'#a97a12',text:'#7a4e0d'},
-  {cls:'silver',fill:'#c7c7cc',stroke:'#8b8b90',text:'#5a5a5e'},
-  {cls:'bronze',fill:'#cd7f32',stroke:'#8a541e',text:'#5c3a15'},
-];
+const MEDAL_COLORS=['#e5b43c','#c9ccd4','#c98a4a'];
 let boardFilter='global';
 let socialTab='boards';
 const GIFT_COST=250, DAILY_GIFT_LIMIT=3;
+function socialAvatarHtml(avatar,size){
+  return `<div class="social2-avatar" style="width:${size}px;height:${size}px">${avatarImgHTML(avatar)}</div>`;
+}
+function renderSocialPodium(players,showRewards,countdown){
+  const podium=document.getElementById('lb-podium');
+  const rewardsNote=document.getElementById('lb-rewards-note');
+  const top=players.slice(0,3);
+  if(!top.length){podium.innerHTML='';rewardsNote.innerHTML='';return;}
+  const order=[1,0,2].filter(i=>top[i]);
+  podium.innerHTML=`<div class="social2-podium">${order.map(i=>{
+    const p=top[i];const first=i===0;const medal=MEDAL_COLORS[i];
+    const reward=showRewards?WEEKLY_REWARDS[i]:null;
+    const sub=reward?`<div class="social2-podium-reward"><div class="social2-podium-reward-row">${reward.coins}${curIconSvg('coin',10,'#e5b43c','#b8861f',2.4)}</div><div>${fmt(reward.cash)}</div><div class="social2-podium-reward-row">${reward.emeralds}${curIconSvg('emerald',10,'none','#4fd49a',2.4)}</div></div>`:`<div class="social2-podium-props">${T('lbProps',p.props)}</div>`;
+    return `<div class="social2-podium-card${first?' first':''}"><div class="social2-avatar-wrap">${socialAvatarHtml(p.avatar,first?60:48)}<div class="social2-medal" style="background:${medal}">${i+1}</div></div><div class="social2-podium-name"><span>${p.name}</span>${p.isMe?`<span style="color:#e5b43c;font-size:10.5px">${T('you')}</span>`:''}</div><div class="social2-podium-worth" style="color:${medal}">${fmt(p.worth)}</div>${sub}</div>`;
+  }).join('')}</div>`;
+  rewardsNote.innerHTML=showRewards?`<div class="social2-rewards-note">${socialIconSvg('clock','#8b8b92',13)}<span>${countdown}</span></div>`:'';
+}
 function renderLeaderboard(){
   let players=[];
   if(S.dbProfiles&&S.dbProfiles.length){
-    players=S.dbProfiles.map((pr,i)=>({id:pr.id,name:pr.username||'Player',avatar:pr.avatar||AVATARS[0],color:COLORS[i%COLORS.length],worth:(S.dbOwn||[]).filter(o=>o.user_id===pr.id).reduce((s,o)=>{const p=PROPS.find(x=>x.id==o.property_id);return s+(p?Math.round(marketValue(p)*o.pct/100):0);},0),props:(S.dbOwn||[]).filter(o=>o.user_id===pr.id).length,isMe:pr.id===S.user?.id}));
-  }else{players=[{id:S.user?.id,name:S.username,avatar:S.avatar,color:COLORS[0],worth:propertyValue(),props:Object.keys(S.own).length,isMe:true}];}
+    players=S.dbProfiles.map((pr,i)=>({id:pr.id,name:pr.username||'Player',avatar:pr.avatar||AVATARS[0],worth:(S.dbOwn||[]).filter(o=>o.user_id===pr.id).reduce((s,o)=>{const p=PROPS.find(x=>x.id==o.property_id);return s+(p?Math.round(marketValue(p)*o.pct/100):0);},0),props:(S.dbOwn||[]).filter(o=>o.user_id===pr.id).length,isMe:pr.id===S.user?.id}));
+  }else{players=[{id:S.user?.id,name:S.username,avatar:S.avatar,worth:propertyValue(),props:Object.keys(S.own).length,isMe:true}];}
   if(boardFilter==='friends'){
     const friendIds=new Set((S.friends||[]).map(f=>f.id));
     players=players.filter(p=>p.isMe||friendIds.has(p.id));
   }
   players.sort((a,b)=>b.worth-a.worth);
-  const list=document.getElementById('lb-list');list.innerHTML='';
   const msLeft=nextRewardDate()-new Date();
   const countdown=msLeft<24*3600000?T('inHours',Math.max(1,Math.ceil(msLeft/3600000))):T('inDays',Math.ceil(msLeft/86400000));
-  players.forEach((pl,i)=>{
-    const reward=boardFilter==='global'?WEEKLY_REWARDS[i]:null;
-    const d=document.createElement('div');
-    let rankHtml,cls;
-    if(reward&&i<3){const m=MEDAL_STYLES[i];cls=m.cls;rankHtml=medalSvg(m.fill,m.stroke,m.text,i+1);}
-    else{cls='plain';rankHtml=`<span class="lb-rank-num">${i+1}.</span>`;}
-    d.className='lb-row '+cls;
-    d.style.cursor='pointer';
-    const subLine=reward?`<div class="lb-reward-row"><span>${reward.coins} 🪙</span><span>${fmt(reward.cash)}</span><span>${reward.emeralds} 👽</span><span>${countdown}</span></div>`:`<p class="lb-props">${T('lbProps',pl.props)}</p>`;
-    d.innerHTML=`${rankHtml}<div><p class="lb-name">${pl.name}${pl.isMe?` <span class="lb-you">(${T('you')})</span>`:''}</p>${subLine}</div><span class="lb-worth ${cls}">${fmt(pl.worth)}</span>`;
-    d.onclick=()=>openPlayerModal(pl.id,pl.name,pl.avatar,pl.isMe);
-    list.appendChild(d);
-  });
-  if(boardFilter==='friends'&&players.length<=1){
-    list.innerHTML=`<div class="social-empty-box">${T('noFriendsYet')}</div>`;
+  renderSocialPodium(players,boardFilter==='global',countdown);
+  const rest=players.slice(3);
+  const list=document.getElementById('lb-list');
+  if(!rest.length){
+    list.innerHTML=(boardFilter==='friends'&&players.length<=1)?`<div class="social2-empty">${T('noFriendsYet')}</div>`:'';
+    return;
   }
+  list.innerHTML=`<div class="social2-group">${rest.map((pl,i)=>`<div class="social2-row${i?' sep':''}" style="cursor:pointer" onclick="openPlayerModal('${pl.id}','${(pl.name||'').replace(/'/g,"\\'")}','${pl.avatar}',${pl.isMe})"><div class="social2-rank">${i+4}</div>${socialAvatarHtml(pl.avatar,34)}<div style="flex:1;min-width:0"><div class="social2-row-name">${pl.name}${pl.isMe?` <span style="color:#e5b43c;font-size:11.5px">${T('you')}</span>`:''}</div><div class="social2-row-sub">${T('lbProps',pl.props)}</div></div><div class="social2-row-worth">${fmt(pl.worth)}</div></div>`).join('')}</div>`;
 }
 function setBoardFilter(filter,el){
   boardFilter=filter;
-  document.querySelectorAll('#screen-leaderboard .lb-chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('#screen-leaderboard .social2-chip').forEach(c=>c.classList.remove('active'));
   if(el)el.classList.add('active');
   renderLeaderboard();
 }
@@ -3667,6 +3724,14 @@ function setSocialTab(tab){
   document.getElementById('social-boards-view').style.display=tab==='boards'?'':'none';
   document.getElementById('social-friends-view').style.display=tab==='friends'?'':'none';
   if(tab==='friends')renderFriendsView();
+}
+function inviteFriends(){
+  const url=(location&&location.origin)?location.origin:'https://landlord-psi.vercel.app';
+  const btn=document.getElementById('social2-invite-btn');
+  const done=()=>{ if(!btn)return; btn.innerHTML=socialIconSvg('check','#e5b43c',18); setTimeout(()=>{btn.innerHTML=socialIconSvg('link','#e5b43c',18);},1500); };
+  if(navigator.clipboard&&navigator.clipboard.writeText){
+    navigator.clipboard.writeText(url).then(done).catch(()=>toast(url));
+  }else{ toast(url); }
 }
 async function loadSocialData(){
   if(!supa||!S.user)return;
@@ -3702,20 +3767,20 @@ function clearFriendSearch(){
 }
 function renderFriendSearchResults(results){
   const wrap=document.getElementById('friend-search-results');
-  if(!results.length){ wrap.innerHTML=`<div class="social-search-results"><div class="social-section-lbl">${T('searchResultsLbl')}</div><div class="social-empty-note">${T('noPlayerFound')}</div></div>`; return; }
-  let rows='';
-  results.forEach(p=>{
+  const hdr=`<div class="social2-section-hdr" style="margin-top:22px"><span class="social2-section-lbl" style="color:#8b8b92">${T('searchResultsLbl').toUpperCase()}</span></div>`;
+  if(!results.length){ wrap.innerHTML=`${hdr}<div class="social2-group"><div class="social2-empty">${T('noPlayerFound')}</div></div>`; return; }
+  const rows=results.map((p,i)=>{
     const friend=isFriendUid(p.id),sent=hasSentRequestTo(p.id);
     const worth=(S.dbOwn||[]).filter(o=>o.user_id===p.id).reduce((s,o)=>{const pr=PROPS.find(x=>x.id==o.property_id);return s+(pr?Math.round(marketValue(pr)*o.pct/100):0);},0);
     const lvl=levelForWorth(worth);
     const safeName=(p.username||'Player').replace(/'/g,"\\'");
     let btn;
-    if(friend)btn=`<button class="social-add-btn sent" disabled>${T('friendsBtn')}</button>`;
-    else if(sent)btn=`<button class="social-add-btn sent" disabled>${T('requestSentBtn')}</button>`;
-    else btn=`<button class="social-add-btn" onclick="sendFriendRequest('${p.id}')">${T('addFriendBtn')}</button>`;
-    rows+=`<div class="social-search-row"><div class="social-avatar-circle">${avatarImgHTML(p.avatar||AVATARS[0])}</div><div style="flex:1;min-width:0;"><div class="social-row-name">${safeName}</div><div class="social-row-sub">Level ${lvl} · ${fmt(worth)}</div></div>${btn}</div>`;
-  });
-  wrap.innerHTML=`<div class="social-search-results"><div class="social-section-lbl">${T('searchResultsLbl')}</div>${rows}</div>`;
+    if(friend)btn=`<button class="social2-pill-btn" style="background:#242428;color:#8b8b92" disabled>${T('friendsBtn')}</button>`;
+    else if(sent)btn=`<button class="social2-pill-btn" style="background:#242428;color:#8b8b92" disabled>${T('requestSentBtn')}</button>`;
+    else btn=`<button class="social2-pill-btn" style="background:#e5b43c;color:#0e0e10" onclick="sendFriendRequest('${p.id}')">${T('addFriendBtn')}</button>`;
+    return `<div class="social2-row${i?' sep':''}">${socialAvatarHtml(p.avatar||AVATARS[0],42)}<div style="flex:1;min-width:0"><div class="social2-row-name">${safeName} <span style="color:#8b8b92;font-weight:400;font-size:11.5px">Lv ${lvl}</span></div><div class="social2-row-sub" style="color:#e5b43c">${fmt(worth)}</div></div>${btn}</div>`;
+  }).join('');
+  wrap.innerHTML=`${hdr}<div class="social2-group">${rows}</div>`;
 }
 async function sendFriendRequest(uid){
   if(!supa||!S.user)return;
@@ -3756,45 +3821,69 @@ function updateFriendReqBadge(){
   const n=(S.friendRequests||[]).length;
   const badge=document.getElementById('friend-req-badge');
   if(badge){ badge.style.display=n>0?'':'none'; badge.textContent=n; }
+  updateSocialInboxBadge();
 }
-function updateInboxBadge(){
-  const n=S.unreadMsgCount||0;
-  const badge=document.getElementById('inbox-dot');
-  if(badge)badge.classList.toggle('show',n>0);
+function updateSocialInboxBadge(){
+  const n=(S.unreadMsgCount||0)+(S.friendRequests||[]).length;
+  const badge=document.getElementById('social2-inbox-badge');
+  if(badge){ badge.style.display=n>0?'flex':'none'; badge.textContent=n; }
 }
+function updateInboxBadge(){ updateSocialInboxBadge(); }
+let socialInboxOpen=false;
 async function openInbox(){
-  document.getElementById('inbox-title').textContent=T('inboxTitle');
-  S.unreadMsgCount=0; updateInboxBadge();
-  const listEl=document.getElementById('inbox-list');
-  listEl.innerHTML='';
-  if(!supa||!S.user){ document.getElementById('inbox-overlay').classList.add('open'); return; }
-  const {data:msgs,error}=await supa.from('messages').select('*').or(`from_user.eq.${S.user.id},to_user.eq.${S.user.id}`).order('created_at',{ascending:false}).limit(300);
-  if(error){ console.error('load inbox failed:',error); }
-  const convos={};
-  (msgs||[]).forEach(m=>{
-    const other=m.from_user===S.user.id?m.to_user:m.from_user;
-    if(!convos[other])convos[other]=m;
-  });
-  const convoList=Object.entries(convos);
-  if(!convoList.length){
-    listEl.innerHTML=`<div class="social-empty-note" style="border-top:none;padding:14px 0;">${T('noMessages')}</div>`;
-  }else{
-    let rows='';
-    convoList.forEach(([uid,m])=>{
-      const pr=S.dbProfiles?.find(p=>p.id===uid);
-      const name=pr?.username||'Player';
-      const safeName=name.replace(/'/g,"\\'");
-      const avatar=pr?.avatar||AVATARS[0];
-      const when=new Date(m.created_at);
-      const timeStr=when.toLocaleDateString()+' '+when.toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'});
-      const preview=(m.from_user===S.user.id?T('you')+': ':'')+m.content;
-      rows+=`<div class="inbox-row" style="cursor:pointer;" onclick="closeInbox();openChat('${uid}','${safeName}','${avatar}')"><div class="social-avatar-circle" style="width:34px;height:34px;">${avatarImgHTML(avatar)}</div><div class="inbox-row-body"><div class="inbox-row-name">${name}</div><div class="inbox-row-text" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${preview.replace(/</g,'&lt;')}</div><div class="inbox-row-time">${timeStr}</div></div></div>`;
-    });
-    listEl.innerHTML=rows;
+  socialInboxOpen=true;
+  S.unreadMsgCount=0; updateSocialInboxBadge();
+  document.getElementById('social2-back-btn').style.display='';
+  document.getElementById('social2-inbox-btn').style.display='none';
+  document.getElementById('social2-title').textContent=T('inboxTitle');
+  document.getElementById('social2-tabs-wrap').style.display='none';
+  document.getElementById('social-boards-view').style.display='none';
+  document.getElementById('social-friends-view').style.display='none';
+  const view=document.getElementById('social-inbox-view');
+  view.style.display='';
+  view.innerHTML=`<div class="social2-empty" style="margin-top:26px">${T('inboxTitle')}…</div>`;
+  const reqs=S.friendRequests||[];
+  let convoList=[];
+  if(supa&&S.user){
+    const {data:msgs,error}=await supa.from('messages').select('*').or(`from_user.eq.${S.user.id},to_user.eq.${S.user.id}`).order('created_at',{ascending:false}).limit(300);
+    if(error)console.error('load inbox failed:',error);
+    const convos={};
+    (msgs||[]).forEach(m=>{ const other=m.from_user===S.user.id?m.to_user:m.from_user; if(!convos[other])convos[other]=m; });
+    convoList=Object.entries(convos);
   }
-  document.getElementById('inbox-overlay').classList.add('open');
+  if(!socialInboxOpen)return;
+  if(!reqs.length&&!convoList.length){
+    view.innerHTML=`<div class="social2-section-hdr" style="margin-top:26px"><span class="social2-section-lbl" style="color:#e5b43c">${T('inboxTitle').toUpperCase()}</span></div><div class="social2-group"><div class="social2-empty">${T('noMessages')}</div></div>`;
+    return;
+  }
+  let rows='';
+  reqs.forEach((r,i)=>{
+    const pr=S.dbProfiles?.find(p=>p.id===r.from_user);
+    const name=(pr?.username||'Player').replace(/'/g,"\\'"),avatar=pr?.avatar||AVATARS[0];
+    const worth=(S.dbOwn||[]).filter(o=>o.user_id===r.from_user).reduce((s,o)=>{const p=PROPS.find(x=>x.id==o.property_id);return s+(p?Math.round(marketValue(p)*o.pct/100):0);},0);
+    const lvl=levelForWorth(worth);
+    rows+=`<div class="social2-row${i?' sep':''}"><div class="social2-icon-tile">${socialIconSvg('userplus','#e5b43c')}</div><div style="flex:1;min-width:0"><div class="social2-row-name">${name} wants to be friends</div><div class="social2-row-sub">Lv ${lvl} · ${fmt(worth)}</div></div><div style="display:flex;gap:6px"><button class="social2-square-btn sm" style="background:#242428" onclick="declineFriendRequest('${r.id}')">${socialIconSvg('x','#8b8b92',14,'none',2.4)}</button><button class="social2-square-btn sm" style="background:#e5b43c" onclick="acceptFriendRequest('${r.id}')">${socialIconSvg('check','#0e0e10',15,'none',2.6)}</button></div></div>`;
+  });
+  convoList.forEach(([uid,m],i)=>{
+    const pr=S.dbProfiles?.find(p=>p.id===uid);
+    const name=pr?.username||'Player';
+    const safeName=name.replace(/'/g,"\\'");
+    const avatar=pr?.avatar||AVATARS[0];
+    const preview=(m.from_user===S.user.id?T('you')+': ':'')+(m.content||'');
+    rows+=`<div class="social2-row${(reqs.length+i)?' sep':''}" style="cursor:pointer" onclick="openChat('${uid}','${safeName}','${avatar}')"><div class="social2-icon-tile">${socialIconSvg('msg','#6cb6f0')}</div><div style="flex:1;min-width:0"><div class="social2-row-name">${name}</div><div class="social2-row-sub" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${preview.replace(/</g,'&lt;')}</div></div></div>`;
+  });
+  view.innerHTML=`<div class="social2-section-hdr" style="margin-top:26px"><span class="social2-section-lbl" style="color:#e5b43c">${T('inboxTitle').toUpperCase()}</span></div><div class="social2-group">${rows}</div>`;
 }
-function closeInbox(){ document.getElementById('inbox-overlay').classList.remove('open'); }
+function closeInbox(){
+  socialInboxOpen=false;
+  document.getElementById('social2-back-btn').style.display='none';
+  document.getElementById('social2-inbox-btn').style.display='';
+  document.getElementById('social2-title').textContent=T('leaderboard');
+  document.getElementById('social2-tabs-wrap').style.display='';
+  document.getElementById('social-inbox-view').style.display='none';
+  document.getElementById('social-boards-view').style.display=socialTab==='boards'?'':'none';
+  document.getElementById('social-friends-view').style.display=socialTab==='friends'?'':'none';
+}
 let friendMenuTarget=null;
 function toggleFriendMenu(uid,name){
   if(friendMenuTarget===uid){ friendMenuTarget=null; renderFriendsView(); return; }
@@ -3821,38 +3910,38 @@ function renderFriendsView(){
   const reqWrap=document.getElementById('friend-requests-wrap');
   const reqs=S.friendRequests||[];
   if(reqs.length){
-    let rows='';
-    reqs.forEach(r=>{
+    const rows=reqs.map((r,i)=>{
       const pr=S.dbProfiles?.find(p=>p.id===r.from_user);
       const name=(pr?.username||'Player').replace(/'/g,"\\'"),avatar=pr?.avatar||AVATARS[0];
       const worth=(S.dbOwn||[]).filter(o=>o.user_id===r.from_user).reduce((s,o)=>{const p=PROPS.find(x=>x.id==o.property_id);return s+(p?Math.round(marketValue(p)*o.pct/100):0);},0);
       const lvl=levelForWorth(worth);
-      rows+=`<div class="freq-card"><div class="social-avatar-circle">${avatarImgHTML(avatar)}</div><div style="flex:1;min-width:0;"><div class="social-row-name">${name}</div><div class="social-row-sub">Level ${lvl} · ${fmt(worth)}</div></div><div class="freq-actions"><button class="freq-btn-x" onclick="declineFriendRequest('${r.id}')">✕</button><button class="freq-btn-check" onclick="acceptFriendRequest('${r.id}')">✓</button></div></div>`;
-    });
-    reqWrap.innerHTML=`<div class="social-section-hdr2" style="margin-top:20px;"><span class="social-section-lbl" style="padding:0;">${T('friendRequestsLbl')}</span><span style="font-size:11px;color:#d9b24c;font-weight:700;">${T('newRequestsCount',reqs.length)}</span></div>${rows}`;
+      return `<div class="social2-row${i?' sep':''}">${socialAvatarHtml(avatar,42)}<div style="flex:1;min-width:0"><div class="social2-row-name">${name}</div><div class="social2-row-sub" style="color:#e5b43c">Lv ${lvl} · ${fmt(worth)}</div></div><button class="social2-square-btn" style="background:#242428" onclick="declineFriendRequest('${r.id}')">${socialIconSvg('x','#8b8b92',14,'none',2.4)}</button><button class="social2-square-btn" style="background:#e5b43c" onclick="acceptFriendRequest('${r.id}')">${socialIconSvg('check','#0e0e10',15,'none',2.6)}</button></div>`;
+    }).join('');
+    reqWrap.innerHTML=`<div class="social2-section-hdr"><span class="social2-section-lbl" style="color:#e5b43c">${T('friendRequestsLbl').toUpperCase()} · ${reqs.length}</span></div><div class="social2-group tint">${rows}</div>`;
   }else{ reqWrap.innerHTML=''; }
   const friends=S.friends||[];
-  document.getElementById('lbl-friends-count').textContent=T('friendsCountLbl',friends.length);
-  document.getElementById('lbl-friends-online').textContent='';
+  document.getElementById('lbl-friends-count').textContent=`${T('friendsCountLbl',friends.length).toUpperCase()}`;
   const listEl=document.getElementById('friends-list');
-  const emptyNote=document.getElementById('friends-empty-note');
   if(!friends.length){
-    listEl.innerHTML='';
-    emptyNote.style.display='';
-    emptyNote.textContent=T('noFriendsYet');
+    listEl.innerHTML=`<div class="social2-group"><div class="social2-empty">${T('noFriendsYet')}</div></div>`;
   }else{
-    emptyNote.style.display='none';
-    listEl.innerHTML='';
-    friends.forEach(f=>{
-      const limitReached=(S.giftsUsedToday||0)>=DAILY_GIFT_LIMIT;
+    const limitReached=(S.giftsUsedToday||0)>=DAILY_GIFT_LIMIT;
+    listEl.innerHTML=`<div class="social2-group">${friends.map((f,i)=>{
       const lvl=levelForWorth(f.worth);
       const safeName=f.name.replace(/'/g,"\\'");
-      const d=document.createElement('div');d.className='friend-card';
+      const gifted=!!(S.giftedToday&&S.giftedToday[f.id]);
+      const blocked=!gifted&&limitReached;
       const menuOpen=friendMenuTarget===f.id;
-      const menuHtml=menuOpen?`<div class="friend-menu"><div class="friend-menu-item" onclick="event.stopPropagation();pingFriend('${f.id}')">${T('pingBtn')}</div><div class="friend-menu-item danger" onclick="event.stopPropagation();unfriendPlayer('${f.id}')">${T('unfriendBtn')}</div></div>`:'';
-      d.innerHTML=`<div class="friend-card-top" onclick="openPlayerModal('${f.id}','${safeName}','${f.avatar}',false)"><div class="social-avatar-circle">${avatarImgHTML(f.avatar)}</div><div style="flex:1;min-width:0;"><div class="friend-name-row"><span class="social-row-name">${f.name}</span><span class="friend-lvl">LVL ${lvl}</span></div></div><div><div class="friend-worth">${fmt(f.worth)}</div></div></div><div class="friend-actions"><button class="friend-gift-btn${limitReached?' disabled':''}" ${limitReached?'disabled':''} onclick="event.stopPropagation();sendGift('${f.id}')">${T('sendGiftBtn')}</button><button class="friend-msg-btn" onclick="event.stopPropagation();openChat('${f.id}','${safeName}','${f.avatar}')">${T('sendMsgBtn')}</button><button class="friend-more-btn2" onclick="event.stopPropagation();toggleFriendMenu('${f.id}','${safeName}')">⋯</button></div>${menuHtml}`;
-      listEl.appendChild(d);
-    });
+      const menuHtml=menuOpen?`<div class="social2-group" style="margin-top:6px;padding:0"><div class="social2-row" style="cursor:pointer" onclick="event.stopPropagation();pingFriend('${f.id}')">${T('pingBtn')}</div><div class="social2-row sep" style="cursor:pointer;color:#f28b8b" onclick="event.stopPropagation();unfriendPlayer('${f.id}')">${T('unfriendBtn')}</div></div>`:'';
+      return `<div class="social2-row${i?' sep':''}" style="flex-wrap:wrap">
+        <div style="position:relative">${socialAvatarHtml(f.avatar,42)}<div class="social2-offline-dot"></div></div>
+        <div style="flex:1;min-width:0;cursor:pointer" onclick="openPlayerModal('${f.id}','${safeName}','${f.avatar}',false)"><div class="social2-row-name">${f.name} <span style="color:#8b8b92;font-weight:400;font-size:11.5px">Lv ${lvl}</span></div><div class="social2-row-sub" style="color:#e5b43c">${fmt(f.worth)}</div></div>
+        <button class="social2-square-btn${blocked?' disabled':''}" style="background:${gifted?'#15261e':'#26221a'}" ${blocked?'disabled':''} onclick="event.stopPropagation();sendGift('${f.id}')">${gifted?socialIconSvg('check','#6fcf8a',16):storeIconSvg('gift','#e5b43c',16)}</button>
+        <button class="social2-square-btn" style="background:#17222c" onclick="event.stopPropagation();openChat('${f.id}','${safeName}','${f.avatar}')">${socialIconSvg('msg','#6cb6f0',16)}</button>
+        <button class="social2-square-btn" style="background:#242428" onclick="event.stopPropagation();toggleFriendMenu('${f.id}','${safeName}')">⋯</button>
+        ${menuHtml}
+      </div>`;
+    }).join('')}</div>`;
   }
   const left=Math.max(0,DAILY_GIFT_LIMIT-(S.giftsUsedToday||0));
   document.getElementById('lbl-gifts-left').textContent=T('giftsLeftLbl',left,DAILY_GIFT_LIMIT);
