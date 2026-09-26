@@ -416,6 +416,60 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .skill-card2-desc{font-size:12.5px;color:#8b8b92;margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
 .skill-card2-bar{display:flex;gap:5px;margin-top:13px;}
 .skill-card2-seg{flex:1;height:5px;border-radius:3px;background:#2a2a2f;}
+.store2-header{display:flex;flex-direction:column;align-items:center;padding-top:4px;margin-bottom:2px;}
+.store2-title{font-family:'DM Serif Display',serif;font-size:30px;font-weight:700;line-height:1;margin-top:9px;}
+.store2-underline{width:56px;height:3px;border-radius:2px;margin-top:13px;background:linear-gradient(90deg,#e5b43c,#6cb6f0,#4fd49a,#c7a6f5);}
+.store2-tabs{display:flex;gap:4px;margin:20px 0 2px;background:#151517;border-radius:14px;padding:5px;position:sticky;top:0;z-index:6;}
+.store2-tab{flex:1;text-align:center;padding:8px 0;border-radius:10px;border:none;cursor:pointer;font-family:inherit;font-size:11px;font-weight:600;background:transparent;}
+.store2-tab:active{transform:scale(.96);}
+.store2-section-hdr{display:flex;align-items:center;gap:8px;margin-top:26px;padding:0 2px;}
+.store2-section-hdr span{font-size:11.5px;font-weight:600;letter-spacing:.14em;white-space:nowrap;}
+.store2-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+.store2-free-tile{background:#1a1a1d;border-radius:18px;padding:16px 14px;cursor:pointer;}
+.store2-free-tile.disabled{opacity:.55;cursor:default;}
+.store2-free-top{display:flex;align-items:center;justify-content:space-between;}
+.store2-free-tag{font-size:10px;letter-spacing:.1em;color:#8b8b92;font-weight:600;}
+.store2-free-name{font-size:14px;font-weight:600;margin-top:12px;}
+.store2-free-reward{display:flex;align-items:center;gap:5px;margin-top:4px;}
+.store2-free-reward span{font-size:17px;font-weight:600;}
+.store2-tile-icon{width:40px;height:40px;border-radius:12px;background:#242428;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.store2-boost-card{margin-top:10px;background:#1a1a1d;border-radius:18px;padding:14px 16px 16px;cursor:pointer;}
+.store2-boost-top{display:flex;align-items:center;gap:13px;}
+.store2-boost-icon{width:48px;height:48px;border-radius:14px;background:#242428;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.store2-boost-info{flex:1;min-width:0;}
+.store2-boost-row1{display:flex;align-items:baseline;gap:8px;}
+.store2-boost-name{font-size:15px;font-weight:600;white-space:nowrap;}
+.store2-boost-dur{font-size:12px;color:#8b8b92;}
+.store2-boost-price-wrap{display:flex;align-items:center;gap:5px;flex:0 0 auto;margin-left:auto;}
+.store2-boost-price{font-size:15px;font-weight:600;}
+.store2-boost-desc{font-size:12.5px;color:#8b8b92;margin-top:3px;}
+.store2-boost-bar{display:flex;gap:5px;margin-top:13px;}
+.store2-boost-seg{flex:1;height:5px;border-radius:3px;background:#2a2a2f;}
+.store2-boost-active{display:flex;gap:6px;margin-top:7px;font-size:11px;color:#6fcf8a;}
+.store2-boost-active b{font-weight:600;}
+.store2-pack{background:#1a1a1d;border-radius:18px;padding:16px 12px 12px;display:flex;flex-direction:column;align-items:center;position:relative;cursor:pointer;border:1px solid transparent;}
+.store2-pack-badge{position:absolute;top:-8px;font-size:9px;font-weight:700;letter-spacing:.08em;padding:3px 8px;border-radius:6px;}
+.store2-pack-icons{height:52px;width:100%;border-radius:14px;background:#242428;display:flex;align-items:center;justify-content:center;}
+.store2-pack-name{font-size:10px;letter-spacing:.12em;color:#8b8b92;font-weight:600;margin-top:12px;}
+.store2-pack-amount{font-size:22px;font-weight:600;margin-top:2px;}
+.store2-pack-price{width:100%;margin-top:10px;padding:9px 0;border-radius:11px;text-align:center;font-size:13px;font-weight:600;}
+.store2-convert{margin-top:10px;border-radius:18px;padding:12px 12px 12px 16px;display:flex;align-items:center;gap:10px;cursor:pointer;}
+.store2-convert-info{flex:1;min-width:0;}
+.store2-convert-row1{display:flex;align-items:center;gap:5px;font-size:14px;font-weight:600;white-space:nowrap;}
+.store2-convert-arrow{color:#8b8b92;font-weight:400;}
+.store2-convert-desc{font-size:12px;color:#8b8b92;margin-top:2px;}
+.store2-convert-icon{flex:0 0 auto;width:40px;height:40px;border-radius:12px;display:flex;align-items:center;justify-content:center;}
+.store2-forever-outer{margin-top:10px;padding:1px;border-radius:21px;background:linear-gradient(135deg,#f08cc8,#a98bf2,#6fd6e8);}
+.store2-forever-outer.first{margin-top:26px;}
+.store2-forever-inner{background:linear-gradient(160deg,#211a2b,#1a1a1d 70%);border-radius:20px;padding:18px;}
+.store2-forever-tag{display:flex;align-items:center;gap:8px;}
+.store2-forever-tag span{font-size:10.5px;font-weight:600;letter-spacing:.14em;color:#c7a6f5;}
+.store2-forever-name{font-size:20px;font-weight:600;margin-top:10px;}
+.store2-forever-desc{font-size:12.5px;color:#a3a3ab;margin-top:3px;}
+.store2-forever-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:16px;}
+.store2-forever-status{font-size:11px;color:#8b8b92;}
+.store2-forever-btn{padding:10px 18px;border-radius:12px;border:none;font-family:inherit;font-size:14px;font-weight:600;cursor:pointer;}
+.store2-restore{text-align:center;margin-top:18px;font-size:12px;color:var(--text3);text-decoration:underline;cursor:pointer;}
 #ad-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:500;display:none;align-items:center;justify-content:center;}
 #ad-overlay.open{display:flex;}
 .ad-box{background:var(--surface);border-radius:20px;padding:32px 24px;text-align:center;width:90%;max-width:360px;}
@@ -930,86 +984,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 
     <div class="screen" id="screen-store">
       <div class="screen-inner">
-        <div class="section-hdr"><h2>🪙 Store</h2><p id="lbl-store-sub">Gold Coins, Power-ups and special offers</p></div>
-        <div class="store-section">
-          <div class="store-section-title" id="lbl-free">Free</div>
-          <div class="powerup-card" onclick="watchAd()">
-            <div class="store-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f0b429" stroke-width="1.8"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M9 2l3 3 3-3"/></svg></div>
-            <div class="powerup-info"><div class="powerup-name" id="lbl-watch-ad">Watch Ad</div><div class="powerup-desc" id="watch-ad-desc">30s → 50 🪙</div></div>
-            <div class="powerup-cost"><div class="powerup-coins" id="watch-ad-coins">+50 🪙</div><div class="powerup-label" id="lbl-free2">free</div></div>
-          </div>
-          <div class="powerup-card" onclick="claimDaily()">
-            <div class="store-icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f0b429" stroke-width="1.8"><path d="M4 8h16v13H4z"/><path d="M2 8h20v4H2z"/><path d="M12 8v13M12 8c-1.5-4-6-4-6-1.5S9.5 8 12 8M12 8c1.5-4 6-4 6-1.5S14.5 8 12 8"/></svg></div>
-            <div class="powerup-info"><div class="powerup-name" id="lbl-daily">Daily Reward</div><div class="powerup-desc" id="lbl-daily-desc">Sign in every day for bonus</div><div class="powerup-timer" id="daily-timer-store"></div></div>
-            <div class="powerup-cost"><div class="powerup-coins" id="daily-coins-store">+100 🪙</div><div class="powerup-label" id="lbl-daily-freq">daily</div></div>
-          </div>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="storeChromaGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f08cc8"/><stop offset="0.5" stop-color="#a98bf2"/><stop offset="1" stop-color="#6fd6e8"/></linearGradient></defs></svg>
+        <div class="store2-header">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#storeChromaGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <div class="store2-title" id="lbl-store-title">Store</div>
+          <div class="store2-underline"></div>
         </div>
-        <div class="store-section">
-          <div class="store-section-title" id="lbl-convert">Convert Coins to Cash</div>
-          <div class="powerup-card pc-gold" onclick="convertCoins()">
-            <div class="store-icon-box gold-box"><svg viewBox="0 0 24 24" fill="none" stroke="#f0b429" stroke-width="1.8"><path d="M4 8h13l-3-3M4 8l3 3M20 16H7l3 3M20 16l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-            <div class="powerup-info"><div class="powerup-name">100 🪙 → €50 000</div><div class="powerup-desc" id="lbl-convert-desc">Convert Gold Coins to game cash</div></div>
-            <div class="powerup-cost"><div class="powerup-coins">100 🪙</div><div class="powerup-label">per €50K</div></div>
-          </div>
-          <div class="convert-row blue" onclick="convertDiamond()">
-            <div class="convert-left"><div class="store-icon-box blue-box"><svg viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="1.8"><path d="M4 8h13l-3-3M4 8l3 3M20 16H7l3 3M20 16l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="convert-name">€ 100 000 000 → 1 💎</div><div class="convert-desc" id="lbl-convertd-desc">Convert game cash to premium Diamonds</div></div></div>
-            <div><div class="convert-amount c-blue">€100M</div><div class="convert-meta">per 💎1</div></div>
-          </div>
-          <div class="convert-row green" onclick="convertAlien()">
-            <div class="convert-left"><div class="store-icon-box green-box"><svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.8"><path d="M4 8h13l-3-3M4 8l3 3M20 16H7l3 3M20 16l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><div class="convert-name">100 💎 → 1 👽</div><div class="convert-desc" id="lbl-converta-desc">Convert Diamonds to premium Aliens</div></div></div>
-            <div><div class="convert-amount c-green">100</div><div class="convert-meta">per 👽1</div></div>
-          </div>
-        </div>
-        <div class="store-section">
-          <div class="store-section-title" id="lbl-powerups">Power-ups</div>
-          <div class="powerup-card pc-green" id="pu-2xrent" onclick="buyPowerup('2xrent')">
-            <svg viewBox="0 0 24 24" fill="#4ade80" width="19" height="19" style="flex-shrink:0"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>
-            <div class="powerup-info"><div class="powerup-name" id="lbl-2x">2× Rent</div><div class="powerup-desc" id="lbl-2x-desc">Double all income for 7 days</div><div class="powerup-timer" id="pu-2xrent-timer"></div></div>
-            <div class="powerup-cost"><div class="powerup-coins">500 🪙</div><div class="powerup-label">7 days</div></div>
-          </div>
-          <div class="powerup-card pc-green" id="pu-lucky" onclick="buyPowerup('lucky')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="1.8" width="19" height="19" style="flex-shrink:0"><circle cx="8" cy="8" r="3.3"/><circle cx="16" cy="8" r="3.3"/><circle cx="8" cy="16" r="3.3"/><circle cx="16" cy="16" r="3.3"/><path d="M12 12v6" stroke-linecap="round"/></svg>
-            <div class="powerup-info"><div class="powerup-name" id="lbl-lucky">Lucky Charm</div><div class="powerup-desc" id="lbl-lucky-desc">20% chance to double every ad reward for 24h</div><div class="powerup-timer" id="pu-lucky-timer"></div></div>
-            <div class="powerup-cost"><div class="powerup-coins">200 🪙</div><div class="powerup-label">24h</div></div>
-          </div>
-          <div class="powerup-card pc-gold" id="pu-contractor24" onclick="buyPowerup('contractor24')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#f0b429" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" width="19" height="19" style="flex-shrink:0"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></svg>
-            <div class="powerup-info"><div class="powerup-name" id="lbl-c24">Hire Contractor (24h)</div><div class="powerup-desc" id="lbl-c24-desc">Offline earnings cap extended to 24h for 7 days</div><div class="powerup-timer" id="pu-contractor24-timer"></div></div>
-            <div class="powerup-cost"><div class="powerup-coins">900 🪙</div><div class="powerup-label">7 days</div></div>
-          </div>
-        </div>
-        <div class="store-section">
-          <div class="store-section-title" id="lbl-buy-coins">Buy Gold Coins</div>
-          <div class="store-cards">
-            <div class="store-card" onclick="buyCoins(100,'€0.99')"><div class="store-card-icon">🪙</div><div class="store-card-title">Starter</div><div class="store-card-coins">100 🪙</div><div class="store-card-price">€0.99</div></div>
-            <div class="store-card" onclick="buyCoins(500,'€3.99')"><div class="store-card-icon"><img src="" data-icon="popular" style="width:44px;height:auto"></div><div class="store-card-title">Popular</div><div class="store-card-coins">500 🪙</div><div class="store-card-price">€3.99</div></div>
-            <div class="store-card best" onclick="buyCoins(1200,'€7.99')"><div class="store-card-badge" id="lbl-best">BEST VALUE</div><div class="store-card-icon"><img src="" data-icon="investor" style="width:44px;height:auto"></div><div class="store-card-title">Investor</div><div class="store-card-coins">1 200 🪙</div><div class="store-card-price">€7.99</div></div>
-            <div class="store-card" onclick="buyCoins(3000,'€14.99')"><div class="store-card-icon"><img src="" data-icon="tycoon" style="width:44px;height:auto"></div><div class="store-card-title">Tycoon</div><div class="store-card-coins">3 000 🪙</div><div class="store-card-price">€14.99</div></div>
-          </div>
-        </div>
-        <div class="store-section">
-          <div class="store-section-title" id="lbl-buy-diamonds">Buy Diamonds</div>
-          <div class="store-cards">
-            <div class="store-card store-card-blue" onclick="buyDiamonds(10,'€5.99')"><div class="store-card-icon"><img src="" data-icon="dia-starter" style="width:32px;height:auto"></div><div class="store-card-title">Starter</div><div class="store-card-coins">10 💎</div><div class="store-card-price">€5.99</div></div>
-            <div class="store-card store-card-blue" onclick="buyDiamonds(50,'€23.99')"><div class="store-card-icon"><img src="" data-icon="dia-popular" style="width:44px;height:auto"></div><div class="store-card-title">Popular</div><div class="store-card-coins">50 💎</div><div class="store-card-price">€23.99</div></div>
-            <div class="store-card store-card-blue best" onclick="buyDiamonds(120,'€49.99')"><div class="store-card-badge" id="lbl-best2">BEST VALUE</div><div class="store-card-icon"><img src="" data-icon="dia-investor" style="width:44px;height:auto"></div><div class="store-card-title">Investor</div><div class="store-card-coins">120 💎</div><div class="store-card-price">€49.99</div></div>
-            <div class="store-card store-card-blue" onclick="buyDiamonds(300,'€89.99')"><div class="store-card-icon"><img src="" data-icon="dia-tycoon" style="width:44px;height:auto"></div><div class="store-card-title">Tycoon</div><div class="store-card-coins">300 💎</div><div class="store-card-price">€89.99</div></div>
-          </div>
-        </div>
-        <div class="store-section">
-          <div class="store-section-title" id="lbl-buy-advantages">Buy advantages forever</div>
-          <div class="convert-row purple" id="row-permaboost" onclick="buyPermaBoost()">
-            <div><div class="convert-name" id="lbl-permaboost">2× All Profits Forever</div><div class="convert-desc" id="lbl-permaboost-desc">Permanently doubles all your income — forever</div></div>
-            <div><div class="convert-amount c-purple" id="pb-amount">€2.99</div><div class="convert-meta" id="lbl-permaboost-tag">forever</div></div>
-          </div>
-          <div class="convert-row" id="row-contractor48" style="border-color:rgba(240,180,41,.45);background:rgba(240,180,41,.07)" onclick="buyPremiumContractor48()">
-            <div><div class="convert-name" id="lbl-c48">Premium Contractor (36h)</div><div class="convert-desc" id="lbl-c48-desc">Offline earnings cap extended to 36h — forever</div></div>
-            <div><div class="convert-amount" id="c48-amount" style="color:#f0b429">€2.99</div><div class="convert-meta" id="lbl-c48-tag">forever</div></div>
-          </div>
-          <div style="text-align:center;margin-top:10px" id="restore-purchases-wrap">
-            <span style="font-size:12px;color:var(--text3);text-decoration:underline;cursor:pointer" onclick="restorePurchases()" id="lbl-restore">Restore Purchases</span>
-          </div>
-        </div>
+        <div class="store2-tabs" id="store-tabs"></div>
+        <div id="store-list"></div>
       </div>
     </div>
 
@@ -3990,22 +3972,164 @@ async function upgradeChromaSkill(id){
 }
 
 // ===== STORE =====
+const STORE_ICON_PATHS = {
+  tv:'M4 7h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2z M17 2l-5 5-5-5',
+  gift:'M3 8h18v4H3z M12 8v13 M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7 M7.5 8a2.5 2.5 0 0 1 0-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 0 1 0 5',
+  swap:'M16 3l4 4-4 4 M20 7H4 M8 21l-4-4 4-4 M4 17h16',
+  zap:'M13 2L3 14h9l-1 8 10-12h-9l1-8z',
+  clover:'M16.17 7.83L2 22 M4.02 12a2.827 2.827 0 1 1 3.81-4.17A2.827 2.827 0 1 1 12 4.02a2.827 2.827 0 1 1 4.17 3.81A2.827 2.827 0 1 1 19.98 12a2.827 2.827 0 1 1-3.81 4.17A2.827 2.827 0 1 1 12 19.98a2.827 2.827 0 1 1-4.17-3.81A1 1 0 1 1 4 12 M7.83 7.83l8.34 8.34',
+  wrench:'M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z',
+  inf:'M12 12c-2-2.67-4-4-6-4a4 4 0 1 0 0 8c2 0 4-1.33 6-4z M12 12c2 2.67 4 4 6 4a4 4 0 0 0 0-8c-2 0-4 1.33-6 4z',
+};
+function storeIconSvg(id,stroke,size=22,width=2){
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round"><path d="${STORE_ICON_PATHS[id]||''}"/></svg>`;
+}
+const STORE_C={gold:'#e5b43c',goldTint:'#26221a',blue:'#6cb6f0',blueTint:'#17222c',active:'#6fcf8a',activeTint:'#15261e',chromaText:'#c7a6f5',chromaTint:'#221c2c',muted:'#8b8b92'};
+const STORE_TABS=[
+  {key:'free',label:()=>T('free'),color:STORE_C.gold,bg:STORE_C.goldTint},
+  {key:'boosts',label:()=>T('powerups'),color:STORE_C.active,bg:STORE_C.activeTint},
+  {key:'coins',label:()=>T('buyCoins'),color:STORE_C.gold,bg:STORE_C.goldTint},
+  {key:'diamonds',label:()=>T('buyDiamonds'),color:STORE_C.blue,bg:STORE_C.blueTint},
+  {key:'forever',label:()=>T('buyAdvantagesForever'),color:STORE_C.chromaText,bg:STORE_C.chromaTint},
+];
+let storeActiveTab='free';
+function jumpToStoreGroup(key){
+  storeActiveTab=key;
+  document.querySelectorAll('#store-tabs .store2-tab').forEach(b=>{
+    const t=STORE_TABS.find(x=>x.key===b.dataset.key);
+    b.style.background=b.dataset.key===key?t.bg:'transparent';
+  });
+  const target=document.getElementById('store-grp-'+key);
+  const sc=document.getElementById('screen-store');
+  if(!target||!sc)return;
+  const top=target.getBoundingClientRect().top-sc.getBoundingClientRect().top+sc.scrollTop-12;
+  sc.scrollTo({top,behavior:'smooth'});
+}
 function renderStore(){
   const now=new Date();
+  const tabsEl=document.getElementById('store-tabs');
+  tabsEl.innerHTML=STORE_TABS.map(t=>`<button type="button" class="store2-tab" data-key="${t.key}" style="color:${t.color};background:${t.key===storeActiveTab?t.bg:'transparent'}">${t.label()}</button>`).join('');
+  tabsEl.querySelectorAll('.store2-tab').forEach(b=>{b.onclick=()=>jumpToStoreGroup(b.dataset.key);});
+
+  const list=document.getElementById('store-list');list.innerHTML='';
+
+  // ---- FREE ----
   const adAmt=50+coinBonus();
-  const dEl=document.getElementById('watch-ad-desc');if(dEl)dEl.textContent=`30s → ${adAmt} 🪙`;
-  const cEl=document.getElementById('watch-ad-coins');if(cEl)cEl.textContent=`+${adAmt} 🪙`;
-  ['2xrent','lucky','contractor24'].forEach(id=>{
-    const card=document.getElementById('pu-'+id);if(!card)return;
-    const exp=S.powerups[id]?new Date(S.powerups[id]):null;const active=exp&&now<exp;
-    card.classList.toggle('active-pu',active);
-    const te=document.getElementById('pu-'+id+'-timer');if(te)te.textContent=active?T('remainingTime',fmtTime(exp-now)):'';
+  const canDaily=!S.lastDaily||now-new Date(S.lastDaily)>=24*3600000;
+  const dailyAmt=Math.round(100+Math.min((S.dailyStreak+1)*20,500))+coinBonus();
+  const freeItems=[
+    {name:T('watchAd'),reward:adAmt,note:T('free'),icon:'tv',available:true,fn:watchAd},
+    {name:T('dailyReward'),reward:dailyAmt,note:T('daily'),icon:'gift',available:canDaily,fn:claimDaily},
+  ];
+  const freeSec=document.createElement('div');freeSec.id='store-grp-free';
+  freeSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.gold}">${T('free').toUpperCase()}</span></div><div class="store2-grid2" id="store-free-grid"></div>`;
+  list.appendChild(freeSec);
+  const freeGrid=freeSec.querySelector('#store-free-grid');
+  freeItems.forEach(it=>{
+    const tile=document.createElement('div');
+    tile.className='store2-free-tile'+(it.available?'':' disabled');
+    tile.innerHTML=`<div class="store2-free-top"><div class="store2-tile-icon">${storeIconSvg(it.icon,STORE_C.gold,20)}</div><span class="store2-free-tag">${it.note.toUpperCase()}</span></div><div class="store2-free-name">${it.name}</div><div class="store2-free-reward"><span style="color:${STORE_C.gold}">+${it.reward}</span>${curIconSvg('coin',14,'#e5b43c','#b8861f',2.2)}</div>`;
+    if(it.available)tile.onclick=it.fn;
+    freeGrid.appendChild(tile);
   });
-  const pbRow=document.getElementById('row-permaboost');
-  if(pbRow){pbRow.style.opacity=S.permaBoost2x?'0.6':'1';pbRow.style.pointerEvents=S.permaBoost2x?'none':'auto';document.getElementById('pb-amount').textContent=S.permaBoost2x?'✅':'€2.99';}
-  const c48Row=document.getElementById('row-contractor48');
-  if(c48Row){c48Row.style.opacity=S.permaContractor48?'0.6':'1';c48Row.style.pointerEvents=S.permaContractor48?'none':'auto';document.getElementById('c48-amount').textContent=S.permaContractor48?'✅':'€2.99';}
-  const rw=document.getElementById('restore-purchases-wrap');if(rw)rw.style.display=isNativeApp()?'block':'none';
+
+  // ---- BOOSTS ----
+  const boostSec=document.createElement('div');boostSec.id='store-grp-boosts';
+  boostSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.active}">${T('powerups').toUpperCase()}</span></div>`;
+  list.appendChild(boostSec);
+  const boostMeta=[
+    {id:'2xrent',name:T('rentBoost2x'),desc:T('rentBoost2xDesc'),price:500,duration:'7 days',icon:'zap',totalSegments:7},
+    {id:'lucky',name:T('luckyCharm'),desc:T('luckyCharmDesc'),price:200,duration:'24h',icon:'clover',totalSegments:4},
+    {id:'contractor24',name:T('hireContractor24'),desc:T('hireContractor24Desc'),price:900,duration:'7 days',icon:'wrench',totalSegments:7},
+  ];
+  boostMeta.forEach(b=>{
+    const exp=S.powerups[b.id]?new Date(S.powerups[b.id]):null;const active=exp&&now<exp;
+    let bar='',activeLine='';
+    if(active){
+      const totalMs=b.duration==='24h'?24*3600000:7*24*3600000;
+      const segMs=totalMs/b.totalSegments;
+      const filled=Math.min(b.totalSegments,Math.ceil((exp-now)/segMs));
+      let segs='';for(let i=0;i<b.totalSegments;i++)segs+=`<div class="store2-boost-seg" style="background:${i<filled?STORE_C.active:'#2a2a2f'}"></div>`;
+      bar=`<div class="store2-boost-bar">${segs}</div>`;
+      activeLine=`<div class="store2-boost-active"><b>Active</b><span>· ${fmtTime(exp-now)} left</span></div>`;
+    }
+    const card=document.createElement('div');card.className='store2-boost-card';
+    card.innerHTML=`<div class="store2-boost-top"><div class="store2-boost-icon">${storeIconSvg(b.icon,STORE_C.active)}</div><div class="store2-boost-info"><div class="store2-boost-row1"><span class="store2-boost-name">${b.name}</span><span class="store2-boost-dur">${b.duration}</span><span class="store2-boost-price-wrap"><span class="store2-boost-price" style="color:${STORE_C.gold}">${b.price}</span>${curIconSvg('coin',15,'#e5b43c','#b8861f',2.2)}</span></div><div class="store2-boost-desc">${b.desc}</div></div></div>${bar}${activeLine}`;
+    card.onclick=()=>buyPowerup(b.id);
+    boostSec.appendChild(card);
+  });
+
+  // ---- COINS ----
+  const coinSec=document.createElement('div');coinSec.id='store-grp-coins';
+  coinSec.innerHTML=`<div class="store2-section-hdr">${curIconSvg('coin',16,'#e5b43c','#b8861f',2)}<span style="color:${STORE_C.gold}">${T('buyCoins').toUpperCase()}</span></div><div class="store2-grid2" id="store-coins-grid"></div>`;
+  list.appendChild(coinSec);
+  const coinGrid=coinSec.querySelector('#store-coins-grid');
+  [{amount:100,label:'Starter',price:'€0.99'},{amount:500,label:'Popular',price:'€3.99'},{amount:1200,label:'Investor',price:'€7.99',best:true,amountLabel:'1 200'},{amount:3000,label:'Tycoon',price:'€14.99',amountLabel:'3 000'}].forEach(p=>{
+    coinGrid.appendChild(buildStorePackTile(p,'coin',()=>buyCoins(p.amount,p.price)));
+  });
+
+  // ---- DIAMONDS ----
+  const diaSec=document.createElement('div');diaSec.id='store-grp-diamonds';
+  diaSec.innerHTML=`<div class="store2-section-hdr">${curIconSvg('diamond',16,'none','#6cb6f0',2)}<span style="color:${STORE_C.blue}">${T('buyDiamonds').toUpperCase()}</span></div><div class="store2-grid2" id="store-diamonds-grid"></div>`;
+  list.appendChild(diaSec);
+  const diaGrid=diaSec.querySelector('#store-diamonds-grid');
+  [{amount:10,label:'Starter',price:'€5.99'},{amount:50,label:'Popular',price:'€23.99'},{amount:120,label:'Investor',price:'€49.99',best:true},{amount:300,label:'Tycoon',price:'€89.99'}].forEach(p=>{
+    diaGrid.appendChild(buildStorePackTile(p,'diamond',()=>buyDiamonds(p.amount,p.price)));
+  });
+
+  // ---- CONVERT ----
+  const convSec=document.createElement('div');
+  convSec.innerHTML=`<div class="store2-section-hdr"><span style="color:${STORE_C.muted}">${T('convert').toUpperCase()}</span></div>`;
+  list.appendChild(convSec);
+  const converts=[
+    {fromLabel:'100',cur:'coin',toLabel:'€50 000',desc:T('convertDesc'),accent:'coin',color:STORE_C.gold,tint:STORE_C.goldTint,fn:convertCoins},
+    {fromLabel:'€100M',cur:null,toLabel:'1',toIcon:'diamond',desc:T('convertDiamondDesc'),accent:'diamond',color:STORE_C.blue,tint:STORE_C.blueTint,fn:convertDiamond},
+    {fromLabel:'100',cur:'diamond',toLabel:'1',toIcon:'emerald',desc:T('convertAlienDesc'),accent:'emerald',color:'#4fd49a',tint:'#15261e',fn:convertAlien},
+  ];
+  converts.forEach(c=>{
+    const row=document.createElement('div');
+    row.className='store2-convert';
+    row.style.cssText=`background:${c.color}12;border:1px solid ${c.color}4d;`;
+    row.innerHTML=`<div class="store2-convert-info"><div class="store2-convert-row1"><span>${c.fromLabel}</span>${c.cur?curIconSvg(c.cur,13,c.cur==='coin'?'#e5b43c':'none',c.cur==='coin'?'#b8861f':(c.cur==='diamond'?'#6cb6f0':'#4fd49a'),2.2):''}<span class="store2-convert-arrow">→</span><span style="color:${c.color}">${c.toLabel}</span>${c.toIcon?curIconSvg(c.toIcon,13,c.toIcon==='diamond'?'none':(c.toIcon==='emerald'?'none':'#e5b43c'),c.toIcon==='diamond'?'#6cb6f0':(c.toIcon==='emerald'?'#4fd49a':'#b8861f'),2.2):''}</div><div class="store2-convert-desc">${c.desc}</div></div><div class="store2-convert-icon" style="background:${c.tint};border:1px solid ${c.color}4d">${storeIconSvg('swap',c.color,18)}</div>`;
+    row.onclick=c.fn;
+    convSec.appendChild(row);
+  });
+
+  // ---- FOREVER ----
+  const foreverSec=document.createElement('div');foreverSec.id='store-grp-forever';
+  list.appendChild(foreverSec);
+  const forever=[
+    {name:T('permaBoost'),desc:T('permaBoostDesc'),price:'€2.99',owned:!!S.permaBoost2x,fn:buyPermaBoost},
+    {name:T('premiumContractor48'),desc:T('premiumContractor48Desc'),price:'€2.99',owned:!!S.permaContractor48,fn:buyPremiumContractor48},
+  ];
+  forever.forEach((o,i)=>{
+    const outer=document.createElement('div');
+    outer.className='store2-forever-outer'+(i===0?' first':'');
+    outer.innerHTML=`<div class="store2-forever-inner"><div class="store2-forever-tag">${storeIconSvg('inf','url(#storeChromaGrad)',16)}<span>${T('buyAdvantagesForever').toUpperCase()}</span></div><div class="store2-forever-name">${o.name}</div><div class="store2-forever-desc">${o.desc}</div><div class="store2-forever-bottom"><div class="store2-forever-status">${o.owned?'✅':T('permaBoostTag')}</div><button type="button" class="store2-forever-btn" style="background:${o.owned?'#242428':'linear-gradient(90deg,#f08cc8,#a98bf2,#6fd6e8)'};color:${o.owned?STORE_C.chromaText:'#140f1c'};cursor:${o.owned?'default':'pointer'}">${o.owned?'✓':o.price}</button></div></div>`;
+    if(!o.owned)outer.querySelector('.store2-forever-btn').onclick=o.fn;
+    foreverSec.appendChild(outer);
+  });
+  if(isNativeApp()){
+    const restore=document.createElement('div');
+    restore.className='store2-restore';
+    restore.textContent=T('restorePurchases');
+    restore.onclick=restorePurchases;
+    foreverSec.appendChild(restore);
+  }
+}
+function buildStorePackTile(p,cur,onBuy){
+  const color=cur==='coin'?STORE_C.gold:STORE_C.blue;
+  const tint=cur==='coin'?STORE_C.goldTint:STORE_C.blueTint;
+  const fill=cur==='coin'?'#e5b43c':'none';
+  const stroke=cur==='coin'?'#b8861f':STORE_C.blue;
+  const tier=cur==='coin'?({100:1,500:2,1200:3,3000:4}[p.amount]||1):({10:1,50:2,120:3,300:4}[p.amount]||1);
+  let icons='';for(let i=0;i<tier;i++)icons+=`<span style="margin-left:${i?'-7px':'0'};display:inline-flex">${curIconSvg(cur,20,fill,stroke,2)}</span>`;
+  const el=document.createElement('div');
+  el.className='store2-pack'+(p.best?' best':'');
+  if(p.best)el.style.borderColor=color+'66';
+  el.innerHTML=`${p.best?`<span class="store2-pack-badge" style="background:${color};color:${STORE_C.gold===color?'#1a1400':'#0a1620'}">${T('best').toUpperCase()}</span>`:''}<div class="store2-pack-icons">${icons}</div><div class="store2-pack-name">${p.label.toUpperCase()}</div><div class="store2-pack-amount" style="color:${color}">${p.amountLabel||p.amount}</div><div class="store2-pack-price" style="background:${p.best?color:tint};color:${p.best?'#0e0e10':color}">${p.price}</div>`;
+  el.onclick=onBuy;
+  return el;
 }
 // ===== GENERIC CONFIRM MODAL =====
 let confirmCallback=null;
