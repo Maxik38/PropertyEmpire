@@ -1166,7 +1166,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
         <div id="social-inbox-view" style="display:none"></div>
       </div>
     </div>
-  </div>
 
     <div class="screen" id="screen-map">
       <div id="world-map-wrap">
@@ -1226,6 +1225,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
         </div>
       </div>
     </div>
+  </div>
   <div id="bottom-nav">
     <div class="bnav-item active" data-s="overview" onclick="setScreen('overview',this)"><span class="bnav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20V13M10 20V9M16 20V5" stroke-linecap="round"/><path d="M3 20h18" stroke-linecap="round"/></svg></span><span class="bnav-label" id="bnav-overview">Overview</span></div>
     <div class="bnav-item" data-s="buyproperty" onclick="setScreen('buyproperty',this)"><span class="bnav-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="10" width="18" height="10"/><path d="M3 10 12 4l9 6"/></svg></span><span class="bnav-label" id="bnav-buyproperty">Buy</span></div>
@@ -1834,7 +1834,7 @@ function applyLang() {
   setText('bnav-overview', T('overview'));
   setText('bnav-buyproperty', T('buyProperty'));
   // Overview
-  setText('ov-title', '📊 '+T('overview'));
+  setText('ov-title', T('overview'));
   setText('ov-hero-lbl', T('empireValue'));
   setText('ov-level-word', T('level'));
   setText('lbl-ov-cash', T('cash'));
@@ -1915,7 +1915,7 @@ function applyLang() {
   setText('lbl-skills-title', T('skillsTitle'));
   // Previously-hardcoded screen titles/subtitles
   setText('lbl-market-title', T('marketTitle'));
-  setText('lbl-port-title', T('portTitle'));
+  setText('lbl-port-title', T('portfolio'));
   setText('lbl-port-sub', T('portSub'));
   setText('lbl-sort-asc', T('sortAsc'));
   setText('lbl-sort-desc', T('sortDesc'));
@@ -3026,8 +3026,9 @@ function haversineKm(lat1,lng1,lat2,lng2){
   return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
 let buyCityResults=[];
-let buyCountryFilter='All';
+let buyTypeFilter='All';
 let buyCityQuery='';
+const BUY_TYPE_CHIPS=['All','Cities','Capitals','Countries'];
 function initBuyCityList(){
   const list=document.getElementById('buy2-city-list');
   if(!list)return;
@@ -3039,18 +3040,18 @@ function initBuyCityList(){
     WORLD_COUNTRIES.forEach(row=>{
       const [iso2,name,capital,capLat,capLng,cLat,cLng,popM]=row;
       const flag=countryFlagEmoji(iso2);
-      results.push({id:wmPropertyId(iso2,'country'),emoji:flag,title:name,sub:T('wholeCountryLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),countryName:name});
-      results.push({id:wmPropertyId(iso2,'capital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),countryName:name});
+      results.push({id:wmPropertyId(iso2,'country'),emoji:flag,title:name,sub:T('wholeCountryLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),countryName:name,type:'Countries'});
+      results.push({id:wmPropertyId(iso2,'capital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),countryName:name,type:'Capitals'});
     });
     US_STATES.forEach(row=>{
       const [code,name,capital,capLat,capLng,cLat,cLng,popM]=row;
-      results.push({id:wmPropertyId(code,'usstate'),emoji:'🇺🇸',title:name,sub:T('usStateLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),countryName:'United States'});
-      results.push({id:wmPropertyId(code,'usstatecapital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),countryName:'United States'});
+      results.push({id:wmPropertyId(code,'usstate'),emoji:'🇺🇸',title:name,sub:T('usStateLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),countryName:'United States',type:'Countries'});
+      results.push({id:wmPropertyId(code,'usstatecapital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),countryName:'United States',type:'Capitals'});
     });
     const countryNameByIso={};WORLD_COUNTRIES.forEach(row=>{countryNameByIso[row[0]]=row[1];});
     CITIES.forEach((row,idx)=>{
       const [iso2,name,lat,lng,popM]=row;
-      results.push({id:wmCityId(idx),emoji:countryFlagEmoji(iso2),title:name,sub:T('bigCityLbl'),dist:haversineKm(ulat,ulng,lat,lng),countryName:countryNameByIso[iso2]||iso2});
+      results.push({id:wmCityId(idx),emoji:countryFlagEmoji(iso2),title:name,sub:T('bigCityLbl'),dist:haversineKm(ulat,ulng,lat,lng),countryName:countryNameByIso[iso2]||iso2,type:'Cities'});
     });
     results.sort((a,b)=>a.dist-b.dist);
     buyCityResults=results;
@@ -3064,14 +3065,12 @@ function initBuyCityList(){
 function renderBuyCityChips(){
   const wrap=document.getElementById('buy2-country-chips');
   if(!wrap)return;
-  const countries=[...new Set(buyCityResults.map(r=>r.countryName))].sort((a,b)=>a.localeCompare(b));
-  if(!countries.includes(buyCountryFilter))buyCountryFilter='All';
   wrap.innerHTML='';
-  ['All',...countries].forEach(name=>{
+  BUY_TYPE_CHIPS.forEach(label=>{
     const b=document.createElement('div');
-    b.className='chip'+(buyCountryFilter===name?' active':'');
-    b.textContent=name;
-    b.onclick=()=>{buyCountryFilter=name;renderBuyCityChips();renderBuyCityListItems();};
+    b.className='chip'+(buyTypeFilter===label?' active':'');
+    b.textContent=label;
+    b.onclick=()=>{buyTypeFilter=label;renderBuyCityChips();renderBuyCityListItems();};
     wrap.appendChild(b);
   });
 }
@@ -3081,7 +3080,7 @@ function renderBuyCityListItems(){
   if(!list)return;
   const q=buyCityQuery.trim().toLowerCase();
   const filtered=buyCityResults
-    .filter(r=>buyCountryFilter==='All'||r.countryName===buyCountryFilter)
+    .filter(r=>buyTypeFilter==='All'||r.type===buyTypeFilter)
     .filter(r=>!q||r.title.toLowerCase().includes(q)||(r.countryName||'').toLowerCase().includes(q));
   list.innerHTML='';
   if(!filtered.length){ list.innerHTML=`<div class="bp-gps-status">No city found</div>`; return; }
