@@ -97,6 +97,38 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .port-offers-icon-btn.active{background:var(--gold-dim);border-color:var(--gold);color:var(--gold);}
 .port-offers-icon-btn svg{width:19px;height:19px;}
 .port-offers-icon-btn .bnav-dot{top:4px;right:4px;}
+.port2-header{position:relative;display:flex;flex-direction:column;align-items:center;padding-top:4px;margin-bottom:18px;}
+.port2-title{font-family:'DM Serif Display',serif;font-size:30px;font-weight:700;line-height:1;margin-top:9px;}
+.port2-underline{width:56px;height:3px;border-radius:2px;margin-top:13px;background:linear-gradient(90deg,#e5b43c,#6cb6f0,#4fd49a,#a98bf2);}
+.port2-offers-btn{position:absolute;right:0;top:2px;width:40px;height:40px;border-radius:12px;background:var(--surface2);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.port2-offers-btn.active{background:var(--gold-dim);}
+.port2-offers-btn .bnav-dot{top:4px;right:4px;}
+.port-summary{background:var(--surface2);border-radius:18px;padding:16px;display:flex;align-items:center;justify-content:space-between;margin-bottom:0;}
+.port2-sort-row{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding:0 2px;}
+.port2-sort-lbl{font-size:11.5px;font-weight:600;letter-spacing:.14em;color:var(--text2);white-space:nowrap;}
+.port2-sort-tabs{display:flex;gap:4px;background:var(--surface);border-radius:10px;padding:3px;}
+.port2-sort-tab{padding:4px 10px;border-radius:7px;border:none;cursor:pointer;font-family:inherit;font-size:11px;font-weight:600;background:transparent;color:var(--text2);}
+.port2-sort-tab.active{background:var(--gold-dim);color:var(--gold);}
+.port2-ring{margin-top:10px;padding:1px;border-radius:19px;}
+.port2-ring.t0{background:transparent;}
+.port2-ring.t1{background:#c98a4a4d;}
+.port2-ring.t2{background:#4fd49a4d;}
+.port2-ring.t3{background:#6cb6f04d;}
+.port2-ring.t4{background:#e5b43c4d;}
+.port2-ring.t5{background:linear-gradient(135deg,#f08cc8,#a98bf2,#6fd6e8);}
+.port2-group-card{background:var(--surface2);border-radius:18px;padding:4px 14px;}
+.port2-row{display:flex;align-items:center;gap:12px;padding:12px 0;}
+.port2-row.bordered{border-top:1px solid var(--border);}
+.port2-hometile{width:36px;height:36px;border-radius:11px;background:var(--surface3);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.port2-row-info{flex:1;min-width:0;}
+.port2-row-top{display:flex;align-items:baseline;gap:7px;}
+.port2-row-name{font-size:14px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text);}
+.port2-row-tier{font-size:9.5px;letter-spacing:.12em;font-weight:600;white-space:nowrap;}
+.port2-row-pct{font-size:11.5px;color:var(--text2);}
+.port2-row-bottom{display:flex;gap:6px;font-size:12px;margin-top:1px;white-space:nowrap;}
+.port2-row-income{color:var(--green);font-weight:500;}
+.port2-row-val{color:var(--text2);}
+.port2-sell-btn{font-size:12px;padding:6px 12px;border-radius:10px;border:none;cursor:pointer;font-family:inherit;background:#2a1716;color:#e0735e;font-weight:600;flex-shrink:0;}
 #modal-overlay{position:fixed;inset:0;z-index:900;background:rgba(0,0,0,0.7);display:none;align-items:flex-end;backdrop-filter:blur(3px);}
 #modal-overlay.open{display:flex;}
 #modal{background:var(--surface);border-radius:20px 20px 0 0;width:100%;max-height:90vh;max-height:90dvh;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:calc(20px + var(--safe-b));animation:slideUp 0.25s ease;}
@@ -130,7 +162,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .btn-red{background:var(--red-dim);color:var(--red);border:1px solid var(--red);}
 .btn-green{background:var(--green-dim);color:var(--green);border:1px solid var(--green);}
 .btn-purple{background:var(--purple-dim);color:var(--purple);border:1px solid var(--purple);}
-.port-summary{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;margin-bottom:14px;}
 .port-stat{background:var(--surface2);border-radius:var(--radius-sm);padding:10px;text-align:center;}
 .port-stat-val{font-family:'DM Serif Display',serif;font-size:15px;color:var(--gold);}
 .port-stat-label{font-size:9px;color:var(--text3);margin-top:2px;}
@@ -687,25 +718,56 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .bp-gps-dist{font-size:11px;color:var(--gold2);background:oklch(20% 0.02 90 / .5);border-radius:8px;padding:2px 7px;flex-shrink:0;}
 .bp-gps-status{text-align:center;color:var(--text2);font-size:13px;padding:24px 12px 8px;}
 .bp-gps-retry{text-align:center;color:var(--gold2);font-size:13px;font-weight:600;padding-bottom:20px;cursor:pointer;}
+.buy2-header{display:flex;flex-direction:column;align-items:center;padding-top:4px;margin-bottom:18px;}
+.buy2-title{font-family:'DM Serif Display',serif;font-size:30px;font-weight:700;line-height:1;margin-top:9px;}
+.buy2-underline{width:56px;height:3px;border-radius:2px;margin-top:13px;background:linear-gradient(90deg,#e5b43c,#6cb6f0,#4fd49a,#a98bf2);}
+.buy2-collections{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.buy2-tile{border-radius:18px;border:1px solid var(--border2);background:var(--surface2);overflow:hidden;cursor:pointer;}
+.buy2-tile.open{border-width:1.5px;}
+.buy2-tile-img{height:84px;position:relative;background:linear-gradient(135deg,#2a2a2f,#1a1a1d);background-size:cover;background-position:center;}
+.buy2-tile-count{position:absolute;right:8px;top:8px;padding:3px 8px;border-radius:7px;background:rgba(14,14,16,.75);font-size:11px;font-weight:600;}
+.buy2-tile-body{padding:10px 12px 12px;}
+.buy2-tile-kicker{font-size:9.5px;letter-spacing:.14em;font-weight:600;white-space:nowrap;}
+.buy2-tile-name{font-size:14px;font-weight:600;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.buy2-tile-sub{font-size:11px;color:var(--text2);margin-top:2px;}
+.buy2-search-box{display:flex;align-items:center;gap:10px;margin-top:14px;background:var(--surface2);border-radius:14px;padding:12px 14px;}
+.buy2-search-box input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:var(--text);font-size:13.5px;font-family:inherit;}
+.buy2-chips{margin-top:14px;}
+.buy2-city-row{margin-top:10px;background:var(--surface2);border-radius:16px;display:flex;align-items:stretch;overflow:hidden;cursor:pointer;}
+.buy2-city-row:active{transform:scale(0.99);}
+.buy2-city-dist{width:56px;flex-shrink:0;background:var(--bar,#151517);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:10px 0;}
+.buy2-city-dist-val{font-size:15px;font-weight:600;color:var(--text);line-height:1;}
+.buy2-city-dist-unit{font-size:9.5px;letter-spacing:.12em;color:var(--text2);font-weight:600;margin-top:3px;}
+.buy2-city-info{flex:1;min-width:0;padding:11px 14px;display:flex;flex-direction:column;justify-content:center;gap:2px;}
+.buy2-city-top{display:flex;align-items:center;gap:8px;}
+.buy2-city-flag{font-size:15px;}
+.buy2-city-name{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.buy2-city-sub{font-size:11.5px;color:var(--text2);}
+.buy2-city-price{align-self:center;margin-right:12px;padding:7px 12px;border-radius:10px;background:var(--gold-dim);color:var(--gold);font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0;}
 
-/* ===== OVERVIEW DASHBOARD (TEMP TEST SCREEN) ===== */
-.ov-hero{background:linear-gradient(135deg,var(--surface2),var(--surface3));border:1px solid var(--gold);border-radius:var(--radius);padding:18px;margin-bottom:14px;}
-.ov-hero-label{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;}
-.ov-hero-value{font-family:'DM Serif Display',serif;font-size:32px;color:var(--gold2);margin-top:2px;}
-.ov-level-row{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:12px;color:var(--text2);}
-.ov-level-bar{height:8px;border-radius:5px;background:var(--surface3);margin-top:6px;overflow:hidden;}
-.ov-level-bar-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:5px;transition:width .4s ease;}
-.ov-stats-row{display:flex;gap:10px;margin-bottom:14px;}
-.ov-stat{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px;text-align:center;}
-.ov-stat-val{font-size:16px;font-weight:700;color:var(--text);}
-.ov-stat-label{font-size:11px;color:var(--text2);margin-top:2px;}
+/* ===== OVERVIEW DASHBOARD ===== */
+.ov2-header{display:flex;flex-direction:column;align-items:center;padding-top:4px;margin-bottom:18px;}
+.ov2-title{font-family:'DM Serif Display',serif;font-size:30px;font-weight:700;line-height:1;margin-top:9px;}
+.ov2-underline{width:56px;height:3px;border-radius:2px;margin-top:13px;background:linear-gradient(90deg,#e5b43c,#6cb6f0,#4fd49a,#a98bf2);}
+.ov-hero{background:linear-gradient(90deg,#222223 0%,#2a2a2b 100%);border:1.5px solid #cdac68;border-radius:22px;padding:22px 20px;margin-bottom:10px;font-family:'DM Sans',sans-serif;}
+.ov-hero-label{font-size:13px;letter-spacing:.05em;color:#9d9da3;}
+.ov-hero-value{font-family:'DM Serif Display',serif;font-size:44px;color:#e3c06a;line-height:1;margin-top:16px;}
+.ov-level-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:30px;gap:10px;font-size:13px;color:#a3a3a8;}
+.ov-level-row span:last-child{text-align:right;}
+.ov-level-bar{height:9px;border-radius:5px;background:linear-gradient(90deg,#303032 0%,rgba(48,48,50,0) 100%);margin-top:10px;overflow:hidden;}
+.ov-level-bar-fill{height:100%;background:linear-gradient(90deg,#c9a24e,#e8cf85);border-radius:5px;transition:width .4s ease;}
+.ov-stats-row{display:flex;gap:8px;margin:10px 0 14px;}
+.ov-stat{flex:1;background:var(--surface2);border-radius:16px;padding:14px 8px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.ov-stat svg{flex-shrink:0;}
+.ov-stat-val{font-size:16px;font-weight:600;color:var(--text);margin-top:10px;}
+.ov-stat-label{font-size:9.5px;letter-spacing:.12em;color:var(--text2);font-weight:600;margin-top:2px;}
 .ov-section-label{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:.04em;margin:16px 0 8px;}
 .ov-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
 .ov-tile{background:var(--surface2);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:14px 12px;cursor:pointer;text-align:center;}
 .ov-tile:active{transform:scale(0.97);}
 .ov-tile-icon{font-size:22px;}
 .ov-tile-label{font-size:12px;color:var(--text);margin-top:6px;font-weight:600;}
-.ov-flex-card{margin-top:4px;background:linear-gradient(160deg,#20190f,#1a1a20 55%);border:1px solid #3a2f18;border-radius:16px;padding:18px 18px 20px;position:relative;overflow:hidden;}
+.ov-flex-card{margin-top:12px;border-radius:20px;border:1px solid #e5b43c33;background:radial-gradient(circle at 88% 12%,rgba(229,180,60,.14),transparent 45%),linear-gradient(160deg,#1f1d18,#18181b 60%);padding:20px;position:relative;overflow:hidden;}
 .ov-flex-glow{position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,#d9b24c22,transparent 70%);pointer-events:none;}
 .ov-flex-header{display:flex;align-items:center;gap:8px;position:relative;}
 .ov-flex-icon{font-size:18px;}
@@ -1000,21 +1062,28 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
   <div id="main-content">
     <div class="screen" id="screen-portfolio">
       <div class="screen-inner">
-        <div class="section-hdr port-hdr-flex">
-          <div><h2 id="lbl-port-title">My Portfolio</h2><p id="lbl-port-sub">Your properties and income</p></div>
-          <div class="port-offers-icon-btn" id="port-offers-btn" onclick="toggleOffersPanel()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13"/><path d="M3 7l9 6 9-6"/></svg>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="pfChromaGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f08cc8"/><stop offset="0.5" stop-color="#a98bf2"/><stop offset="1" stop-color="#6fd6e8"/></linearGradient></defs></svg>
+        <div class="port2-header">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#pfChromaGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg>
+          <div class="port2-title" id="lbl-port-title">Portfolio</div>
+          <div class="port2-underline"></div>
+          <button type="button" class="port2-offers-btn" id="port-offers-btn" onclick="toggleOffersPanel()" title="Offers">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9c9cf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
             <div class="bnav-dot" id="offers-dot-top"></div>
-          </div>
+          </button>
         </div>
+        <p id="lbl-port-sub" style="display:none">Your properties and income</p>
         <div id="portfolio-props-view">
           <div class="port-summary" id="port-summary"></div>
-          <div class="chip-scroll">
-            <div class="chip active" id="sort-none" onclick="setPortfolioSort('none',this)">—</div>
-            <div class="chip" id="sort-asc" onclick="setPortfolioSort('asc',this)">↑ <span id="lbl-sort-asc">Cheapest first</span></div>
-            <div class="chip" id="sort-desc" onclick="setPortfolioSort('desc',this)">↓ <span id="lbl-sort-desc">Most expensive first</span></div>
+          <div class="port2-sort-row">
+            <span class="port2-sort-lbl">PROPERTIES</span>
+            <div class="port2-sort-tabs">
+              <button type="button" class="port2-sort-tab active" id="sort-none" onclick="setPortfolioSort('rarity',this)">Rarity</button>
+              <button type="button" class="port2-sort-tab" id="sort-asc" onclick="setPortfolioSort('asc',this)">€ ↑</button>
+              <button type="button" class="port2-sort-tab" id="sort-desc" onclick="setPortfolioSort('desc',this)">€ ↓</button>
+            </div>
           </div>
-          <div id="portfolio-list" style="margin-top:4px"></div>
+          <div id="portfolio-list" style="margin-top:10px"></div>
         </div>
         <div id="portfolio-offers-view" style="display:none">
           <div class="store-section-title" id="lbl-received" style="margin-top:0">Received</div>
@@ -1108,30 +1177,42 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
     </div>
     <div class="screen" id="screen-buyproperty">
       <div class="screen-inner">
-        <div class="section-hdr" style="margin-bottom:6px;margin-top:14px"><h2 id="bp-title">🏠 Buy Property</h2></div>
-        <div class="ov-section-label" style="margin-top:4px" id="lbl-bp-personal">Personal Properties</div>
-        <div id="bp-personal-wrap"></div>
-        <div class="ov-section-label" style="margin-top:20px" id="lbl-bp-events">Týždenné eventové nehnuteľnosti</div>
-        <div id="bp-events-wrap"></div>
-        <div class="ov-section-label" style="margin-top:20px" id="lbl-bp-nearby">📍 Nehnuteľnosti v okolí</div>
-        <div class="bp-gps-list" id="bp-gps-list"></div>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="buyChromaGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f08cc8"/><stop offset="0.5" stop-color="#a98bf2"/><stop offset="1" stop-color="#6fd6e8"/></linearGradient></defs></svg>
+        <div class="buy2-header">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#buyChromaGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <div class="buy2-title" id="buy2-title">Buy</div>
+          <div class="buy2-underline"></div>
+        </div>
+        <div class="buy2-collections" id="buy2-collections"></div>
+        <div id="buy2-collection-detail" style="display:none"></div>
+        <div class="buy2-search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8b8b92" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 21l-4.35-4.35"/><circle cx="11" cy="11" r="8"/></svg>
+          <input id="buy2-search-input" oninput="onBuyCitySearch(this.value)" placeholder="Search city or country">
+        </div>
+        <div class="buy2-chips chip-scroll" id="buy2-country-chips"></div>
+        <div id="buy2-city-list"></div>
       </div>
       <div id="bp-map-fab" onclick="setScreen('map', null)">🌐</div>
     </div>
     <div class="screen active" id="screen-overview">
       <div class="screen-inner">
-        <div class="section-hdr" style="margin-bottom:6px;margin-top:14px"><h2 id="ov-title">📊 Overview</h2></div>
+        <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ovChromaGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f08cc8"/><stop offset="0.5" stop-color="#a98bf2"/><stop offset="1" stop-color="#6fd6e8"/></linearGradient></defs></svg>
+        <div class="ov2-header">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#ovChromaGrad)" stroke-width="1.8" stroke-linecap="round"><path d="M3 21h18 M6 21v-7 M11 21V9 M16 21v-4 M20 21V5"/></svg>
+          <div class="ov2-title" id="ov-title">Overview</div>
+          <div class="ov2-underline"></div>
+        </div>
         <div id="daily-wrap"></div>
         <div class="ov-hero">
           <div class="ov-hero-label" id="ov-hero-lbl">Hodnota impéria</div>
           <div class="ov-hero-value" id="ov-empire-value">€0</div>
-          <div class="ov-level-row"><span><span id="ov-level-word">Level</span> <b id="ov-level-num" style="color:var(--gold2)">1</b></span><span id="ov-level-next"></span></div>
+          <div class="ov-level-row"><span><span id="ov-level-word">Level</span> <b id="ov-level-num" style="color:#e3c06a">1</b></span><span id="ov-level-next"></span></div>
           <div class="ov-level-bar"><div class="ov-level-bar-fill" id="ov-level-bar-fill" style="width:0%"></div></div>
         </div>
         <div class="ov-stats-row">
-          <div class="ov-stat"><div class="ov-stat-val" id="ov-cash">€0</div><div class="ov-stat-label" id="lbl-ov-cash">Hotovosť</div></div>
-          <div class="ov-stat"><div class="ov-stat-val" id="ov-rent" style="color:var(--green)">+€0/h</div><div class="ov-stat-label" id="lbl-ov-rent">Príjem</div></div>
-          <div class="ov-stat"><div class="ov-stat-val" id="ov-prop-count">0</div><div class="ov-stat-label" id="lbl-ov-props">Nehnuteľnosti</div></div>
+          <div class="ov-stat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9c9cf" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2 M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><div class="ov-stat-val" id="ov-cash">€0</div><div class="ov-stat-label" id="lbl-ov-cash">Hotovosť</div></div>
+          <div class="ov-stat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7l-8.5 8.5-5-5L2 17 M16 7h6v6"/></svg><div class="ov-stat-val" id="ov-rent" style="color:var(--green)">+€0/h</div><div class="ov-stat-label" id="lbl-ov-rent">Príjem</div></div>
+          <div class="ov-stat"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10"/></svg><div class="ov-stat-val" id="ov-prop-count">0</div><div class="ov-stat-label" id="lbl-ov-props">Nehnuteľnosti</div></div>
         </div>
         <div class="ov-flex-card">
           <div class="ov-flex-glow"></div>
@@ -1764,9 +1845,9 @@ function applyLang() {
   setText('ov-flex-btn', T('flexNextFact'));
   if(document.getElementById('ov-flex-highlight'))renderFlexFact();
   // Buy Property
-  setText('bp-title', '🏠 '+T('buyPropertyTitle'));
-  setText('lbl-bp-nearby', T('bpNearbyLbl'));
-  setText('lbl-bp-personal', T('personalPropsTitle'));
+  setText('buy2-title', T('buyProperty'));
+  const bsi=document.getElementById('buy2-search-input'); if(bsi)bsi.placeholder=T('mapSearchPlaceholder');
+  if(document.getElementById('buy2-collections')){ renderBuyCollections(); renderBuyCollectionDetail(); renderBuyCityChips(); renderBuyCityListItems(); }
   setText('trade-title', T('tradeSheetTitle'));
   setText('stab-boards-txt', T('socialBoardsTab'));
   setText('stab-friends-txt', T('socialFriendsTab'));
@@ -2403,7 +2484,7 @@ let S = {
   cash:50000, user:null, username:'Player', avatar:'🌟', levelClaimed:1,
   own:{}, quality:{}, diamondSkills:{}, emeraldSkills:{}, offers:[], sentOffers:[], coins:0, diamonds:0, aliens:0, skills:{},
   powerups:{}, lastDaily:null, dailyStreak:0,
-  permaBoost2x:false, permaContractor48:false, portfolioSort:'none',
+  permaBoost2x:false, permaContractor48:false, portfolioSort:'rarity',
   chromaCoins:0, eventOwn:{}, chromaSkills:{}, pendingLevel2Hint:false, lastEventWeek:null, deletionScheduledAt:null,
   screen:'overview', marketScope:'personal', openSection:null, portfolioTab:'properties',
   dbOwn:null, dbProfiles:null, lastActive:null,
@@ -2809,7 +2890,7 @@ function setScreen(name, el) {
   if(name==='skills')renderSkills();
   if(name==='store')renderStore();
   if(name==='map')initWorldMap();
-  if(name==='buyproperty'){ renderPersonalProperties(); initBuyPropertyScreen(); renderBuyPropertyEvents(); }
+  if(name==='buyproperty'){ renderBuyCollections(); renderBuyCollectionDetail(); initBuyCityList(); }
   if(name==='overview')renderOverview();
 }
 function setPortfolioTab(tab){
@@ -2944,8 +3025,12 @@ function haversineKm(lat1,lng1,lat2,lng2){
   const a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)**2;
   return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
 }
-function initBuyPropertyScreen(){
-  const list=document.getElementById('bp-gps-list');
+let buyCityResults=[];
+let buyCountryFilter='All';
+let buyCityQuery='';
+function initBuyCityList(){
+  const list=document.getElementById('buy2-city-list');
+  if(!list)return;
   if(!navigator.geolocation){ list.innerHTML=`<div class="bp-gps-status">${T('gpsNotSupported')}</div>`; return; }
   list.innerHTML=`<div class="bp-gps-status">${T('gpsLocating')}</div>`;
   navigator.geolocation.getCurrentPosition(pos=>{
@@ -2954,32 +3039,60 @@ function initBuyPropertyScreen(){
     WORLD_COUNTRIES.forEach(row=>{
       const [iso2,name,capital,capLat,capLng,cLat,cLng,popM]=row;
       const flag=countryFlagEmoji(iso2);
-      results.push({id:wmPropertyId(iso2,'country'),emoji:flag,title:name,sub:T('wholeCountryLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),lat:cLat,lng:cLng});
-      results.push({id:wmPropertyId(iso2,'capital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),lat:capLat,lng:capLng});
+      results.push({id:wmPropertyId(iso2,'country'),emoji:flag,title:name,sub:T('wholeCountryLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),countryName:name});
+      results.push({id:wmPropertyId(iso2,'capital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),countryName:name});
     });
     US_STATES.forEach(row=>{
       const [code,name,capital,capLat,capLng,cLat,cLng,popM]=row;
-      results.push({id:wmPropertyId(code,'usstate'),emoji:'🇺🇸',title:name,sub:T('usStateLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),lat:cLat,lng:cLng});
-      results.push({id:wmPropertyId(code,'usstatecapital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),lat:capLat,lng:capLng});
+      results.push({id:wmPropertyId(code,'usstate'),emoji:'🇺🇸',title:name,sub:T('usStateLbl'),dist:haversineKm(ulat,ulng,cLat,cLng),countryName:'United States'});
+      results.push({id:wmPropertyId(code,'usstatecapital'),emoji:'🏛️',title:capital,sub:T('capitalOfLbl',name),dist:haversineKm(ulat,ulng,capLat,capLng),countryName:'United States'});
     });
+    const countryNameByIso={};WORLD_COUNTRIES.forEach(row=>{countryNameByIso[row[0]]=row[1];});
     CITIES.forEach((row,idx)=>{
       const [iso2,name,lat,lng,popM]=row;
-      results.push({id:wmCityId(idx),emoji:countryFlagEmoji(iso2),title:name,sub:T('bigCityLbl'),dist:haversineKm(ulat,ulng,lat,lng),lat,lng});
+      results.push({id:wmCityId(idx),emoji:countryFlagEmoji(iso2),title:name,sub:T('bigCityLbl'),dist:haversineKm(ulat,ulng,lat,lng),countryName:countryNameByIso[iso2]||iso2});
     });
     results.sort((a,b)=>a.dist-b.dist);
-    const top=results.slice(0,10);
-    list.innerHTML='';
-    top.forEach(r=>{
-      const p=PROPS.find(x=>x.id===r.id);
-      const d=document.createElement('div');d.className='bp-gps-item';
-      d.innerHTML=`<div class="bp-option-icon" style="font-size:22px;">${r.emoji}</div><div style="flex:1;"><div class="bp-option-title" style="font-size:14px;">${r.title}</div><div class="bp-option-sub">${r.sub} · ${fmt(p.price)}</div></div><div class="bp-gps-dist">${r.dist<1?Math.round(r.dist*1000)+' m':Math.round(r.dist)+' km'}</div>`;
-      d.onclick=()=>openModal(r.id);
-      list.appendChild(d);
-    });
+    buyCityResults=results;
+    renderBuyCityChips();
+    renderBuyCityListItems();
   }, err=>{
     const msg = err.code===1 ? T('gpsPermissionNeeded') : T('gpsError');
-    list.innerHTML=`<div class="bp-gps-status">${msg}</div><div class="bp-gps-retry" onclick="initBuyPropertyScreen()">${T('gpsRetry')}</div>`;
+    list.innerHTML=`<div class="bp-gps-status">${msg}</div><div class="bp-gps-retry" onclick="initBuyCityList()">${T('gpsRetry')}</div>`;
   }, { enableHighAccuracy:true, timeout:10000 });
+}
+function renderBuyCityChips(){
+  const wrap=document.getElementById('buy2-country-chips');
+  if(!wrap)return;
+  const countries=[...new Set(buyCityResults.map(r=>r.countryName))].sort((a,b)=>a.localeCompare(b));
+  if(!countries.includes(buyCountryFilter))buyCountryFilter='All';
+  wrap.innerHTML='';
+  ['All',...countries].forEach(name=>{
+    const b=document.createElement('div');
+    b.className='chip'+(buyCountryFilter===name?' active':'');
+    b.textContent=name;
+    b.onclick=()=>{buyCountryFilter=name;renderBuyCityChips();renderBuyCityListItems();};
+    wrap.appendChild(b);
+  });
+}
+function onBuyCitySearch(v){buyCityQuery=v;renderBuyCityListItems();}
+function renderBuyCityListItems(){
+  const list=document.getElementById('buy2-city-list');
+  if(!list)return;
+  const q=buyCityQuery.trim().toLowerCase();
+  const filtered=buyCityResults
+    .filter(r=>buyCountryFilter==='All'||r.countryName===buyCountryFilter)
+    .filter(r=>!q||r.title.toLowerCase().includes(q)||(r.countryName||'').toLowerCase().includes(q));
+  list.innerHTML='';
+  if(!filtered.length){ list.innerHTML=`<div class="bp-gps-status">No city found</div>`; return; }
+  filtered.slice(0,60).forEach(r=>{
+    const p=PROPS.find(x=>x.id===r.id);
+    if(!p)return;
+    const d=document.createElement('div');d.className='buy2-city-row';
+    d.innerHTML=`<div class="buy2-city-dist"><div class="buy2-city-dist-val">${r.dist<1?Math.round(r.dist*1000):Math.round(r.dist)}</div><div class="buy2-city-dist-unit">${r.dist<1?'M':'KM'}</div></div><div class="buy2-city-info"><div class="buy2-city-top"><span class="buy2-city-flag">${r.emoji}</span><span class="buy2-city-name">${r.title}</span></div><div class="buy2-city-sub">${r.sub}</div></div><div class="buy2-city-price">${fmt(p.price)}</div>`;
+    d.onclick=()=>openModal(r.id);
+    list.appendChild(d);
+  });
 }
 function mapSearchCountry(query){
   if(!wmMap || !query || query.length<2) return;
@@ -3065,37 +3178,80 @@ function updateEventCountdown(){
   const ms=nextRewardDate()-new Date();
   window.__eventCountdownTxt=T('eventResetIn',fmtEventCountdown(ms));
 }
-// ===== PERSONAL PROPERTIES (returned houses, all scope:personal) =====
-let personalPropsOpen=false;
-function togglePersonalProps(){ personalPropsOpen=!personalPropsOpen; renderPersonalProperties(); }
-function renderPersonalProperties(){
-  const wrap=document.getElementById('bp-personal-wrap');
+// ===== BUY SCREEN: COLLECTIONS (Personal / Weekly event) =====
+let buyOpenCollection=null; // 'personal' | 'event' | null
+function toggleBuyCollection(id){
+  buyOpenCollection = buyOpenCollection===id ? null : id;
+  renderBuyCollections();
+  renderBuyCollectionDetail();
+}
+function renderBuyCollections(){
+  const wrap=document.getElementById('buy2-collections');
   if(!wrap)return;
+  updateEventCountdown();
+  const theme=currentEventTheme();
+  const themeName=currentLang==='sk'?theme.nameSk:theme.name;
+  const locked=(S.levelClaimed||1)<EVENT_UNLOCK_LEVEL;
+  const houseProps=PROPS.filter(p=>p.tier==='house');
+  const ms=nextRewardDate()-new Date();
+  const propWord=T('propCount').toLowerCase();
+  const cols=[
+    {id:'personal',kicker:'PERSONAL',name:T('personalPropsTitle'),sub:houseProps.length+' '+propWord,count:houseProps.length,color:'#e5b43c',bg:HOUSES_BG},
+    {id:'event',kicker:'WEEKLY · '+fmtEventCountdown(ms).toUpperCase()+' LEFT',name:themeName,sub:locked?'🔒':theme.props.length+' '+propWord,count:locked?'🔒':theme.props.length,color:'#6fcf8a',bg:locked?null:theme.bg},
+  ];
   wrap.innerHTML='';
-  const ps=PROPS.filter(p=>p.tier==='house').sort((a,b)=>a.price-b.price);
-  if(!ps.length)return;
-  const sec=document.createElement('div');sec.className='accordion-section'+(personalPropsOpen?' open':'');
-  const header=document.createElement('div');header.className='accordion-header accordion-header-themed';
-  header.style.backgroundImage=`url('${HOUSES_BG}')`;
-  header.innerHTML=`<div class="accordion-header-left"><span>${T('personalPropsTitle')}</span><span class="accordion-count">${ps.length}</span></div><span class="accordion-chevron">▾</span>`;
-  header.onclick=()=>togglePersonalProps();
-  const body=document.createElement('div');body.className='accordion-body';
-  ps.forEach(p=>{
-    const st=getPropStatus(p.id),m=getOwn(p.id),o=getOtherOwn(p.id),tot=m+o,price=getPrice(p);
-    const _cur=buyCurrency(p);const priceTxt=_cur!=='cash'?(specialCost(100)+' '+currencyIcon(_cur)):fmt(price);
-    const badge=st==='mine'?`<span class="prop-status-badge badge-mine">✓ ${T('owned')}</span>`:st==='partial'&&m>0?`<span class="prop-status-badge badge-mine">${T('partial')}</span>`:st==='partial'?`<span class="prop-status-badge badge-partial">${T('partial')}</span>`:st==='taken'?`<span class="prop-status-badge badge-taken">${T('taken')}</span>`:`<span class="prop-status-badge badge-available">${T('available')}</span>`;
-    const d=document.createElement('div');d.className='prop-card'+(m>0?(m>=100?' owned':' partial'):'');
-    d.innerHTML=`<div class="prop-emoji-wrap">${p.emoji}</div><div class="prop-info"><div class="prop-name">${propName(p)}</div><div class="prop-loc">📍 ${p.loc}</div><div class="prop-meta"><span class="prop-price">${priceTxt}</span><span class="prop-rent-badge">${fmtRent(p.rent)}</span>${badge}</div></div>${tot>0?`<div class="prop-own-bar" style="width:${tot}%"></div>`:''}`;
-    d.onclick=()=>openModal(p.id);body.appendChild(d);
+  cols.forEach(c=>{
+    const t=document.createElement('div');
+    t.className='buy2-tile'+(buyOpenCollection===c.id?' open':'');
+    t.style.borderColor=c.color+'4d';
+    t.innerHTML=`<div class="buy2-tile-img" style="${c.bg?`background-image:url('${c.bg}')`:''}"><span class="buy2-tile-count" style="color:${c.color}">${c.count}</span></div><div class="buy2-tile-body"><div class="buy2-tile-kicker" style="color:${c.color}">${c.kicker}</div><div class="buy2-tile-name">${c.name}</div><div class="buy2-tile-sub">${c.sub}</div></div>`;
+    t.onclick=()=>toggleBuyCollection(c.id);
+    wrap.appendChild(t);
   });
-  sec.appendChild(header);sec.appendChild(body);wrap.appendChild(sec);
 }
-function renderBuyPropertyEvents(){
-  const wrap=document.getElementById('bp-events-wrap');
+function renderBuyCollectionDetail(){
+  const wrap=document.getElementById('buy2-collection-detail');
   if(!wrap)return;
+  if(!buyOpenCollection){wrap.style.display='none';wrap.innerHTML='';return;}
+  wrap.style.display='';
   wrap.innerHTML='';
-  renderEventTierSection(wrap);
+  if(buyOpenCollection==='personal'){
+    const ps=PROPS.filter(p=>p.tier==='house').sort((a,b)=>a.price-b.price);
+    ps.forEach(p=>{
+      const st=getPropStatus(p.id),m=getOwn(p.id),o=getOtherOwn(p.id),tot=m+o,price=getPrice(p);
+      const _cur=buyCurrency(p);const priceTxt=_cur!=='cash'?(specialCost(100)+' '+currencyIcon(_cur)):fmt(price);
+      const badge=st==='mine'?`<span class="prop-status-badge badge-mine">✓ ${T('owned')}</span>`:st==='partial'&&m>0?`<span class="prop-status-badge badge-mine">${T('partial')}</span>`:st==='partial'?`<span class="prop-status-badge badge-partial">${T('partial')}</span>`:st==='taken'?`<span class="prop-status-badge badge-taken">${T('taken')}</span>`:`<span class="prop-status-badge badge-available">${T('available')}</span>`;
+      const d=document.createElement('div');d.className='prop-card'+(m>0?(m>=100?' owned':' partial'):'');
+      d.innerHTML=`<div class="prop-emoji-wrap">${p.emoji}</div><div class="prop-info"><div class="prop-name">${propName(p)}</div><div class="prop-loc">📍 ${p.loc}</div><div class="prop-meta"><span class="prop-price">${priceTxt}</span><span class="prop-rent-badge">${fmtRent(p.rent)}</span>${badge}</div></div>${tot>0?`<div class="prop-own-bar" style="width:${tot}%"></div>`:''}`;
+      d.onclick=()=>openModal(p.id);wrap.appendChild(d);
+    });
+  }else if(buyOpenCollection==='event'){
+    const theme=currentEventTheme();
+    const locked=(S.levelClaimed||1)<EVENT_UNLOCK_LEVEL;
+    if(locked){
+      wrap.innerHTML=`<div class="event-locked"><div class="event-locked-icon">🔒</div><div>${T('eventLocked',EVENT_UNLOCK_LEVEL)}</div></div>`;
+    }else{
+      const val=eventPropertyValue();
+      theme.props.forEach(prop=>{
+        const owned=getEventOwn(theme.id,prop.key);
+        const row=document.createElement('div');row.className='event-prop-row';
+        const iconHtml=prop.img?`<img src="${prop.img}" class="event-prop-img">`:`<div class="event-prop-emoji">${prop.emoji}</div>`;
+        row.innerHTML=`${iconHtml}<div class="event-prop-info"><div class="event-prop-name">${eventPropName(prop)}</div><div class="event-prop-sub">${owned>0?T('eventOwnedPct',owned):T('eventFullPrice',fmt(val))}</div></div><div class="event-prop-right"><div class="event-prop-price">${owned<100?fmt(Math.round(val*(100-owned)/100))+' '+T('eventRemaining'):'✅'}</div>${owned>0?`<div class="event-prop-owned">${owned}% 🔮${owned*CHROMA_PER_PCT}</div>`:''}</div>`;
+        if(owned<100)row.onclick=()=>openEventBuyModal(theme.id,prop.key);
+        wrap.appendChild(row);
+      });
+    }
+  }
 }
+// renderBuyPropertyEvents: compatibility shim - refreshes the event collection detail
+// (called after buying an event share, and from the legacy toggleSection('event') path)
+function renderBuyPropertyEvents(){
+  if(buyOpenCollection==='event')renderBuyCollectionDetail();
+  renderBuyCollections();
+  const legacyWrap=document.getElementById('bp-events-wrap');
+  if(legacyWrap){legacyWrap.innerHTML='';renderEventTierSection(legacyWrap);}
+}
+// ===== LEGACY (kept for renderGrid, currently unused - no #prop-accordion in DOM) =====
 function renderEventTierSection(wrap){
   updateEventCountdown();
   const theme=currentEventTheme();
@@ -3605,32 +3761,59 @@ async function rejectOffer(o){
 function closeModal(){document.getElementById('modal-overlay').classList.remove('open');}
 
 // ===== PORTFOLIO =====
+const RARITY_NAMES={5:'MASTERPIECE',4:'EXCEPTIONAL',3:'PREMIUM',2:'REFINED',1:'CLASSIC',0:'DEFAULT'};
+const RARITY_COLORS={5:'#c7a6f5',4:'#e5b43c',3:'#6cb6f0',2:'#4fd49a',1:'#c98a4a',0:'#8b8b92'};
 function setPortfolioSort(mode,el){
   S.portfolioSort=mode;
-  document.querySelectorAll('#screen-portfolio .chip').forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll('#screen-portfolio .port2-sort-tab').forEach(c=>c.classList.remove('active'));
   el.classList.add('active');
   renderPortfolio();
 }
 const BUILDING_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="#9a9aa2" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V9.5L12 4l8 5.5V20"/><path d="M9 20v-5h6v5"/><path d="M8.5 11.5h2M13.5 11.5h2"/></svg>';
+function portfolioHomeIconSvg(st){
+  const c=st===5?'url(#pfChromaGrad)':RARITY_COLORS[st];
+  return `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z M9 22V12h6v10"/></svg>`;
+}
+function renderPortfolioRow(p,i,showTier){
+  const m=getOwn(p.id),rent=Math.round(p.rent*m/100*rentMult()*qualityMult(p.id)),val=Math.round(marketValue(p)*m/100);
+  const st=getQuality(p.id).stars;
+  const row=document.createElement('div');row.className='port2-row'+(i?' bordered':'');
+  row.innerHTML=`<div class="port2-hometile">${portfolioHomeIconSvg(st)}</div><div class="port2-row-info"><div class="port2-row-top"><span class="port2-row-name">${portfolioDisplayName(p)}</span>${showTier?`<span class="port2-row-tier" style="color:${RARITY_COLORS[st]}">${RARITY_NAMES[st]}</span>`:`<span class="port2-row-pct">${m}%</span>`}</div><div class="port2-row-bottom"><span class="port2-row-income">${fmtRent(rent)}</span><span class="port2-row-val">· ${fmt(val)}</span></div></div><button class="port2-sell-btn" onclick="event.stopPropagation();openSellModal(${p.id})">${T('sell')}</button>`;
+  row.onclick=()=>openModal(p.id);
+  return row;
+}
+function renderPortfolioRarityGroup(st,items){
+  const sumIncome=items.reduce((s,p)=>s+Math.round(p.rent*getOwn(p.id)/100*rentMult()*qualityMult(p.id)),0);
+  const dots=Array.from({length:5},(_,i)=>`<div style="width:8px;height:4px;border-radius:2px;background:${i<st?RARITY_COLORS[st]:'#2a2a2f'}"></div>`).join('');
+  const wrap=document.createElement('div');wrap.style.marginTop='24px';
+  wrap.innerHTML=`<div style="display:flex;align-items:center;justify-content:space-between;padding:0 2px"><div style="display:flex;align-items:center;gap:8px"><div style="display:flex;gap:2px">${dots}</div><span style="font-size:11.5px;font-weight:600;letter-spacing:.14em;color:${RARITY_COLORS[st]};white-space:nowrap">${RARITY_NAMES[st]} · ${items.length}</span></div><span style="font-size:11px;color:#8b8b92">${fmtRent(sumIncome)}</span></div><div class="port2-ring t${st}"><div class="port2-group-card"></div></div>`;
+  const card=wrap.querySelector('.port2-group-card');
+  items.forEach((p,i)=>card.appendChild(renderPortfolioRow(p,i,false)));
+  return wrap;
+}
 function renderPortfolio(){
   const myP=PROPS.filter(p=>getOwn(p.id)>0);
   const tRent=myP.reduce((s,p)=>s+Math.round(p.rent*getOwn(p.id)/100*rentMult()*qualityMult(p.id)),0);
   const tVal=myP.reduce((s,p)=>s+Math.round(marketValue(p)*getOwn(p.id)/100),0);
-  document.getElementById('port-summary').innerHTML=`<div class="port-stat"><div class="port-stat-val">${fmt(tVal)}</div><div class="port-stat-label">${T('propValue')}</div></div><div class="port-stat"><div class="port-stat-val" style="color:var(--green)">${fmtRent(tRent)}</div><div class="port-stat-label">${T('propIncome')}</div></div><div class="port-stat"><div class="port-stat-val">${myP.length}</div><div class="port-stat-label">${T('propCount')}</div></div>`;
+  document.getElementById('port-summary').innerHTML=`<div><div style="font-size:10px;letter-spacing:.12em;color:#8b8b92;font-weight:600">${T('propValue').toUpperCase()}</div><div style="font-size:26px;font-weight:600;margin-top:2px;line-height:1.1">${fmt(tVal)}</div><div style="font-size:12px;color:#8b8b92;margin-top:3px">${myP.length} ${T('propCount').toLowerCase()}</div></div><div style="text-align:right"><div style="font-size:10px;letter-spacing:.12em;color:#8b8b92;font-weight:600">${T('propIncome').toUpperCase()}</div><div style="font-size:17px;font-weight:600;color:var(--green);margin-top:4px">${fmtRent(tRent)}</div></div>`;
   const list=document.getElementById('portfolio-list');
   if(!myP.length){list.innerHTML=`<div class="empty"><div class="empty-icon">📁</div><div class="empty-text">${T('emptyPortfolio')}</div></div>`;return;}
-  if(S.portfolioSort==='asc')myP.sort((a,b)=>Math.round(marketValue(a)*getOwn(a.id)/100)-Math.round(marketValue(b)*getOwn(b.id)/100));
-  else if(S.portfolioSort==='desc')myP.sort((a,b)=>Math.round(marketValue(b)*getOwn(b.id)/100)-Math.round(marketValue(a)*getOwn(a.id)/100));
   list.innerHTML='';
-  myP.forEach(p=>{
-    const m=getOwn(p.id),rent=Math.round(p.rent*m/100*rentMult()*qualityMult(p.id)),val=Math.round(marketValue(p)*m/100);
-    const t=getQuality(p.id).stars; // 0-5, drives the enchant tier
-    const starsHtml=qualityStarsHtml(p.id,12);
-    const d=document.createElement('div');d.className=`port-frame tier-frame t${t}`;
-    const sheenHtml=t>0?`<div class="port-sheen t${t}"></div>`:'';
-    d.innerHTML=`<div class="port-card t${t}">${sheenHtml}<div class="port-icon-frame tier-frame t${t}"><div class="port-icon-inner">${BUILDING_SVG}</div></div><div class="port-info"><div class="port-name">${portfolioDisplayName(p)} · ${m}%</div><div class="port-upgrades" style="gap:3px;margin-top:6px;">${starsHtml}</div></div><div class="port-right"><div class="port-rent">${fmtRent(rent)} <span class="port-val">(${fmt(val)})</span></div><button class="sell-btn" onclick="event.stopPropagation();openSellModal(${p.id})">${T('sell')}</button></div></div>`;
-    d.onclick=()=>openModal(p.id);list.appendChild(d);
-  });
+  const mode=S.portfolioSort||'rarity';
+  if(mode==='rarity'){
+    for(let st=5;st>=0;st--){
+      const items=myP.filter(p=>getQuality(p.id).stars===st);
+      if(!items.length)continue;
+      list.appendChild(renderPortfolioRarityGroup(st,items));
+    }
+  }else{
+    const sorted=[...myP];
+    if(mode==='asc')sorted.sort((a,b)=>Math.round(marketValue(a)*getOwn(a.id)/100)-Math.round(marketValue(b)*getOwn(b.id)/100));
+    else sorted.sort((a,b)=>Math.round(marketValue(b)*getOwn(b.id)/100)-Math.round(marketValue(a)*getOwn(a.id)/100));
+    const card=document.createElement('div');card.className='port2-group-card';card.style.marginTop='10px';
+    sorted.forEach((p,i)=>card.appendChild(renderPortfolioRow(p,i,true)));
+    list.appendChild(card);
+  }
 }
 
 // ===== OFFERS =====
