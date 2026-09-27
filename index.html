@@ -744,6 +744,8 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
 .buy2-city-name{font-size:14.5px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .buy2-city-sub{font-size:11.5px;color:var(--text2);}
 .buy2-city-price{align-self:center;margin-right:12px;padding:7px 12px;border-radius:10px;background:var(--gold-dim);color:var(--gold);font-size:13px;font-weight:600;white-space:nowrap;flex-shrink:0;}
+.buy2-find-more{margin-top:14px;padding:14px;border-radius:16px;border:1.5px dashed var(--gold);color:var(--gold);text-align:center;font-size:13.5px;font-weight:600;cursor:pointer;}
+.buy2-find-more:active{transform:scale(0.98);}
 
 /* ===== OVERVIEW DASHBOARD ===== */
 .ov2-header{display:flex;flex-direction:column;align-items:center;padding-top:4px;margin-bottom:18px;}
@@ -1067,10 +1069,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="url(#pfChromaGrad)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.7-.9l-.8-1.2A2 2 0 0 0 7.9 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/></svg>
           <div class="port2-title" id="lbl-port-title">Portfolio</div>
           <div class="port2-underline"></div>
-          <button type="button" class="port2-offers-btn" id="port-offers-btn" onclick="toggleOffersPanel()" title="Offers">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#c9c9cf" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-            <div class="bnav-dot" id="offers-dot-top"></div>
-          </button>
         </div>
         <p id="lbl-port-sub" style="display:none">Your properties and income</p>
         <div id="portfolio-props-view">
@@ -1084,12 +1082,6 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
             </div>
           </div>
           <div id="portfolio-list" style="margin-top:10px"></div>
-        </div>
-        <div id="portfolio-offers-view" style="display:none">
-          <div class="store-section-title" id="lbl-received" style="margin-top:0">Received</div>
-          <div id="offers-list"></div>
-          <div class="store-section-title" id="lbl-sent" style="margin-top:18px">Sent</div>
-          <div id="offers-sent-list"></div>
         </div>
       </div>
     </div>
@@ -1136,6 +1128,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
         <div id="social2-tabs-wrap" class="social2-tabs">
           <button type="button" class="social2-tab active" id="stab-boards" onclick="setSocialTab('boards')"><span id="stab-boards-txt">Leaderboard</span></button>
           <button type="button" class="social2-tab" id="stab-friends" onclick="setSocialTab('friends')"><span id="stab-friends-txt">Friends</span><span class="social2-tab-badge" id="friend-req-badge" style="display:none">0</span></button>
+          <button type="button" class="social2-tab" id="stab-offers" onclick="setSocialTab('offers')"><span id="stab-offers-txt">Offers</span><span class="social2-tab-badge" id="offers-req-badge" style="display:none">0</span></button>
         </div>
         <div id="social-boards-view">
           <div class="social2-chips">
@@ -1162,6 +1155,12 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'DM San
           </div>
           <div class="social2-gift-row"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#e5b43c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18v4H3z"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C9 3 12 8 12 8s3-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg><span id="lbl-gifts-left">3 of 3 gifts left today</span></div>
           <div id="friends-list"></div>
+        </div>
+        <div id="social-offers-view" style="display:none">
+          <div class="store-section-title" id="lbl-received" style="margin-top:0">Received</div>
+          <div id="offers-list"></div>
+          <div class="store-section-title" id="lbl-sent" style="margin-top:18px">Sent</div>
+          <div id="offers-sent-list"></div>
         </div>
         <div id="social-inbox-view" style="display:none"></div>
       </div>
@@ -1851,6 +1850,7 @@ function applyLang() {
   setText('trade-title', T('tradeSheetTitle'));
   setText('stab-boards-txt', T('socialBoardsTab'));
   setText('stab-friends-txt', T('socialFriendsTab'));
+  setText('stab-offers-txt', T('offers'));
   setText('chip-global-txt', T('lbGlobalChip'));
   setText('chip-friends-txt', T('lbFriendsChip'));
   const fsi=document.getElementById('friend-search-input'); if(fsi)fsi.placeholder=T('friendSearchPlaceholder');
@@ -1930,7 +1930,8 @@ function applyLang() {
   setText('lbl-personal', T('personal'));
   setText('lbl-global', T('global'));
   if(document.getElementById('prop-accordion'))renderGrid();
-  if(S.screen==='portfolio'){ if(S.portfolioTab==='offers')renderOffers(); else renderPortfolio(); }
+  if(S.screen==='portfolio'){ renderPortfolio(); }
+  if(S.screen==='leaderboard'&&socialTab==='offers')renderOffers();
   if(S.screen==='overview')renderOverview();
   // Logout
   setText('logout-btn', T('logout'));
@@ -2741,7 +2742,12 @@ function setupRealtime() {
   }
 }
 function broadcastAction(txt) { if(supa)supa.channel('live').send({type:'broadcast',event:'a',payload:{t:txt}}); }
-function updateDot(){const show=(S.offers?.length||0)>0;document.getElementById('offers-dot').classList.toggle('show',show);const t=document.getElementById('offers-dot-top');if(t)t.classList.toggle('show',show);}
+function updateDot(){
+  const n=S.offers?.length||0;const show=n>0;
+  document.getElementById('offers-dot').classList.toggle('show',show);
+  const b=document.getElementById('offers-req-badge');
+  if(b){b.style.display=show?'inline-flex':'none';b.textContent=n;}
+}
 
 // ===== HELPERS =====
 function fmt(n){if(n>=1e9)return'€'+(n/1e9).toFixed(1)+'B';if(n>=1e6)return'€'+(n/1e6).toFixed(1)+'M';if(n>=1000)return'€'+Math.round(n/1000)+'K';return'€'+Math.round(n).toLocaleString();}
@@ -2885,23 +2891,14 @@ function setScreen(name, el) {
   screenEl.scrollTop = 0;
   const target = el || document.querySelector('.bnav-item[data-s="'+name+'"]');
   if(target) target.classList.add('active');
-  if(name==='portfolio'){ if(S.portfolioTab==='offers')refreshOffers(); else renderPortfolio(); }
-  if(name==='leaderboard'){ renderLeaderboard(); loadSocialData().then(()=>{ if(socialTab==='friends')renderFriendsView(); }); }
+  if(name==='portfolio'){ renderPortfolio(); }
+  if(name==='leaderboard'){ renderLeaderboard(); loadSocialData().then(()=>{ if(socialTab==='friends')renderFriendsView(); if(socialTab==='offers')refreshOffers(); }); }
   if(name==='skills')renderSkills();
   if(name==='store')renderStore();
   if(name==='map')initWorldMap();
   if(name==='buyproperty'){ renderBuyCollections(); renderBuyCollectionDetail(); initBuyCityList(); }
   if(name==='overview')renderOverview();
 }
-function setPortfolioTab(tab){
-  S.portfolioTab=tab;
-  const btn=document.getElementById('port-offers-btn');
-  if(btn)btn.classList.toggle('active',tab==='offers');
-  document.getElementById('portfolio-props-view').style.display=tab==='properties'?'':'none';
-  document.getElementById('portfolio-offers-view').style.display=tab==='offers'?'':'none';
-  if(tab==='offers')refreshOffers(); else renderPortfolio();
-}
-function toggleOffersPanel(){ setPortfolioTab(S.portfolioTab==='offers'?'properties':'offers'); }
 function toggleSection(tier){S.openSection=(S.openSection===tier)?null:tier;renderBuyPropertyEvents();}
 
 // ===== WORLD MAP =====
@@ -3075,6 +3072,17 @@ function renderBuyCityChips(){
   });
 }
 function onBuyCitySearch(v){buyCityQuery=v;renderBuyCityListItems();}
+const BUY_CATEGORY_CAP={All:20,Cities:15,Capitals:10,Countries:5};
+const BUY_ALL_MIN_COUNTRIES=5;
+function capBuyResults(filtered){
+  if(buyTypeFilter!=='All')return filtered.slice(0,BUY_CATEGORY_CAP[buyTypeFilter]||filtered.length);
+  const cap=BUY_CATEGORY_CAP.All;
+  const nearbyCountries=filtered.filter(r=>r.type==='Countries').slice(0,BUY_ALL_MIN_COUNTRIES);
+  const pickedIds=new Set(nearbyCountries.map(r=>r.id));
+  const rest=filtered.filter(r=>!pickedIds.has(r.id));
+  const filler=rest.slice(0,Math.max(0,cap-nearbyCountries.length));
+  return [...nearbyCountries,...filler].sort((a,b)=>a.dist-b.dist);
+}
 function renderBuyCityListItems(){
   const list=document.getElementById('buy2-city-list');
   if(!list)return;
@@ -3084,7 +3092,8 @@ function renderBuyCityListItems(){
     .filter(r=>!q||r.title.toLowerCase().includes(q)||(r.countryName||'').toLowerCase().includes(q));
   list.innerHTML='';
   if(!filtered.length){ list.innerHTML=`<div class="bp-gps-status">No city found</div>`; return; }
-  filtered.slice(0,60).forEach(r=>{
+  const shown=q?filtered.slice(0,60):capBuyResults(filtered);
+  shown.forEach(r=>{
     const p=PROPS.find(x=>x.id===r.id);
     if(!p)return;
     const d=document.createElement('div');d.className='buy2-city-row';
@@ -3092,6 +3101,12 @@ function renderBuyCityListItems(){
     d.onclick=()=>openModal(r.id);
     list.appendChild(d);
   });
+  if(!q){
+    const more=document.createElement('div');more.className='buy2-find-more';
+    more.textContent='🌐 Find more directly on map';
+    more.onclick=()=>setScreen('map',null);
+    list.appendChild(more);
+  }
 }
 function mapSearchCountry(query){
   if(!wmMap || !query || query.length<2) return;
@@ -3903,9 +3918,12 @@ function setSocialTab(tab){
   socialTab=tab;
   document.getElementById('stab-boards').classList.toggle('active',tab==='boards');
   document.getElementById('stab-friends').classList.toggle('active',tab==='friends');
+  document.getElementById('stab-offers').classList.toggle('active',tab==='offers');
   document.getElementById('social-boards-view').style.display=tab==='boards'?'':'none';
   document.getElementById('social-friends-view').style.display=tab==='friends'?'':'none';
+  document.getElementById('social-offers-view').style.display=tab==='offers'?'':'none';
   if(tab==='friends')renderFriendsView();
+  if(tab==='offers')refreshOffers();
 }
 function inviteFriends(){
   const url=(location&&location.origin)?location.origin:'https://landlord-psi.vercel.app';
@@ -4021,6 +4039,7 @@ async function openInbox(){
   document.getElementById('social2-tabs-wrap').style.display='none';
   document.getElementById('social-boards-view').style.display='none';
   document.getElementById('social-friends-view').style.display='none';
+  document.getElementById('social-offers-view').style.display='none';
   const view=document.getElementById('social-inbox-view');
   view.style.display='';
   view.innerHTML=`<div class="social2-empty" style="margin-top:26px">${T('inboxTitle')}…</div>`;
@@ -4065,6 +4084,7 @@ function closeInbox(){
   document.getElementById('social-inbox-view').style.display='none';
   document.getElementById('social-boards-view').style.display=socialTab==='boards'?'':'none';
   document.getElementById('social-friends-view').style.display=socialTab==='friends'?'':'none';
+  document.getElementById('social-offers-view').style.display=socialTab==='offers'?'':'none';
 }
 let friendMenuTarget=null;
 function toggleFriendMenu(uid,name){
@@ -4736,7 +4756,8 @@ function startTicks(){
 
 function renderAll(){
   renderGrid();
-  if(S.screen==='portfolio'){ if(S.portfolioTab==='offers')renderOffers(); else renderPortfolio(); }
+  if(S.screen==='portfolio'){ renderPortfolio(); }
+  if(S.screen==='leaderboard'&&socialTab==='offers')renderOffers();
   if(S.screen==='store')renderStore();
   if(S.screen==='skills')renderSkills();
   if(S.screen==='overview')renderOverview();
